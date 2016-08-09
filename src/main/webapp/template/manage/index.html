@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="manageIndex" ng-controller="data">
+<head>
+    <title>后台管理系统首页</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <script type="text/javascript" src="../../js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/common/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/common/angular.min.js"></script>
+    <script type="text/javascript" src="../../js/manage/index.js"></script>
+</head>
+<body>
+<!--导航条状态-->
+<nav class="navbar navbar-default">
+    <div id="navbar" class="navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="color: white" href="/">WangJiaNan's Blog</a>
+        </div>
+    </div>
+</nav>
+<!--左侧导航栏-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-xs-2">
+            <ul id="main-nav" class="nav nav-tabs nav-stacked">
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                        主页
+                    </a>
+                </li>
+                <li>
+                    <a href="#to" class="nav-header collapsed" data-toggle="collapse">
+                        <i class="glyphicon glyphicon-tasks"></i>
+                        <span>博客</span>
+                        <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul id="to" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i>Java</a></li>
+                        <li class="active"><a href="#"><i class="glyphicon glyphicon-th-list"></i>Linux</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>Python</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-edit"></i>云音乐</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>留言板</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./plans.html">
+                        <i class="glyphicon glyphicon-credit-card"></i>
+                        系统管理
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./grid.html">
+                        <i class="glyphicon glyphicon-globe"></i>
+                        流量监控
+                        <span class="label label-info pull-right">5</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./charts.html">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        图表统计
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-fire"></i>
+                        关于系统
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 col-xs-10">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Java</h3>
+                </div>
+                <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm">添加</button>
+                </div>
+                <!--内容列表-->
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed table-striped">
+                        <tr>
+                            <th>创建时间</th>
+                            <th>标题</th>
+                            <th>查看次数</th>
+                            <th>是否置顶</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr ng-repeat="model in models">
+                            <td>{{model.createTime}}</td>
+                            <td>{{model.blogTitle}}</td>
+                            <td>{{model.views}}</td>
+                            <td>{{model.isTop}}</td>
+                            <td>
+                                <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default">查看</button>
+                                    <button type="button" class="btn btn-default">修改</button>
+                                    <button type="button" class="btn btn-default">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li class="next">
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		   http://www.springframework.org/schema/rabbit
+		   http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+       <description>Spring Rabbit configuration</description>
+
+       <!-- Rabbit 连接服务配置 -->
+       <rabbit:connection-factory id="connectionFactory" host="host" username="root" password="root" port="5672" channel-cache-size="50"/>
+       <rabbit:admin connection-factory="connectionFactory"/>
+
+       <bean id="rabbitListenerContainerFactory" class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">
+              <property name="connectionFactory" ref="connectionFactory"/>
+              <property name="concurrentConsumers" value="2"/>
+              <property name="maxConcurrentConsumers" value="10"/>
+       </bean>
+
+       <!-- 队列声明queue -->
+       <rabbit:queue id="queue" durable="true" auto-delete="false" exclusive="false" name="queue"/>
+
+       <!-- exchange queue key 绑定 -->
+       <rabbit:direct-exchange id="myRabbitMq" name="myRabbitMq" durable="true" auto-delete="false" >
+              <rabbit:bindings>
+                     <rabbit:binding queue="queue" key="queue_msg"/>
+              </rabbit:bindings>
+       </rabbit:direct-exchange>
+
+       <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory" exchange="myRabbitMq"/>
+</beans>
