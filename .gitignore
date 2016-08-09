@@ -14,3 +14,4 @@ classes/
 .gradle/
 build/
 gradle/
+jdbc.properties
