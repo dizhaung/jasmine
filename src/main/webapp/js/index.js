@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 var model = angular.module('index', []);
 model.controller('data', function ($scope, $http) {
-    $scope.title = "首页"
+    $scope.title = "首页";
     $http({
         method: 'POST',
         url: '/static/getBlogData',

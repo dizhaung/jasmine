@@ -2,25 +2,18 @@
  *
  * Created by wangjianan on 16-8-15.
  */
-
-var angular = angular.module('indexControllers', []);
-angular.controller('indexCtrl', ['$scope', function($scope){
-    $scope.title = "首页";
-    $scope.models = function () {
-        $http({
-            method: 'POST',
-            url: '/static/getBlogData',
-            data: {},
-            headers: {'Content-Type': 'application/json'}
-        }).success(function (response) {
-            if (response.status == 0) {
-                return response.content;
-            } else {
-                alert(response.message)
+var angular = angular.module('indexControllers', ['httpServices']);
+angular.controller('indexCtrl', ['$scope', 'http', function($scope, http){
+    http.query('/manage/getBills', {}).then(
+        function(answer){
+            var data = answer.data;
+            if (data.status == 0) {
+                $scope.models = data.content;
             }
-        })
-        .error(function () {
-            alert("网络异常，请稍候重试！")
-        });
-    };
+        },
+        function(error){
+            $scope.error = error;
+        }
+    );
+    $scope.tip = "223";
 }]);

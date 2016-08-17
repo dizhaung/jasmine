@@ -1,4 +1,5 @@
 /**
+ *
  * Created by wangjianan on 16-6-24.
  */
 $(document).ready(function () {
@@ -11,21 +12,20 @@ $(document).ready(function () {
 var model;
 model = angular.module('manageIndex', []);
 model.controller('data', function ($scope, $http) {
-    $scope.title = "首页"
+    $scope.title = "首页";
     $http({
         method: 'POST',
         url: '/manage/getBills',
         data: {},
         headers: {'Content-Type': 'application/json'}
     }).success(function (response) {
-            if (response.status == 0) {
-                var content = response.content;
-                $scope.models = content;
-            } else {
-                alert(response.message)
-            }
-        })
-        .error(function () {
-            alert("网络异常，请稍候重试！")
-        });
+        if (response.status == 0) {
+            $scope.models = response.content;
+        } else {
+            alert(response.message)
+        }
+    })
+    .error(function () {
+        alert("网络异常，请稍候重试！")
+    });
 });
