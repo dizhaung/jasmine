@@ -5,7 +5,7 @@
 var angularServices = angular.module('httpServices', []);
 angularServices.service('http', ['$http', '$q', function ($http, $q) {
     return{
-        query: function (url, data) {
+        post: function (url, data) {
             var deferred = $q.defer();
             var promise = $http({
                 method: 'POST',

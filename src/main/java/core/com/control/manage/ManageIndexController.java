@@ -11,18 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  *
  * Created by wangjianan on 16-7-4.
  */
 @RestController
-public class ManageIndexControl {
-    private static final Logger logger = LoggerFactory.getLogger(ManageIndexControl.class);
+public class ManageIndexController {
+    private static final Logger logger = LoggerFactory.getLogger(ManageIndexController.class);
 
     @Autowired
     private ManageIndexService manageIndexService;

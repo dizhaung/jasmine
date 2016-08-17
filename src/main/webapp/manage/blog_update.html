@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="blogApp" ng-controller="blogCtrl">
+<html lang="en" ng-app="blogApp">
 <head>
     <meta charset="UTF-8">
     <title ng-bind="title"></title>
@@ -42,14 +42,14 @@
             <!-- editor -->
             <br>
             <mark>文章内容</mark>
-            <div id="editor" style="height: 500px">
+            <div id="editor" style="height: 400px" ng-controller="editorCtrl">
                 <p>请输入内容...</p>
             </div>
             <hr/>
-            <div class="center-block" style="width:230px;">
-                <button type="button" class="btn btn-primary">发表文章</button>
-                <button type="button" class="btn btn-primary">立即保存</button>
-                <button type="button" class="btn btn-primary">舍弃</button>
+            <div class="center-block" style="width:230px;" ng-controller="buttonBlogCtrl">
+                <button type="button" class="btn btn-primary" ng-click="toggle(0)">发表文章</button>
+                <button type="button" class="btn btn-primary" ng-click="toggle(1)">立即保存</button>
+                <button type="button" class="btn btn-primary" ng-click="toggle(2)">舍弃</button>
             </div>
         </div>
     </div>
