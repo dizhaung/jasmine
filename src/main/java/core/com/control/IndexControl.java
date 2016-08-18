@@ -1,9 +1,9 @@
 package core.com.control;
 
-import core.com.model.Blog;
 import core.com.model.LightningResponse;
 import core.com.model.lend.IndexInfoReq;
-import core.com.service.BlogService;
+import core.com.service.front.BlogService;
+import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,18 +26,9 @@ public class IndexControl {
         try {
             response = blogService.getIndexInfo(indexInfoReq);
         } catch (Exception e) {
-            response = Utility.getErrorResponse();
-            response.setMessage("系统异常，请稍候重试！");
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             e.printStackTrace();
         }
         return response;
     }
-
-    @RequestMapping(value = "/static/blogAdd", method = RequestMethod.POST)
-    private LightningResponse blogAdd(@RequestBody Blog blog) {
-        LightningResponse response = null;
-        response = blogService.blogAdd(blog);
-        return response;
-    }
-
 }

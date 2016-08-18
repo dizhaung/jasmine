@@ -3,7 +3,7 @@
  * Created by wangjianan on 16-8-15.
  */
 var indexControllers = angular.module('indexControllers', ['httpServices']);
-indexControllers.controller('indexCtrl', ['$scope', 'http', function($scope, http){
+indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', function($scope, http, $location){
     http.post('/manage/getBills', {}).then(
         function(answer){
             var data = answer.data;
@@ -16,6 +16,15 @@ indexControllers.controller('indexCtrl', ['$scope', 'http', function($scope, htt
         }
     );
     $scope.tip = "223";
+    
+    // 添加
+    $scope.add = function (url_) {
+        var host = $location.host();
+        var port = $location.port();
+        var protocol = $location.protocol();
+        var url = protocol + "://" + host + ":" + port + "/manage/" + url_;
+        window.location.href = url;
+    }
 }]);
 
 /**
@@ -23,7 +32,12 @@ indexControllers.controller('indexCtrl', ['$scope', 'http', function($scope, htt
  * 添加修改Blog
  */
 var blogApp = angular.module("blogApp", ['httpServices']);
-blogApp.controller('editorCtrl', ['$scope', function ($scope) {
+blogApp.controller('blogCtrl', ['$scope', 'http', function ($scope, http) {
+    /**
+     * 创建编辑器
+     *
+     * @type {wangEditor}
+     */
     var editor = new wangEditor('editor');
     // 上传图片
     editor.config.uploadImgUrl = '/upload';
@@ -34,29 +48,37 @@ blogApp.controller('editorCtrl', ['$scope', function ($scope) {
     // 关闭网络上传
     editor.config.hideLinkImg = true;
     editor.create();
-}]);
-blogApp.controller('buttonBlogCtrl', ['$scope', 'http', function ($scope, http) {
-    $scope.toggle = function (type) {
-        if (type == 0) {
+
+    /**
+     * 发表日志
+     *
+     * @param operation
+     */
+    $scope.toggle = function (operation) {
+        alert(operation);
+        var html = editor.$txt.html();
+        var name = $scope.name;
+        var type = $scope.type;
+        if (operation == 0) { // 发表日志
             http.post('/manage/add', {
-                name : 'aa',
-                message : 'bb'
+                name : name,
+                type : type,
+                message : html
             }).then(
                 function(answer){
                     var data = answer.data;
                     if (data.status == 0) {
-                        $scope.models = data.content;
+                        alert(data.message);
                     }
                 },
                 function(error){
                     $scope.error = error;
                 }
             );
-            alert(type);
-        } else if (type == 1) {
-            alert(type);
-        } else if (type == 2) {
-            alert(type);
+        } else if (operation == 1) { // 保存
+            alert(operation);
+        } else if (operation == 2) { // 舍弃
+            alert(operation);
         }
     };
 }]);

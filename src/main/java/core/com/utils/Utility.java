@@ -1,6 +1,10 @@
 package core.com.utils;
 
 import core.com.model.LightningResponse;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+
+import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by wangjianan on 2016/2/17.
@@ -46,5 +50,59 @@ public class Utility {
             resultStr = time / Constants.SECONDS_OF_ONE_DAY + " 天";
         }
         return resultStr;
+    }
+
+    /**
+     * generate random UUID, eg:d17e0ec1-3dda-47cc-8643-e516afa08a36
+     *
+     * @return new uuid
+     */
+    public static String generateUUID() {
+        return UUID.randomUUID().toString();
+    }
+
+    public static LightningResponse getSuccessResp(Object content) {
+        LightningResponse resp = new LightningResponse();
+        resp.setStatus(ErrorCode.SYS_SUCCESS);
+        resp.setMessage("成功");
+        resp.setContent(content);
+        return resp;
+    }
+
+    public static LightningResponse getErrorResponse(int status) {
+        LightningResponse resp = new LightningResponse();
+        resp.setStatus(status);
+        switch (status) {
+            case ErrorCode.SYS_FAIL: {
+                resp.setMessage("失败");
+                break;
+            }
+            case ErrorCode.SYS_PARAMETER_ERROR: {
+                resp.setMessage("系统繁忙，请稍后尝试");
+                break;
+            }
+            default:{
+                resp.setMessage("system error");
+                break;
+            }
+        }
+        return resp;
+    }
+
+    public static boolean isNotBlank(String str) {
+        return (!isBlank(str));
+    }
+
+    public static boolean isBlank(String str) {
+        int strLen;
+        if (str == null || (strLen = str.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if ((Character.isWhitespace(str.charAt(i)) == false)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

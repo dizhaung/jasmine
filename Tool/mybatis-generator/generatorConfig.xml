@@ -16,7 +16,7 @@
         </commentGenerator>
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-            connectionURL="jdbc:mysql://localhost/core" userId="root" password="ai1103">
+            connectionURL="jdbc:mysql://117.78.41.29/core" userId="root" password="Ai1103@.com">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -36,17 +36,17 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO文件包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="core.com.dao"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="core.com.dao.mapper"
             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="User"></table>
-        <table tableName="comment" domainObjectName="Comment"></table>
-        <table tableName="blog" domainObjectName="Blog"></table>
-        <table tableName="sys_menu" domainObjectName="SysMenu"></table>
-        <table tableName="tag_label" domainObjectName="TagLabel"></table>
-        <table tableName="config_blog_label" domainObjectName="ConfigBlogLabel"></table>
+        <!--<table tableName="user" domainObjectName="User"></table>-->
+        <!--<table tableName="comment" domainObjectName="Comment"></table>-->
+        <!--<table tableName="blog" domainObjectName="Blog"></table>-->
+        <!--<table tableName="sys_menu" domainObjectName="SysMenu"></table>-->
+        <!--<table tableName="tag_label" domainObjectName="TagLabel"></table>-->
+        <!--<table tableName="config_blog_label" domainObjectName="ConfigBlogLabel"></table>-->
 
     </context>
 </generatorConfiguration>
