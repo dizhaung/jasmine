@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="core.com.dao.mapper.BlogLoanMapper" >
+  <resultMap id="BaseResultMap" type="core.com.model.BlogLoan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gid" property="gid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="user_gid" property="userGid" jdbcType="VARCHAR" />
+    <result column="channel_gid" property="channelGid" jdbcType="VARCHAR" />
+    <result column="mark_gid" property="markGid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="is_top" property="isTop" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="core.com.model.BlogLoan" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, gid, create_time, update_time, user_gid, channel_gid, mark_gid, name, type, views, 
+    is_top
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="core.com.model.BlogLoanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="core.com.model.BlogLoanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blog_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_loan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_loan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="core.com.model.BlogLoanExample" >
+    delete from blog_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="core.com.model.BlogLoan" >
+    insert into blog_loan (id, gid, create_time, 
+      update_time, user_gid, channel_gid, 
+      mark_gid, name, type, 
+      views, is_top, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER}, #{userGid,jdbcType=VARCHAR}, #{channelGid,jdbcType=VARCHAR}, 
+      #{markGid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{views,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="core.com.model.BlogLoan" >
+    insert into blog_loan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gid != null" >
+        gid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="userGid != null" >
+        user_gid,
+      </if>
+      <if test="channelGid != null" >
+        channel_gid,
+      </if>
+      <if test="markGid != null" >
+        mark_gid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="isTop != null" >
+        is_top,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null" >
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userGid != null" >
+        #{userGid,jdbcType=VARCHAR},
+      </if>
+      <if test="channelGid != null" >
+        #{channelGid,jdbcType=VARCHAR},
+      </if>
+      <if test="markGid != null" >
+        #{markGid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        #{isTop,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="core.com.model.BlogLoanExample" resultType="java.lang.Integer" >
+    select count(*) from blog_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update blog_loan
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.gid != null" >
+        gid = #{record.gid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.userGid != null" >
+        user_gid = #{record.userGid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelGid != null" >
+        channel_gid = #{record.channelGid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.markGid != null" >
+        mark_gid = #{record.markGid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.views != null" >
+        views = #{record.views,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTop != null" >
+        is_top = #{record.isTop,jdbcType=BIT},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update blog_loan
+    set id = #{record.id,jdbcType=INTEGER},
+      gid = #{record.gid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER},
+      user_gid = #{record.userGid,jdbcType=VARCHAR},
+      channel_gid = #{record.channelGid,jdbcType=VARCHAR},
+      mark_gid = #{record.markGid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      views = #{record.views,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update blog_loan
+    set id = #{record.id,jdbcType=INTEGER},
+      gid = #{record.gid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER},
+      user_gid = #{record.userGid,jdbcType=VARCHAR},
+      channel_gid = #{record.channelGid,jdbcType=VARCHAR},
+      mark_gid = #{record.markGid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      views = #{record.views,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="core.com.model.BlogLoan" >
+    update blog_loan
+    <set >
+      <if test="gid != null" >
+        gid = #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userGid != null" >
+        user_gid = #{userGid,jdbcType=VARCHAR},
+      </if>
+      <if test="channelGid != null" >
+        channel_gid = #{channelGid,jdbcType=VARCHAR},
+      </if>
+      <if test="markGid != null" >
+        mark_gid = #{markGid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null" >
+        is_top = #{isTop,jdbcType=BIT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="core.com.model.BlogLoan" >
+    update blog_loan
+    set gid = #{gid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      user_gid = #{userGid,jdbcType=VARCHAR},
+      channel_gid = #{channelGid,jdbcType=VARCHAR},
+      mark_gid = #{markGid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      views = #{views,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=BIT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="core.com.model.BlogLoan" >
+    update blog_loan
+    set gid = #{gid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      user_gid = #{userGid,jdbcType=VARCHAR},
+      channel_gid = #{channelGid,jdbcType=VARCHAR},
+      mark_gid = #{markGid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      views = #{views,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -35,18 +35,18 @@
             targetProject="../../src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
+
         <!-- 生成DAO文件包名和位置 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="core.com.dao.mapper"
             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!--<table tableName="user" domainObjectName="User"></table>-->
-        <!--<table tableName="comment" domainObjectName="Comment"></table>-->
-        <!--<table tableName="blog" domainObjectName="Blog"></table>-->
-        <!--<table tableName="sys_menu" domainObjectName="SysMenu"></table>-->
-        <!--<table tableName="tag_label" domainObjectName="TagLabel"></table>-->
-        <!--<table tableName="config_blog_label" domainObjectName="ConfigBlogLabel"></table>-->
+        <table tableName="user_base" domainObjectName="UserBase"></table>
+        <table tableName="blog_loan" domainObjectName="BlogLoan"></table>
+        <table tableName="blog_channel" domainObjectName="BlogChannel"></table>
+        <table tableName="blog_mark" domainObjectName="BlogMark"></table>
+        <table tableName="config_blog_mark" domainObjectName="ConfigBlogMark"></table>
 
     </context>
 </generatorConfiguration>
