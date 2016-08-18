@@ -9,5 +9,5 @@ import core.com.model.manage.AddBlogResp;
  */
 public interface ManageBlogService {
 
-    public AddBlogResp doBlog(AddBlogReq addBlogReq);
+    public AddBlogResp doBlogLoan(AddBlogReq addBlogReq);
 }

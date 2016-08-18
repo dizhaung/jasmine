@@ -37,7 +37,7 @@ public class BlogController {
         }
 
         try {
-            response = Utility.getSuccessResp(manageBlogService.doBlog(addBlogReq));
+            response = Utility.getSuccessResp(manageBlogService.doBlogLoan(addBlogReq));
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             logger.error("add(): add is error, exception={}", e);
