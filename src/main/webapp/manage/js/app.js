@@ -2,7 +2,7 @@
  *
  * Created by wangjianan on 16-8-9.
  */
-var app = angular.module("app", ['ngRoute', 'indexControllers', 'httpServices']);
+var app = angular.module("app", ['ngRoute', 'indexControllers', 'services']);
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/index', {
