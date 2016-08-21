@@ -1,7 +1,10 @@
 package core.com.service.manage;
 
+import core.com.model.BlogChannel;
 import core.com.model.manage.AddChannelRequest;
 import core.com.model.manage.AddChannelResponse;
+
+import java.util.List;
 
 /**
  *
@@ -9,6 +12,8 @@ import core.com.model.manage.AddChannelResponse;
  */
 public interface ManageChannelService {
 
-    AddChannelResponse doChannel(AddChannelRequest addChannelRequest);
+    BlogChannel doChannel(AddChannelRequest addChannelRequest);
+
+    List<BlogChannel> queryChannel();
 
 }

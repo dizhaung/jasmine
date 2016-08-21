@@ -72,10 +72,10 @@
             <div class="row-fluid" ng-repeat="model in models">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h3 ng-bind="model.blogTitle"></h3>
+                        <h3 ng-bind="model.blogName"></h3>
                         <div class="caption">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            {{model.blogDateTime + "前"}}
+                            {{model.blogCreateTime + "前"}}
                             &nbsp; | &nbsp;
                             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
                             {{model.menuName}}

@@ -58,7 +58,7 @@
                     <label for="channel_id">文章分类</label>
                     <!-- 触发显示对话框的按钮 -->
                     <a href="#channel_modal_id" role="button" class="btn" data-toggle="modal">[编辑]</a>
-                    <select id="channel_id" class="form-control" ng-model="channels.selectedOption" ng-options="model.name for model in channels.availableOptions track by model.id"></select>
+                    <select id="channel_id" class="form-control" ng-model="channels.selectedOption" ng-options="model.name for model in channels.availableOptions track by model.gid"></select>
                 </div>
 
                 <div class="form-group">

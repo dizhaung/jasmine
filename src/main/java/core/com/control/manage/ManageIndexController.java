@@ -3,6 +3,8 @@ package core.com.control.manage;
 import core.com.model.LightningResponse;
 import core.com.model.manage.ManageIndexReq;
 import core.com.service.manage.ManageIndexService;
+import core.com.utils.ErrorCode;
+import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,10 @@ public class ManageIndexController {
         LightningResponse response = null;
 
         try {
-            response = manageIndexService.queryBlogByType(manageIndexReq);
+            response = Utility.getSuccessResp( manageIndexService.queryBlogByType(manageIndexReq));
         } catch (Exception e) {
-            e.printStackTrace();
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("channel(): channel is error, exception={}", e);
         } finally {
 
         }

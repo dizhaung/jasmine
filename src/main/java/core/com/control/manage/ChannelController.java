@@ -46,4 +46,19 @@ public class ChannelController {
         return response;
     }
 
+    @RequestMapping(value = "/getChannel", method = RequestMethod.POST)
+    private LightningResponse queryChannel() {
+        logger.info("===> channel queryChannel():");
+        LightningResponse response = null;
+
+        try {
+            response = Utility.getSuccessResp(manageChannelService.queryChannel());
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("channel(): channel is error, exception={}", e);
+        }
+        logger.info("<=== channel queryChannel(): response={}", response);
+        return response;
+    }
+
 }

@@ -32,16 +32,21 @@ angularServices.service('http', ['$http', '$q', function ($http, $q) {
     }
 }]);
 
-angularServices.service('channel', ['$rootScope', function ($rootScope) {
+angularServices.service('channel', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
+    // service 本质new一个单例对象
     var service = {
         channels: [
-            {id: '1', name: '北京'},
-            {id: '2', name: '上海'},
-            {id: '3', name: '广州'},
-            {id: '4', name: '长春'}
+            // {id: '1', name: '北京'},
+            // {id: '2', name: '上海'},
+            // {id: '3', name: '广州'},
+            // {id: '4', name: '长春'}
         ],
         addChannel: function (channel) {
             service.channels.push(channel);
+            $rootScope.$broadcast('channel.update');
+        },
+        init: function (channels) {
+            service.channels = channels;
             $rootScope.$broadcast('channel.update');
         }
     };

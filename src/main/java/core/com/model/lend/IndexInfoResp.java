@@ -6,13 +6,11 @@ package core.com.model.lend;
 public class IndexInfoResp {
 
     private String gid;
-    private String blogTitle;
-    private String blogDateTime;
-    private int views;
-    private int isTop;
-    private String menuName;
+    private String blogName;
+    private String blogCreateTime;
     private String userGid;
-    private String menuGid;
+    private int views;
+    private boolean isTop;
 
     public String getGid() {
         return gid;
@@ -22,44 +20,20 @@ public class IndexInfoResp {
         this.gid = gid;
     }
 
-    public String getBlogTitle() {
-        return blogTitle;
+    public String getBlogName() {
+        return blogName;
     }
 
-    public void setBlogTitle(String blogTitle) {
-        this.blogTitle = blogTitle;
+    public void setBlogName(String blogName) {
+        this.blogName = blogName;
     }
 
-    public String getBlogDateTime() {
-        return blogDateTime;
+    public String getBlogCreateTime() {
+        return blogCreateTime;
     }
 
-    public void setBlogDateTime(String blogDateTime) {
-        this.blogDateTime = blogDateTime;
-    }
-
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
-    }
-
-    public int getIsTop() {
-        return isTop;
-    }
-
-    public void setIsTop(int isTop) {
-        this.isTop = isTop;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setBlogCreateTime(String blogCreateTime) {
+        this.blogCreateTime = blogCreateTime;
     }
 
     public String getUserGid() {
@@ -70,25 +44,31 @@ public class IndexInfoResp {
         this.userGid = userGid;
     }
 
-    public String getMenuGid() {
-        return menuGid;
+    public int getViews() {
+        return views;
     }
 
-    public void setMenuGid(String menuGid) {
-        this.menuGid = menuGid;
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public boolean isTop() {
+        return isTop;
+    }
+
+    public void setTop(boolean top) {
+        isTop = top;
     }
 
     @Override
     public String toString() {
         return "IndexInfoResp{" +
                 "gid='" + gid + '\'' +
-                ", blogTitle='" + blogTitle + '\'' +
-                ", blogDateTime='" + blogDateTime + '\'' +
+                ", blogName='" + blogName + '\'' +
+                ", blogCreateTime='" + blogCreateTime + '\'' +
+                ", userGid='" + userGid + '\'' +
                 ", views=" + views +
                 ", isTop=" + isTop +
-                ", menuName='" + menuName + '\'' +
-                ", userGid='" + userGid + '\'' +
-                ", menuGid='" + menuGid + '\'' +
                 '}';
     }
 }

@@ -3,8 +3,11 @@ package core.com.dao.impl;
 import core.com.dao.BlogLoanDao;
 import core.com.dao.mapper.BlogLoanMapper;
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Blog dao
@@ -19,5 +22,11 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     @Override
     public int insert(BlogLoan blogLoan) {
         return blogLoanMapper.insertSelective(blogLoan);
+    }
+
+    @Override
+    public List<BlogLoan> queryBlogLoan() {
+        BlogLoanExample example = new BlogLoanExample();
+        return blogLoanMapper.selectByExample(example);
     }
 }

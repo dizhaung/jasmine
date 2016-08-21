@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by wangjianan on 16-8-19.
  */
@@ -23,9 +25,8 @@ public class ManageChannelServiceImpl implements ManageChannelService {
     private BlogChannelDao blogChannelDao;
 
     @Override
-    public AddChannelResponse doChannel(AddChannelRequest addChannelRequest) {
+    public BlogChannel doChannel(AddChannelRequest addChannelRequest) {
         logger.info("doChannel(): addChannelRequest={}", addChannelRequest);
-        AddChannelResponse response = null;
 
         String blogChannelGid = Utility.generateUUID();
         int currentTimeStamp = Utility.getCurrentTimeStamp();
@@ -36,12 +37,16 @@ public class ManageChannelServiceImpl implements ManageChannelService {
         blogChannel.setUpdateTime(currentTimeStamp);
         blogChannel.setDescription(addChannelRequest.getChannelDesc());
         blogChannel.setSuperGid("");
+        blogChannel.setIsValid(Boolean.TRUE);
+        blogChannel.setOrderNum(0.0);
 
         blogChannelDao.insert(blogChannel);
-        response = new AddChannelResponse();
-        response.setChannelName(blogChannel.getName());
-        response.setChannelGid(blogChannelGid);
-        logger.info("doChannel(): response={}", response);
-        return response;
+        logger.info("doChannel(): response={}", blogChannel);
+        return blogChannel;
+    }
+
+    @Override
+    public List<BlogChannel> queryChannel() {
+        return blogChannelDao.queryChannelAll();
     }
 }

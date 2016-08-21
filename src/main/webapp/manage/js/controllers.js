@@ -53,10 +53,26 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
      * 初始化类别
      * @type {{availableOptions: *[], selectedOption: {id: string, name: string}}}
      */
-    $scope.channels = {
-        availableOptions: channel.channels,
-        selectedOption: {id: '1', name: '北京'}
-    };
+    // 初始化公共channel
+    http.post('/manage/channel/getChannel', {
+    }).then(
+        function(answer){
+            var data = answer.data;
+            if (data.status == 0) {
+                var channelList = data.content;
+                if (channelList != null && channelList.length > 0) {
+                    channel.init(channelList);
+                    $scope.channels = {
+                        availableOptions: channel.channels,
+                        selectedOption: channelList[0]
+                    };
+                }
+            }
+        },
+        function(error){
+            $scope.error = error;
+        }
+    );
 
     $scope.modal_title = '文章分类';
     $scope.channelName = '';
@@ -65,7 +81,7 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
         // 获取分类信息
         var channelName = $scope.channelName;
         var channelDesc = $scope.channelDesc;
-        var channelId = $scope.channels.selectedOption.id;
+        var channelId = $scope.channels.selectedOption.gid;
         http.post('/manage/channel/add', {
             channelName : channelName,
             channelDesc : channelDesc,
@@ -73,8 +89,8 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
         }).then(
             function(answer){
                 var data = answer.data;
-                if (data.status == 0) {
-                    alert(data.message);
+                if (data.status == 0 && data.content != null) {
+                    channel.addChannel(data.content)
                 }
             },
             function(error){
