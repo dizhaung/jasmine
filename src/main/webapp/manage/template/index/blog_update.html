@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="blogApp" ng-controller="blogCtrl">
-<head>
-    <meta charset="UTF-8">
-    <title ng-bind="title"></title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/wangEditor.css"/>
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/bootstrap/bootstrap.js"></script>
-    <script src="lib/angular/angular.js"></script>
-    <script src="lib/editor/wangEditor.js"></script>
-    <script src="lib/angular/angular-route.js"></script>
-    <script src="lib/angular/angular-animate.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/controllers.js"></script>
-</head>
-<body>
 <!--导航条状态-->
-<div ng-include="'template/index/nav.html'"></div>
+<div ng-include="'template/nav/nav.html'"></div>
 <div class="container">
     <div class="row">
         <!-- 内容区域 -->
@@ -33,9 +14,9 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#" ng-click="selectType('原创')">原创</a></li>
-                                <li><a href="#" ng-click="selectType('转载')">转载</a></li>
-                                <li><a href="#" ng-click="selectType('翻译')">翻译</a></li>
+                                <li><a href="" ng-click="selectType('原创')">原创</a></li>
+                                <li><a href="" ng-click="selectType('转载')">转载</a></li>
+                                <li><a href="" ng-click="selectType('翻译')">翻译</a></li>
                             </ul>
                         </div>
                         <input id="name" type="text" class="form-control" aria-label="标题" ng-model="name">
@@ -45,20 +26,47 @@
                 <div class="form-group">
                     <label for="editor" class="control-label">文章内容</label>
                     <div id="editor" style="height: 400px">
-                        <p>请输入内容...</p>
+                        <!--<p>请输入内容...</p>-->
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="mark" class="control-label">文章标签</label>
-                    <input id="mark" type="text" class="form-control" ng-model="name">
+                    <div>
+                        <label for="mark" class="control-label">文章标签</label>
+                        <!-- 触发显示对话框的按钮 -->
+                        <a href="#mark_modal_id" role="button" class="btn" data-toggle="modal">[编辑]</a>
+                        <input id="mark" type="text" class="form-control" ng-model="markName">
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline" ng-repeat="mark in markList">
+                            <input type="checkbox" id="markCheckbox" value="{{mark.gid}}" ng-click="selectMark('{{mark.gid}}')">
+                            <span ng-bind="mark.name"></span>
+                        </label>
+
+
+
+                        <label class="checkbox inline _hover" data-ng-repeat="p in prjs"  title="{{p.name}}" style="width: 100%; margin-left: 10px;">
+                            <input maxlength="30" data-index="{{p.index}}" type="checkbox" value="{{p.id}}"
+                                   data-check-list='checked_prj' data-check-num-list="prj_name_checked" req-num="{{p.name}}">{{p.name | subValue:12}}
+                        </label>
+                        {{checked_prj }}{{prj_name_checked}}
+
+                    </div>
+                    <div class="col-sm-2">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="channel_id">文章分类</label>
-                    <!-- 触发显示对话框的按钮 -->
-                    <a href="#channel_modal_id" role="button" class="btn" data-toggle="modal">[编辑]</a>
-                    <select id="channel_id" class="form-control" ng-model="channels.selectedOption" ng-options="model.name for model in channels.availableOptions track by model.gid"></select>
+                    <div>
+                        <label for="channel_id">文章分类</label>
+                        <!-- 触发显示对话框的按钮 -->
+                        <a href="#channel_modal_id" role="button" class="btn" data-toggle="modal">[编辑]</a>
+                    </div>
+                    <div class="col-sm-5" style="padding-left: 0;">
+                        <select id="channel_id" class="form-control" ng-model="channels.selectedOption" ng-options="model.name for model in channels.availableOptions track by model.gid"></select>
+                    </div>
+                    <div class="col-sm-7">
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -74,7 +82,7 @@
     </div>
 </div>
 
-<!-- 对话框 -->
+<!-- 分类对话框 -->
 <div class="modal fade" id="channel_modal_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -111,5 +119,35 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+
+<!-- 标记对话框 -->
+<div class="modal fade" id="mark_modal_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{modal_title}}</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="markName" class="col-sm-2 control-label">名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="markName" ng-model="markName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="markDesc" class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="markDesc" ng-model="markDesc">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="channelModal()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

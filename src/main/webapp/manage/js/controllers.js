@@ -15,24 +15,15 @@ indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', functio
             $scope.error = error;
         }
     );
-    $scope.tip = "223";
-    
-    // 添加
-    $scope.add = function (url_) {
-        var host = $location.host();
-        var port = $location.port();
-        var protocol = $location.protocol();
-        var url = protocol + "://" + host + ":" + port + "/manage/" + url_;
-        window.location.href = url;
-    }
+    $scope.tip = "全部";
+
 }]);
 
 /**
  *
  * 添加修改Blog
  */
-var blogApp = angular.module("blogApp", ['services']);
-blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, http, channel) {
+indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', '$state', function ($scope, http, channel, $state) {
     /**
      * 创建编辑器
      *
@@ -111,6 +102,15 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
         $scope.type = type;
     };
 
+    $scope.markList = [
+        {'name': 'mark', 'gid': 'dasdasd'},
+        {'name': 'mark', 'gid': 'dasdasd'},
+        {'name': 'mark', 'gid': 'dasdasd'}
+    ];
+    $scope.selectMark = function (markGidx) {
+        alert(markGidx);
+    };
+
     /**
      * 发表日志
      *
@@ -130,7 +130,7 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
                 function(answer){
                     var data = answer.data;
                     if (data.status == 0) {
-
+                        $state.go('index.list');
                     } else {
                         alert(data.message);
                     }
