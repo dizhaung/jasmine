@@ -90,11 +90,13 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
             function(answer){
                 var data = answer.data;
                 if (data.status == 0 && data.content != null) {
-                    channel.addChannel(data.content)
+                    channel.addChannel(data.content);
+                    // 关闭模态对话框
+                    $('#channel_modal_id').modal('hide')
                 }
             },
             function(error){
-                $scope.error = error;
+                alert(error);
             }
         );
 
@@ -128,11 +130,13 @@ blogApp.controller('blogCtrl', ['$scope', 'http', 'channel', function ($scope, h
                 function(answer){
                     var data = answer.data;
                     if (data.status == 0) {
+
+                    } else {
                         alert(data.message);
                     }
                 },
                 function(error){
-                    $scope.error = error;
+                    alert(error);
                 }
             );
         } else if (operation == 1) { // 保存
