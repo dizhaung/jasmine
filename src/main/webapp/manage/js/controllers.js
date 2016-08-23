@@ -2,7 +2,7 @@
  *
  * Created by wangjianan on 16-8-15.
  */
-var indexControllers = angular.module('indexControllers', ['services']);
+var indexControllers = angular.module('indexControllers', ['services', 'directive']);
 indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', function($scope, http, $location){
     http.post('/manage/getBills', {}).then(
         function(answer){
@@ -23,7 +23,7 @@ indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', functio
  *
  * 添加修改Blog
  */
-indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', '$state', function ($scope, http, channel, $state) {
+indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$state', function ($scope, http, channel, mark, $state) {
     /**
      * 创建编辑器
      *
@@ -94,21 +94,61 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', '$state', 
     };
 
     /**
+     * init mark
+     */
+    $scope.markList = [];
+    //他是一个数组，所以要在控制器中声明一个数组
+    $scope.markNameSelection = [];
+    $scope.markGidSelection = [];
+    http.post('/manage/mark/getMark', {
+    }).then(
+        function(answer){
+            var data = answer.data;
+            if (data.status == 0) {
+                var markList = data.content;
+                if (markList != null && markList.length > 0) {
+                    mark.init(markList);
+                    $scope.markList = mark.marks;
+                }
+            }
+        },
+        function(error){
+            $scope.error = error;
+        }
+    );
+
+    $scope.mark_title = '文章标签';
+    $scope.markName = '';
+    $scope.markDesc = '';
+    $scope.markModal = function () {
+        // 获取标签信息
+        var markName = $scope.markName;
+        var markDesc = $scope.markDesc;
+        http.post('/manage/mark/add', {
+            name : markName,
+            description : markDesc
+        }).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0 && data.content != null) {
+                    mark.addMark(data.content);
+                    // 关闭模态对话框
+                    $('#mark_modal_id').modal('hide')
+                }
+            },
+            function(error){
+                alert(error);
+            }
+        );
+    };
+
+    /**
      * 文章类型
      * @param type
      */
     $scope.type = '原创';
     $scope.selectType = function (type) {
         $scope.type = type;
-    };
-
-    $scope.markList = [
-        {'name': 'mark', 'gid': 'dasdasd'},
-        {'name': 'mark', 'gid': 'dasdasd'},
-        {'name': 'mark', 'gid': 'dasdasd'}
-    ];
-    $scope.selectMark = function (markGidx) {
-        alert(markGidx);
     };
 
     /**
@@ -121,10 +161,13 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', '$state', 
         var name = $scope.name;
         var type = $scope.type;
         var channel = $scope.channels.selectedOption;
+        var marks = $scope.markGidSelection;
         if (operation == 0) { // 发表日志
             http.post('/manage/add', {
                 name : name,
                 type : type,
+                channel: channel,
+                marks: marks,
                 message : html
             }).then(
                 function(answer){

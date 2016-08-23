@@ -27,4 +27,6 @@ public interface ConfigBlogMarkMapper {
     int updateByPrimaryKeySelective(ConfigBlogMark record);
 
     int updateByPrimaryKey(ConfigBlogMark record);
+
+    int insertConfigBatch(List<ConfigBlogMark> configBlogMarkList);
 }

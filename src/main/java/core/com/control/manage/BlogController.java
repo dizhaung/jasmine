@@ -1,5 +1,6 @@
 package core.com.control.manage;
 
+import core.com.exception.CoreException;
 import core.com.model.LightningResponse;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.ManageIndexReq;
@@ -38,6 +39,9 @@ public class BlogController {
 
         try {
             response = Utility.getSuccessResp(manageBlogService.doBlogLoan(addBlogReq));
+        } catch (CoreException c) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("add(): add is error, exception={}", c);
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             logger.error("add(): add is error, exception={}", e);

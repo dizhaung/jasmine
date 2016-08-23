@@ -2,7 +2,7 @@
  *
  * Created by wangjianan on 16-8-9.
  */
-var app = angular.module("app", ['ui.router', 'indexControllers', 'services']);
+var app = angular.module("app", ['ui.router', 'indexControllers', 'services', 'directive']);
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     // 设置默认路由
     $urlRouterProvider.when("", "/index/list");

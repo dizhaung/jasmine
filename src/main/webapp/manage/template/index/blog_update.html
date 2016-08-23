@@ -32,25 +32,16 @@
 
                 <div class="form-group">
                     <div>
-                        <label for="mark" class="control-label">文章标签</label>
+                        <label class="control-label">文章标签</label>
                         <!-- 触发显示对话框的按钮 -->
                         <a href="#mark_modal_id" role="button" class="btn" data-toggle="modal">[编辑]</a>
-                        <input id="mark" type="text" class="form-control" ng-model="markName">
                     </div>
                     <div class="col-sm-10">
-                        <label class="checkbox-inline" ng-repeat="mark in markList">
-                            <input type="checkbox" id="markCheckbox" value="{{mark.gid}}" ng-click="selectMark('{{mark.gid}}')">
+                        <label class="checkbox-inline" ng-repeat="mark in markList"  title="{{mark.name}}">
+                            <input type="checkbox" value="{{mark.gid}}" check-list='markGidSelection'
+                                   data-check-num-list="markNameSelection" data-req-num="{{mark.name}}">
                             <span ng-bind="mark.name"></span>
                         </label>
-
-
-
-                        <label class="checkbox inline _hover" data-ng-repeat="p in prjs"  title="{{p.name}}" style="width: 100%; margin-left: 10px;">
-                            <input maxlength="30" data-index="{{p.index}}" type="checkbox" value="{{p.id}}"
-                                   data-check-list='checked_prj' data-check-num-list="prj_name_checked" req-num="{{p.name}}">{{p.name | subValue:12}}
-                        </label>
-                        {{checked_prj }}{{prj_name_checked}}
-
                     </div>
                     <div class="col-sm-2">
                     </div>
@@ -126,7 +117,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{modal_title}}</h4>
+                <h4 class="modal-title">{{mark_title}}</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
@@ -146,7 +137,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-click="channelModal()">保存</button>
+                <button type="button" class="btn btn-primary" ng-click="markModal()">保存</button>
             </div>
         </div>
     </div>

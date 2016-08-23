@@ -225,4 +225,11 @@
       update_time = #{updateTime,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="insertConfigBatch" parameterType="java.util.List">
+    insert into config_blog_mark (gid, blog_gid, mark_gid, create_time, update_time)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      ( #{item.gid,jdbcType=VARCHAR}, #{item.blogGid,jdbcType=VARCHAR}, #{item.markGid,jdbcType=VARCHAR}, #{item.createTime,jdbcType=INTEGER}, #{item.updateTime,jdbcType=INTEGER})
+    </foreach>
+  </insert>
 </mapper>

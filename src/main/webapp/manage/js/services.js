@@ -31,7 +31,11 @@ angularServices.service('http', ['$http', '$q', function ($http, $q) {
         }
     }
 }]);
-
+/**
+ * wangjianan
+ *
+ *
+ */
 angularServices.service('channel', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
     // service 本质new一个单例对象
     var service = {
@@ -48,6 +52,22 @@ angularServices.service('channel', ['$rootScope', '$http', '$q', function ($root
         init: function (channels) {
             service.channels = channels;
             $rootScope.$broadcast('channel.update');
+        }
+    };
+    return service;
+}]);
+
+angularServices.service('mark', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
+    // service 本质new一个单例对象
+    var service = {
+        marks: [],
+        addMark: function (mark) {
+            service.marks.push(mark);
+            $rootScope.$broadcast('mark.update');
+        },
+        init: function (marks) {
+            service.marks = marks;
+            $rootScope.$broadcast('mark.update');
         }
     };
     return service;
