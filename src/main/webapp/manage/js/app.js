@@ -19,6 +19,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         .state('blog', {
             url: '/blog',
             templateUrl: 'template/index/blog_update.html',
-            controller: 'blogCtrl'
+            controller: 'blogCtrl',
+            params:{'model':{}}
         });
 }]);

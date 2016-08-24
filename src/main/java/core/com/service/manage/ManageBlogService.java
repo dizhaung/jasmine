@@ -10,4 +10,7 @@ import core.com.model.manage.AddBlogResp;
 public interface ManageBlogService {
 
     public AddBlogResp doBlogLoan(AddBlogReq addBlogReq);
+
+    public int deleteBlogLoan(String blogLoan);
+
 }

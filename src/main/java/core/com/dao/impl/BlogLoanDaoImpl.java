@@ -29,4 +29,11 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         BlogLoanExample example = new BlogLoanExample();
         return blogLoanMapper.selectByExample(example);
     }
+
+    @Override
+    public int delete(String blogGid) {
+        BlogLoanExample example = new BlogLoanExample();
+        example.createCriteria().andGidEqualTo(blogGid);
+        return blogLoanMapper.deleteByExample(example);
+    }
 }

@@ -10,17 +10,14 @@ import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
  * Created by wangjianan on 16-8-17.
  */
 @RestController
-@RequestMapping(value = "/manage")
+@RequestMapping(value = "/manage/blog")
 public class BlogController {
     private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
@@ -50,4 +47,23 @@ public class BlogController {
         return response;
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    private LightningResponse delete(@RequestBody String blogGid) {
+        logger.info("===> manage delete(): blogGid={}", blogGid);
+        LightningResponse response = null;
+
+        if (blogGid == null) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_PARAMETER_ERROR);
+            return response;
+        }
+
+        try {
+            response = Utility.getSuccessResp(manageBlogService.deleteBlogLoan(blogGid));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("add(): delete is error, exception={}", e);
+        }
+        logger.info("<=== manage delete(): response={}", response);
+        return response;
+    }
 }

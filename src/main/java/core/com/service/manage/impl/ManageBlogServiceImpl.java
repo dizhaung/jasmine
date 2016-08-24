@@ -80,6 +80,15 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         return resp;
     }
 
+    @Override
+    public int deleteBlogLoan(String blogLoanGid) {
+        logger.info("deleteBlogLoan(): blogLoanGid={}", blogLoanGid);
+
+        int count = blogLoanDao.delete(blogLoanGid);
+        logger.info("deleteBlogLoan(): BlogLoan delete success, count={}", count);
+        return count;
+    }
+
     @Transactional
     private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);

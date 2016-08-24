@@ -3,27 +3,59 @@
  * Created by wangjianan on 16-8-15.
  */
 var indexControllers = angular.module('indexControllers', ['services', 'directive']);
-indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', function($scope, http, $location){
-    http.post('/manage/getBills', {}).then(
-        function(answer){
-            var data = answer.data;
-            if (data.status == 0) {
-                $scope.models = data.content;
+indexControllers.controller('indexCtrl', ['$scope', 'http', '$location', '$state', function($scope, http, $location, $state){
+    var init = function () {
+        http.post('/manage/getBills', {}).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0) {
+                    $scope.models = data.content;
+                }
+            },
+            function(error){
+                $scope.error = error;
             }
-        },
-        function(error){
-            $scope.error = error;
-        }
-    );
+        );
+    };
+    init();
     $scope.tip = "全部";
 
+    /**
+     * 删除
+     *
+     * @param blogGid
+     */
+    $scope.delete = function (blogGid) {
+        bootbox.confirm("Are you sure?", function(result) {
+            if (result) {
+                http.post('/manage/blog/delete', blogGid).then(
+                    function (answer) {
+                        var data = answer.data;
+                        init();
+                    },
+                    function (error) {
+                        $scope.error = error;
+                    }
+                );
+            }
+        });
+    };
+
+    /**
+     * 修改
+     *
+     * @param model
+     */
+    $scope.update = function (model) {
+        $state.go("blog", {model: model});
+    }
 }]);
 
 /**
  *
  * 添加修改Blog
  */
-indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$state', function ($scope, http, channel, mark, $state) {
+indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$state', '$stateParams', function ($scope, http, channel, mark, $state, $stateParams) {
     /**
      * 创建编辑器
      *
@@ -151,6 +183,12 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
         $scope.type = type;
     };
 
+    // 修改
+    var model = $stateParams.model;
+    if (model) {
+        $scope.name = model.name;
+        $scope.type = model.type;
+    }
     /**
      * 发表日志
      *
@@ -163,7 +201,7 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
         var channel = $scope.channels.selectedOption;
         var marks = $scope.markGidSelection;
         if (operation == 0) { // 发表日志
-            http.post('/manage/add', {
+            http.post('/manage/blog/add', {
                 name : name,
                 type : type,
                 channel: channel,
@@ -175,7 +213,8 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
                     if (data.status == 0) {
                         $state.go('index.list');
                     } else {
-                        alert(data.message);
+                        bootbox.alert(data.message, function() {
+                        });
                     }
                 },
                 function(error){
