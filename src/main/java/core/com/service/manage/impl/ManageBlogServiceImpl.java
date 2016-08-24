@@ -10,6 +10,7 @@ import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
 import core.com.service.manage.ManageBlogService;
+import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
@@ -53,6 +54,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         blog.setContent(addBlogReq.getMessage());
         blog.setName(addBlogReq.getName());
         blog.setUserGid("");
+        blog.setType(getBlogType(addBlogReq.getType()));
         blog.setChannelGid(blogChannel.getGid());
         blog.setMarkGid("");
 
@@ -78,6 +80,22 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         resp.setBlogGid(blogLoanGid);
         logger.info("doBlogLoan(): doBlogLoan save success, resp={}", resp);
         return resp;
+    }
+
+    private int getBlogType(String typeName) {
+        int type = 0;
+        switch (typeName) {
+            case Constants.BlogLoanType.TYPE_ORIGINAL:
+                type = 0;
+                break;
+            case Constants.BlogLoanType.TYPE_REPRINT:
+                type = 1;
+                break;
+            case Constants.BlogLoanType.TYPE_TRANSLATE:
+                type = 2;
+                break;
+        }
+        return type;
     }
 
     @Override

@@ -183,11 +183,29 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
         $scope.type = type;
     };
 
-    // 修改
+    /**
+     * 修改
+      */
+    function getLoanType(type) {
+        var loanType = '原创';
+        switch (type) {
+            case 0:
+                loanType = '原创';
+                break;
+            case 1:
+                loanType = '转载';
+                break;
+            case 2:
+                loanType = '翻译';
+                break;
+        }
+        return loanType;
+    }
     var model = $stateParams.model;
     if (model) {
         $scope.name = model.name;
-        $scope.type = model.type;
+        $scope.type = getLoanType(model.type);
+        editor.$txt.html(model.content);
     }
     /**
      * 发表日志

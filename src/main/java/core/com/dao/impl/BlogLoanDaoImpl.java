@@ -27,7 +27,7 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     @Override
     public List<BlogLoan> queryBlogLoan() {
         BlogLoanExample example = new BlogLoanExample();
-        return blogLoanMapper.selectByExample(example);
+        return blogLoanMapper.selectByExampleWithBLOBs(example);
     }
 
     @Override
