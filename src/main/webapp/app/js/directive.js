@@ -1,6 +1,5 @@
 /**
- *
- * Created by wangjianan on 16-8-22.
+ * Created by wangjianan on 16-8-25.
  */
 var angularDirective = angular.module('directive', []);
 angularDirective.directive('checkList', function () {

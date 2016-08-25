@@ -1,16 +1,25 @@
 package core.com.model.lend;
 
+import core.com.model.BlogChannel;
+import core.com.model.BlogMark;
+import core.com.model.UserBase;
+
+import java.util.List;
+
 /**
  * Created by wangjianan on 16-6-4.
  */
 public class IndexInfoResp {
 
     private String gid;
-    private String blogName;
-    private String blogCreateTime;
-    private String userGid;
+    private String name;
+    private String time;
+    private String type;
     private int views;
     private boolean isTop;
+    private UserBase userBase;
+    private BlogChannel blogChannel;
+    private List<BlogMark> blogMarkList;
 
     public String getGid() {
         return gid;
@@ -20,28 +29,28 @@ public class IndexInfoResp {
         this.gid = gid;
     }
 
-    public String getBlogName() {
-        return blogName;
+    public String getName() {
+        return name;
     }
 
-    public void setBlogName(String blogName) {
-        this.blogName = blogName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBlogCreateTime() {
-        return blogCreateTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setBlogCreateTime(String blogCreateTime) {
-        this.blogCreateTime = blogCreateTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getUserGid() {
-        return userGid;
+    public String getType() {
+        return type;
     }
 
-    public void setUserGid(String userGid) {
-        this.userGid = userGid;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getViews() {
@@ -60,15 +69,42 @@ public class IndexInfoResp {
         isTop = top;
     }
 
+    public UserBase getUserBase() {
+        return userBase;
+    }
+
+    public void setUserBase(UserBase userBase) {
+        this.userBase = userBase;
+    }
+
+    public BlogChannel getBlogChannel() {
+        return blogChannel;
+    }
+
+    public void setBlogChannel(BlogChannel blogChannel) {
+        this.blogChannel = blogChannel;
+    }
+
+    public List<BlogMark> getBlogMarkList() {
+        return blogMarkList;
+    }
+
+    public void setBlogMarkList(List<BlogMark> blogMarkList) {
+        this.blogMarkList = blogMarkList;
+    }
+
     @Override
     public String toString() {
         return "IndexInfoResp{" +
                 "gid='" + gid + '\'' +
-                ", blogName='" + blogName + '\'' +
-                ", blogCreateTime='" + blogCreateTime + '\'' +
-                ", userGid='" + userGid + '\'' +
+                ", name='" + name + '\'' +
+                ", time='" + time + '\'' +
+                ", type='" + type + '\'' +
                 ", views=" + views +
                 ", isTop=" + isTop +
+                ", userBase=" + userBase +
+                ", blogChannel=" + blogChannel +
+                ", blogMarkList=" + blogMarkList +
                 '}';
     }
 }

@@ -14,4 +14,6 @@ public interface BlogChannelDao {
     int insert(BlogChannel blogChannel);
 
     List<BlogChannel> queryChannelAll();
+
+    BlogChannel queryChannelByGid(String blogGid);
 }

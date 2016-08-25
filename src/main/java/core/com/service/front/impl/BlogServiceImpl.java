@@ -1,9 +1,11 @@
 package core.com.service.front.impl;
 
 import core.com.control.manage.ChannelController;
+import core.com.dao.BlogChannelDao;
 import core.com.dao.BlogLoanDao;
-import core.com.model.BlogLoan;
-import core.com.model.LightningResponse;
+import core.com.dao.BlogMarkDao;
+import core.com.dao.ConfigBlogMarkDao;
+import core.com.model.*;
 import core.com.model.lend.IndexInfoReq;
 import core.com.model.lend.IndexInfoResp;
 import core.com.service.front.BlogService;
@@ -25,6 +27,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogLoanDao blogLoanDao;
+    @Autowired
+    private BlogChannelDao blogChannelDao;
+    @Autowired
+    private BlogMarkDao blogMarkDao;
+    @Autowired
+    private ConfigBlogMarkDao configBlogMarkDao;
 
     @Override
     public LightningResponse getIndexInfo(IndexInfoReq indexInfoReq) {
@@ -34,18 +42,36 @@ public class BlogServiceImpl implements BlogService {
 
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
         for (BlogLoan blog : blogLoanList) {
+
+            BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
+            List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
+            List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
+
             IndexInfoResp resp = new IndexInfoResp();
             resp.setGid(blog.getGid());
-            resp.setBlogCreateTime(Utility.getDateTime(blog.getCreateTime()));
-            resp.setBlogName(blog.getName());
+            resp.setTime(Utility.getDateTime(blog.getCreateTime()));
+            resp.setName(blog.getName());
             resp.setViews(blog.getViews());
-            resp.setUserGid(blog.getUserGid());
             resp.setTop(blog.getIsTop());
+            resp.setBlogChannel(channel);
+            resp.setBlogMarkList(blogMarkList);
+
             indexInfoRespList.add(resp);
         }
         response.setContent(indexInfoRespList);
 
         logger.info("getIndexInfo(): response={}", response);
         return response;
+    }
+
+    private List<String> getMarkList(List<ConfigBlogMark> configBlogMarkList) {
+        List<String> result = null;
+        if (configBlogMarkList != null && configBlogMarkList.size() > 0) {
+            result = new ArrayList<>();
+            for (ConfigBlogMark config : configBlogMarkList) {
+                result.add(config.getMarkGid());
+            }
+        }
+        return result;
     }
 }

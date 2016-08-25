@@ -14,4 +14,8 @@ public interface BlogMarkDao {
     int insert(BlogMark blogMark);
 
     List<BlogMark> queryMarkAll();
+
+    BlogMark queryMarkByGid(String markGid);
+
+    List<BlogMark> queryMarkByGidList(List<String> markGidList);
 }

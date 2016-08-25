@@ -3,6 +3,7 @@ package core.com.dao.impl;
 import core.com.dao.ConfigBlogMarkDao;
 import core.com.dao.mapper.ConfigBlogMarkMapper;
 import core.com.model.ConfigBlogMark;
+import core.com.model.ConfigBlogMarkExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,12 @@ public class ConfigBlogMarkDaoImpl implements ConfigBlogMarkDao {
     @Override
     public int insertConfigBatch(List<ConfigBlogMark> configBlogMarkList) {
         return configBlogMarkMapper.insertConfigBatch(configBlogMarkList);
+    }
+
+    @Override
+    public List<ConfigBlogMark> queryConfigByBlogGid(String blogGid) {
+        ConfigBlogMarkExample example = new ConfigBlogMarkExample();
+        example.createCriteria().andBlogGidEqualTo(blogGid);
+        return configBlogMarkMapper.selectByExample(example);
     }
 }

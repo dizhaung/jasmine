@@ -242,7 +242,7 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
         } else if (operation == 1) { // 保存
             alert(operation);
         } else if (operation == 2) { // 舍弃
-            alert(operation);
+            $state.go('index.list');
         }
     };
 }]);
