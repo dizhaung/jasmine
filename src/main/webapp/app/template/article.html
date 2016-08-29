@@ -4,13 +4,15 @@
             <div class="row-fluid" ng-repeat="model in models">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h3 ng-bind="model.name"></h3>
+                        <h3>
+                            <a href="" class="" ng-bind="model.name" ui-sref="view({blog:'333'})"></a>
+                        </h3>
                         <div class="caption">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             {{model.time + "前"}}
                             &nbsp; | &nbsp;
                             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
-                            {{model.blogChannel}}
+                            {{model.blogChannel.name}}
                             &nbsp; | &nbsp;
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             <a href="" class="" data-toggle="tooltip" data-placement="top" title="由admin发布">admin</a>
@@ -21,11 +23,10 @@
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             {{model.views + " views"}}
                         </div>
-                        <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind="model.blogContent"></div>
-                        <p>
-                            <a class="btn btn-primary" href="#">浏览</a>
-                            <a class="btn" href="#">分享</a>
-                        </p>
+                        <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind="model.content"></div>
+                        <div>
+                            <a class="label label-success" style="margin-right: 5px;" ng-repeat="mark in model.blogMarkList">#{{mark.name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>

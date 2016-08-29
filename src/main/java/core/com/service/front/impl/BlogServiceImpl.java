@@ -55,6 +55,7 @@ public class BlogServiceImpl implements BlogService {
             resp.setTop(blog.getIsTop());
             resp.setBlogChannel(channel);
             resp.setBlogMarkList(blogMarkList);
+            resp.setContent(blog.getContent());
 
             indexInfoRespList.add(resp);
         }

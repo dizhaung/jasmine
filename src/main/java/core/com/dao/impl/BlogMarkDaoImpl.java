@@ -44,6 +44,9 @@ public class BlogMarkDaoImpl implements BlogMarkDao {
 
     @Override
     public List<BlogMark> queryMarkByGidList(List<String> markGidList) {
+        if (markGidList == null) {
+            return null;
+        }
         BlogMarkExample example = new BlogMarkExample();
         example.createCriteria().andGidIn(markGidList);
         return blogMarkMapper.selectByExample(example);

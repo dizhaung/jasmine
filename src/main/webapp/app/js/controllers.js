@@ -24,8 +24,19 @@ controller.controller('articleCtrl', ['$scope', 'http', function ($scope, http) 
         );
     };
     init();
+    $scope.blog = null;
 
 }]);
+
+controller.controller('viewCtrl', ['$scope', 'http', '$stateParams', function ($scope, http, $stateParams) {
+    /** 首页top 提示 **/
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // 内容控制器
+    var model = $stateParams.blog;
+    alert(model);
+}]);
+
 controller.controller('indexCtrl', ['$scope', 'http', '$location', '$state', function($scope, http, $location, $state){
     var init = function () {
         http.post('/manage/getBills', {}).then(

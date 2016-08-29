@@ -15,6 +15,7 @@ public class IndexInfoResp {
     private String name;
     private String time;
     private String type;
+    private String content;
     private int views;
     private boolean isTop;
     private UserBase userBase;
@@ -91,6 +92,14 @@ public class IndexInfoResp {
 
     public void setBlogMarkList(List<BlogMark> blogMarkList) {
         this.blogMarkList = blogMarkList;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
