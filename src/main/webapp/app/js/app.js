@@ -3,7 +3,7 @@
  *
  * Created by wangjianan on 16-8-25.
  */
-var app = angular.module("app", ['ui.router', 'controllers', 'services', 'directive']);
+var app = angular.module("app", ['ui.router', 'controllers', 'services', 'directive', 'filter']);
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     // 设置默认路由
     $urlRouterProvider.when("", "/index");
@@ -27,6 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         })
         .state('view', {
             url: '/view',
+            params:{'blog':{}},
             views: {
                 "navbar": {
                     templateUrl: 'app/template/navbar.html',
@@ -34,8 +35,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 },
                 "other": {
                     templateUrl: 'app/template/view.html',
-                    controller: 'viewCtrl',
-                    params:{'blog':null}
+                    controller: 'viewCtrl'
                 }
             }
         });

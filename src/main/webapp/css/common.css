@@ -3,5 +3,11 @@ body{
     padding-top: 150px;
 }
 */
-body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'ËÎÌå' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
-body{background:url(../image/backgroup.png) no-repeat center;background-size:100% auto}
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'ï¿½ï¿½ï¿½ï¿½' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+body {
+    background: url(../image/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

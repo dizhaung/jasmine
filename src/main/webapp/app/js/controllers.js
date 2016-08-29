@@ -1,11 +1,11 @@
 /**
  * Created by wangjianan on 16-8-25.
  */
-var controller = angular.module('controllers', ['services', 'directive']);
+var controller = angular.module('controllers', ['services', 'directive', 'filter']);
 controller.controller('navbarCtrl', ['$scope', function ($scope) {
     // 导航栏控制器
 }]);
-controller.controller('articleCtrl', ['$scope', 'http', function ($scope, http) {
+controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($scope, http, $state) {
     /** 首页top 提示 **/
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -24,17 +24,21 @@ controller.controller('articleCtrl', ['$scope', 'http', function ($scope, http) 
         );
     };
     init();
-    $scope.blog = null;
+    $scope.goView = function (blog) {
+        $state.go("view", {blog: blog});
+    };
 
 }]);
 
-controller.controller('viewCtrl', ['$scope', 'http', '$stateParams', function ($scope, http, $stateParams) {
+controller.controller('viewCtrl', ['$scope', 'http', '$state', '$stateParams', function ($scope, http, $state, $stateParams) {
     /** 首页top 提示 **/
     $('[data-toggle="tooltip"]').tooltip();
 
     // 内容控制器
     var model = $stateParams.blog;
-    alert(model);
+    if (model != null) {
+        $scope.model = model;
+    }
 }]);
 
 controller.controller('indexCtrl', ['$scope', 'http', '$location', '$state', function($scope, http, $location, $state){

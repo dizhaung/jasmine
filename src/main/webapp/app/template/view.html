@@ -1,1 +1,27 @@
-<div>{{model}}</div>
+<div class="container">
+    <div class="col-md-12 thumbnail">
+        <div class="caption page-header" style="text-align: center">
+            <h3>
+                <span ng-bind="model.name"></span>
+            </h3>
+            <div class="caption">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                {{model.time + "前"}}
+                &nbsp; | &nbsp;
+                <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                {{model.blogChannel.name}}
+                &nbsp; | &nbsp;
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <a href="" class="" data-toggle="tooltip" data-placement="top" title="由admin发布">admin</a>
+                &nbsp; | &nbsp;
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                7条评论
+                &nbsp; | &nbsp;
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                {{model.views + " views"}}
+            </div>
+            <!--<div class="caption" ng-bind-html="model.content|htmlContent"></div>-->
+        </div>
+        <div ng-bind-html="model.content|htmlContent"></div>
+    </div>
+</div>
