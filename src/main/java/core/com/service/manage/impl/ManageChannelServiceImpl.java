@@ -36,7 +36,7 @@ public class ManageChannelServiceImpl implements ManageChannelService {
         blogChannel.setCreateTime(currentTimeStamp);
         blogChannel.setUpdateTime(currentTimeStamp);
         blogChannel.setDescription(addChannelRequest.getChannelDesc());
-        blogChannel.setSuperGid("");
+        blogChannel.setSuperGid(addChannelRequest.getChannelId());
         blogChannel.setIsValid(Boolean.TRUE);
         blogChannel.setOrderNum(0.0);
 

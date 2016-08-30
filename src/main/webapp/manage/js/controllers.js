@@ -77,25 +77,28 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
      * @type {{availableOptions: *[], selectedOption: {id: string, name: string}}}
      */
     // 初始化公共channel
-    http.post('/manage/channel/getChannel', {
-    }).then(
-        function(answer){
-            var data = answer.data;
-            if (data.status == 0) {
-                var channelList = data.content;
-                if (channelList != null && channelList.length > 0) {
-                    channel.init(channelList);
-                    $scope.channels = {
-                        availableOptions: channel.channels,
-                        selectedOption: channelList[0]
-                    };
+    if (channel.channels.length <= 0) {
+        http.post('/manage/channel/getChannel', {
+        }).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0) {
+                    var channelList = data.content;
+                    if (channelList != null && channelList.length > 0) {
+                        channel.init(channelList);
+                        $scope.channels = {
+                            availableOptions: channel.channels,
+                            selectedOption: channelList[0]
+                        };
+                    }
                 }
+            },
+            function(error){
+                $scope.error = error;
             }
-        },
-        function(error){
-            $scope.error = error;
-        }
-    );
+        );
+    }
+
 
     $scope.modal_title = '文章分类';
     $scope.channelName = '';

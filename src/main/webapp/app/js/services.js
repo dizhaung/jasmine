@@ -1,4 +1,6 @@
 /**
+ * app services
+ * 
  * Created by wangjianan on 16-8-25.
  */
 var angularServices = angular.module('services', []);
@@ -29,4 +31,29 @@ angularServices.service('http', ['$http', '$q', function ($http, $q) {
             return deferred.promise
         }
     }
+}]);
+
+/**
+ * wangjianan
+ *
+ */
+angularServices.service('channel', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
+    // service 本质new一个单例对象
+    var service = {
+        channels: [
+            // {id: '1', name: '北京'},
+            // {id: '2', name: '上海'},
+            // {id: '3', name: '广州'},
+            // {id: '4', name: '长春'}
+        ],
+        addChannel: function (channel) {
+            service.channels.push(channel);
+            $rootScope.$broadcast('channel.update');
+        },
+        init: function (channels) {
+            service.channels = channels;
+            $rootScope.$broadcast('init.channel.update');
+        }
+    };
+    return service;
 }]);
