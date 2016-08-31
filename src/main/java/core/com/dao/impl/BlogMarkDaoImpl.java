@@ -4,6 +4,7 @@ import core.com.dao.BlogMarkDao;
 import core.com.dao.mapper.BlogMarkMapper;
 import core.com.model.BlogMark;
 import core.com.model.BlogMarkExample;
+import core.com.model.mapper.BlogMarkStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +51,11 @@ public class BlogMarkDaoImpl implements BlogMarkDao {
         BlogMarkExample example = new BlogMarkExample();
         example.createCriteria().andGidIn(markGidList);
         return blogMarkMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<BlogMarkStatistics> getBlogMarkStatistics() {
+        return blogMarkMapper.getBlogMarkStatistics();
     }
 
 }

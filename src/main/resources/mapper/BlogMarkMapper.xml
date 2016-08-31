@@ -9,6 +9,12 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="decription" property="decription" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="MarkResultMap" type="core.com.model.mapper.BlogMarkStatistics">
+    <result column="gid" property="gid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -225,4 +231,18 @@
       decription = #{decription,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getBlogMarkStatistics" resultMap="MarkResultMap" >
+    SELECT
+      b.gid,
+      b.name,
+      t1.count
+    FROM blog_mark b
+      INNER JOIN (
+                  SELECT
+                    t.mark_gid,
+                    count(1) AS count
+                  FROM config_blog_mark t
+                  GROUP BY t.mark_gid
+                ) t1 ON b.gid = t1.mark_gid
+  </select>
 </mapper>

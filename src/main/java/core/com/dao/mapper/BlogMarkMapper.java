@@ -3,6 +3,8 @@ package core.com.dao.mapper;
 import core.com.model.BlogMark;
 import core.com.model.BlogMarkExample;
 import java.util.List;
+
+import core.com.model.mapper.BlogMarkStatistics;
 import org.apache.ibatis.annotations.Param;
 
 public interface BlogMarkMapper {
@@ -27,4 +29,6 @@ public interface BlogMarkMapper {
     int updateByPrimaryKeySelective(BlogMark record);
 
     int updateByPrimaryKey(BlogMark record);
+
+    List<BlogMarkStatistics> getBlogMarkStatistics();
 }

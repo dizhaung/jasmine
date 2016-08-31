@@ -2,6 +2,7 @@ package core.com.dao;
 
 import core.com.model.BlogChannel;
 import core.com.model.BlogMark;
+import core.com.model.mapper.BlogMarkStatistics;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface BlogMarkDao {
     BlogMark queryMarkByGid(String markGid);
 
     List<BlogMark> queryMarkByGidList(List<String> markGidList);
+
+    List<BlogMarkStatistics> getBlogMarkStatistics();
 }

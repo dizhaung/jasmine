@@ -46,6 +46,23 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($sco
         );
     };
     init();
+
+    // 标记
+    var initMark = function () {
+        http.post('/mark/getMark', {}).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0) {
+                    $scope.markList = data.content;
+                }
+            },
+            function(error){
+                $scope.error = error;
+            }
+        );
+
+    };
+    initMark();
     $scope.goView = function (blog) {
         $state.go("view", {blog: blog});
     };
