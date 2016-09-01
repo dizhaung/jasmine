@@ -47,13 +47,38 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($sco
     };
     init();
 
+    var randomColor = function () {
+        return '#'+Math.floor(Math.random()*16777215).toString(16);
+    };
+
+    var initMarkTagClass = function (markList) {
+        var maxCount = 0;
+        var minCount = 0;
+        var length = markList.length;
+        for (var i = 0; i < length; i++ ) {
+            if (maxCount < markList[i].count) {
+                maxCount = markList[i].count;
+            }
+            if (minCount > markList[i].count) {
+                minCount = markList[i].count;
+            }
+        }
+        for (var j = 0; j < length; j++ ) {
+            var mark = markList[j];
+            var size = 10 + mark.count * 4;
+            mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
+        }
+
+        return markList;
+    };
+
     // 标记
     var initMark = function () {
         http.post('/mark/getMark', {}).then(
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    $scope.markList = data.content;
+                    $scope.markList = initMarkTagClass(data.content);
                 }
             },
             function(error){
@@ -63,6 +88,7 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($sco
 
     };
     initMark();
+
     $scope.goView = function (blog) {
         $state.go("view", {blog: blog});
     };

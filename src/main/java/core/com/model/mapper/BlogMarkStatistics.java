@@ -43,7 +43,7 @@ public class BlogMarkStatistics implements Comparable<BlogMarkStatistics> {
 
     @Override
     public int compareTo(BlogMarkStatistics o) {
-        if (this.count > o.getCount()) {
+        if (this.count != null && o.getCount() != null && this.count > o.getCount()) {
             return 1;
         } else {
             return 0;

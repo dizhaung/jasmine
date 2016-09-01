@@ -235,9 +235,9 @@
     SELECT
       b.gid,
       b.name,
-      t1.count
+      ifnull(t1.count, 0) as count
     FROM blog_mark b
-      INNER JOIN (
+      LEFT JOIN (
                   SELECT
                     t.mark_gid,
                     count(1) AS count
