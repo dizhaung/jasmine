@@ -26,6 +26,10 @@ controller.controller('navbarCtrl', ['$scope', 'channel', 'http', function ($sco
         );
     }
 
+    $scope.toChannelBlog = function (channelGid) {
+        alert(channelGid);
+    };
+
 }]);
 controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($scope, http, $state) {
     /** 首页top 提示 **/
@@ -52,19 +56,21 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', function ($sco
     };
 
     var initMarkTagClass = function (markList) {
+        var minFontSize = 8;
+        var maxFontSize = 40;
+
         var maxCount = 0;
-        var minCount = 0;
         var length = markList.length;
         for (var i = 0; i < length; i++ ) {
             if (maxCount < markList[i].count) {
                 maxCount = markList[i].count;
             }
-            if (minCount > markList[i].count) {
-                minCount = markList[i].count;
-            }
         }
+
         for (var j = 0; j < length; j++ ) {
             var mark = markList[j];
+            var count = mark.count;
+            var tag = ((count / maxCount) * 4 + 1) * minFontSize;
             var size = 10 + mark.count * 4;
             mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
         }
