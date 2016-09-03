@@ -11,7 +11,24 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-.mark_tag {
+.a {
+    color: #7C7C7C;
     padding-left: 5px;
     text-decoration: none;
+}
+.a:visited {
+    text-decoration:none;
+}
+.a:active{
+    text-decoration:none;
+}
+.a:hover{
+    color: #970714;
+    text-decoration:none;
+}
+.hr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 0px;
+    border-top: 1px solid #1e88e5;
 }

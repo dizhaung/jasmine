@@ -23,7 +23,7 @@ public class ManageIndexServiceImpl implements ManageIndexService {
     public List<BlogLoan> queryBlogByType(ManageIndexReq manageIndexReq) {
         LightningResponse response = new LightningResponse();
 
-        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
+        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan(manageIndexReq.getChannelGid());
 
         return blogLoanList;
     }

@@ -29,4 +29,11 @@ public class ConfigBlogMarkDaoImpl implements ConfigBlogMarkDao {
         example.createCriteria().andBlogGidEqualTo(blogGid);
         return configBlogMarkMapper.selectByExample(example);
     }
+
+    @Override
+    public List<ConfigBlogMark> queryConfigByMarkGid(String markGid) {
+        ConfigBlogMarkExample example = new ConfigBlogMarkExample();
+        example.createCriteria().andMarkGidEqualTo(markGid);
+        return configBlogMarkMapper.selectByExample(example);
+    }
 }

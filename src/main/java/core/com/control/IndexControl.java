@@ -39,4 +39,5 @@ public class IndexControl {
         logger.info("<=== getBlogData(): get bills, response={}", response);
         return response;
     }
+
 }

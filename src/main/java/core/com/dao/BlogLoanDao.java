@@ -13,7 +13,9 @@ public interface BlogLoanDao {
 
     int insert(BlogLoan blogLoan);
 
-    List<BlogLoan> queryBlogLoan();
+    List<BlogLoan> queryBlogLoan(String channelGid);
+
+    List<BlogLoan> queryBlogLoanByMarkOrChannel(String channelGid, String markGid);
 
     int delete(String blogGid);
 

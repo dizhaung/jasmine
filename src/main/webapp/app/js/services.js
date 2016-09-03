@@ -48,11 +48,32 @@ angularServices.service('channel', ['$rootScope', '$http', '$q', function ($root
         ],
         addChannel: function (channel) {
             service.channels.push(channel);
-            $rootScope.$broadcast('channel.update');
+            $rootScope.$broadcast('init.channel.update');
         },
         init: function (channels) {
             service.channels = channels;
             $rootScope.$broadcast('init.channel.update');
+        }
+    };
+    return service;
+}]);
+
+angularServices.service('blogList', ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
+    // service 本质new一个单例对象
+    var service = {
+        blogList: [
+            // {id: '1', name: '北京'},
+            // {id: '2', name: '上海'},
+            // {id: '3', name: '广州'},
+            // {id: '4', name: '长春'}
+        ],
+        addBlog: function (blog) {
+            service.blogList.push(blog);
+            $rootScope.$broadcast('init.blog.update');
+        },
+        init: function (blog) {
+            service.blogList = blog;
+            $rootScope.$broadcast('init.blog.update');
         }
     };
     return service;

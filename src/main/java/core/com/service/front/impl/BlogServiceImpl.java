@@ -40,24 +40,26 @@ public class BlogServiceImpl implements BlogService {
         LightningResponse response = new LightningResponse();
         List<IndexInfoResp> indexInfoRespList = new ArrayList<>();
 
-        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
-        for (BlogLoan blog : blogLoanList) {
+        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
+        if (blogLoanList != null) {
+            for (BlogLoan blog : blogLoanList) {
 
-            BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
-            List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
-            List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
+                BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
+                List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
+                List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
 
-            IndexInfoResp resp = new IndexInfoResp();
-            resp.setGid(blog.getGid());
-            resp.setTime(Utility.getDateTime(blog.getCreateTime()));
-            resp.setName(blog.getName());
-            resp.setViews(blog.getViews());
-            resp.setTop(blog.getIsTop());
-            resp.setBlogChannel(channel);
-            resp.setBlogMarkList(blogMarkList);
-            resp.setContent(blog.getContent());
+                IndexInfoResp resp = new IndexInfoResp();
+                resp.setGid(blog.getGid());
+                resp.setTime(Utility.getDateTime(blog.getCreateTime()));
+                resp.setName(blog.getName());
+                resp.setViews(blog.getViews());
+                resp.setTop(blog.getIsTop());
+                resp.setBlogChannel(channel);
+                resp.setBlogMarkList(blogMarkList);
+                resp.setContent(blog.getContent());
 
-            indexInfoRespList.add(resp);
+                indexInfoRespList.add(resp);
+            }
         }
         response.setContent(indexInfoRespList);
 

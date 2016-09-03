@@ -12,4 +12,6 @@ public interface ConfigBlogMarkDao {
     int insertConfigBatch(List<ConfigBlogMark> configBlogMarkList);
 
     List<ConfigBlogMark> queryConfigByBlogGid(String blogGid);
+
+    List<ConfigBlogMark> queryConfigByMarkGid(String markGid);
 }

@@ -5,13 +5,20 @@ package core.com.model.manage;
  */
 public class ManageIndexReq {
 
-    private String menuGid;
+    private String channelGid;
 
-    public String getMenuGid() {
-        return menuGid;
+    public String getChannelGid() {
+        return channelGid;
     }
 
-    public void setMenuGid(String menuGid) {
-        this.menuGid = menuGid;
+    public void setChannelGid(String channelGid) {
+        this.channelGid = channelGid;
+    }
+
+    @Override
+    public String toString() {
+        return "ManageIndexReq{" +
+                "channelGid='" + channelGid + '\'' +
+                '}';
     }
 }

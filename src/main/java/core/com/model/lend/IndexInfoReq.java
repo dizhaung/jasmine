@@ -5,20 +5,30 @@ package core.com.model.lend;
  */
 public class IndexInfoReq {
 
-    private String menuGid;
+    private String channelGid;
+    private String markGid;
 
-    public String getMenuGid() {
-        return menuGid;
+    public String getChannelGid() {
+        return channelGid;
     }
 
-    public void setMenuGid(String menuGid) {
-        this.menuGid = menuGid;
+    public void setChannelGid(String channelGid) {
+        this.channelGid = channelGid;
+    }
+
+    public String getMarkGid() {
+        return markGid;
+    }
+
+    public void setMarkGid(String markGid) {
+        this.markGid = markGid;
     }
 
     @Override
     public String toString() {
         return "IndexInfoReq{" +
-                "menuGid=" + menuGid +
+                "channelGid='" + channelGid + '\'' +
+                ", markGid='" + markGid + '\'' +
                 '}';
     }
 }
