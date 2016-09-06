@@ -84,21 +84,23 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
                 var data = answer.data;
                 if (data.status == 0) {
                     var channelList = data.content;
-                    if (channelList != null && channelList.length > 0) {
-                        channel.init(channelList);
-                        $scope.channels = {
-                            availableOptions: channel.channels,
-                            selectedOption: channelList[0]
-                        };
-                    }
+                    channel.init(channelList);
+                    $scope.channels = {
+                        availableOptions: channel.channels,
+                        selectedOption: channel.channels[0]
+                    };
                 }
             },
             function(error){
                 $scope.error = error;
             }
         );
+    } else {
+        $scope.channels = {
+            availableOptions: channel.channels,
+            selectedOption: channel.channels[0]
+        };
     }
-
 
     $scope.modal_title = '文章分类';
     $scope.channelName = '';
@@ -107,7 +109,11 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
         // 获取分类信息
         var channelName = $scope.channelName;
         var channelDesc = $scope.channelDesc;
-        var channelId = $scope.channels.selectedOption.gid;
+        var selectedOption = $scope.channels.selectedOption;
+        var channelId = "root";
+        if (selectedOption != undefined && selectedOption != null) {
+            channelId = selectedOption.gid;
+        }
         http.post('/manage/channel/add', {
             channelName : channelName,
             channelDesc : channelDesc,

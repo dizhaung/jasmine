@@ -47,6 +47,13 @@ public class ManageChannelServiceImpl implements ManageChannelService {
 
     @Override
     public List<BlogChannel> queryChannel() {
-        return blogChannelDao.queryChannelAll();
+        List<BlogChannel> blogChannelList = blogChannelDao.queryChannelAll();
+        // 增加基本博客类型，根root
+        BlogChannel root = new BlogChannel();
+        root.setGid("root");
+        root.setName("Root");
+        blogChannelList.add(root);
+
+        return blogChannelList;
     }
 }
