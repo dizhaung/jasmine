@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangjianan on 2016/2/17.
@@ -38,6 +40,7 @@ public class BlogServiceImpl implements BlogService {
     public LightningResponse getIndexInfo(IndexInfoReq indexInfoReq) {
         logger.info("getIndexInfo(): indexInfoReq={}", indexInfoReq);
         LightningResponse response = new LightningResponse();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         List<IndexInfoResp> indexInfoRespList = new ArrayList<>();
 
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
@@ -61,7 +64,15 @@ public class BlogServiceImpl implements BlogService {
                 indexInfoRespList.add(resp);
             }
         }
-        response.setContent(indexInfoRespList);
+
+        /**
+         * 获取最新文章列表
+         */
+        List<BlogLoan> newBlogLoan = blogLoanDao.queryBlogLoanOrder();
+
+        resultMap.put("blogList", indexInfoRespList);
+        resultMap.put("newBlogList", newBlogLoan);
+        response.setContent(resultMap);
 
         logger.info("getIndexInfo(): response={}", response);
         return response;

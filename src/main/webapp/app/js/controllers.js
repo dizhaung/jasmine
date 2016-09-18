@@ -58,7 +58,9 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    blogList.init(data.content);
+                    var resultMap = data.content;
+                    blogList.init(resultMap.blogList);
+                    $scope.newBlogList = resultMap.newBlogList;
                 }
             },
             function(error){

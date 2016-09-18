@@ -19,4 +19,5 @@ public interface BlogLoanDao {
 
     int delete(String blogGid);
 
+    List<BlogLoan> queryBlogLoanOrder();
 }

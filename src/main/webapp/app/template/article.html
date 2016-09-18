@@ -58,14 +58,9 @@
                 <hr class="hr">
 
                 <table class="table table-condensed">
-                    <tr>
+                    <tr ng-repeat="blog in newBlogList">
                         <td>
-                            <a class="a" href="">知识的梳理和总结</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a class="a" href="">王佳楠的博客</a>
+                            <a class="a" href="" ng-bind="blog.name"></a>
                         </td>
                     </tr>
                 </table>

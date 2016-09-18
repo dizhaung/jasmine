@@ -68,4 +68,11 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         example.createCriteria().andGidEqualTo(blogGid);
         return blogLoanMapper.deleteByExample(example);
     }
+
+    @Override
+    public List<BlogLoan> queryBlogLoanOrder() {
+        BlogLoanExample example = new BlogLoanExample();
+        example.setOrderByClause("create_time");
+        return blogLoanMapper.selectByExample(example);
+    }
 }
