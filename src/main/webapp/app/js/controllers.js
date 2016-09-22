@@ -36,7 +36,7 @@ controller.controller('navbarCtrl', ['$scope', 'channel', 'http', 'blogList', fu
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    blogList.init(data.content);
+                    blogList.init(data.content.blogList);
                 }
             },
             function(error){
@@ -101,6 +101,12 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
         return markList;
     };
 
+    var initColor = function () {
+        alert();
+        var color = "margin-right: 5px; background-color: "+  randomColor() +";";
+        console.log(color);
+    };
+
     /**
      * 标记
      *
@@ -129,7 +135,7 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    blogList.init(data.content);
+                    blogList.init(data.content.blogList);
                 }
             },
             function(error){
