@@ -25,7 +25,7 @@
                         </div>
                         <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind="model.content"></div>
                         <div>
-                            <a class="label label-success" ng-class="initColor()" ng-click="toMarkBlog(mark)" ng-repeat="mark in model.blogMarkList">#{{mark.name}}</a>
+                            <a class="label label-success" style="{{model.class}}"  ng-click="toMarkBlog(mark)" ng-repeat="mark in model.blogMarkList">#{{mark.name}}</a>
                         </div>
                     </div>
                 </div>

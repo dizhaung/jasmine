@@ -50,6 +50,10 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
     /** 首页top 提示 **/
     $('[data-toggle="tooltip"]').tooltip();
 
+    var randomColor = function () {
+        return '#'+Math.floor(Math.random()*16777215).toString(16);
+    };
+
     // 首页Blog 列表
     var init = function () {
         http.post('/index/getBills', {
@@ -59,7 +63,7 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
                 var data = answer.data;
                 if (data.status == 0) {
                     var resultMap = data.content;
-                    blogList.init(resultMap.blogList);
+                    blogList.init(initMarkTagClass(resultMap.blogList, null));
                     $scope.newBlogList = resultMap.newBlogList;
                 }
             },
@@ -74,11 +78,7 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
         $scope.models = blogList.blogList;
     });
 
-    var randomColor = function () {
-        return '#'+Math.floor(Math.random()*16777215).toString(16);
-    };
-
-    var initMarkTagClass = function (markList) {
+    var initMarkTagClass = function (markList, stype) {
         var minFontSize = 8;
         var maxFontSize = 40;
 
@@ -95,16 +95,14 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
             var count = mark.count;
             var tag = ((count / maxCount) * 4 + 1) * minFontSize;
             var size = 10 + mark.count * 4;
-            mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
+            if (stype == 'mark') {
+                mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
+            } else {
+                mark.class = "margin-right: 5px; background-color: "+  randomColor() +";";
+            }
         }
 
         return markList;
-    };
-
-    var initColor = function () {
-        alert();
-        var color = "margin-right: 5px; background-color: "+  randomColor() +";";
-        console.log(color);
     };
 
     /**
@@ -116,7 +114,7 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    $scope.markList = initMarkTagClass(data.content);
+                    $scope.markList = initMarkTagClass(data.content, 'mark');
                 }
             },
             function(error){
