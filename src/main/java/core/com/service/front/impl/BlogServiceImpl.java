@@ -1,13 +1,10 @@
 package core.com.service.front.impl;
 
-import core.com.control.manage.ChannelController;
-import core.com.dao.BlogChannelDao;
-import core.com.dao.BlogLoanDao;
-import core.com.dao.BlogMarkDao;
-import core.com.dao.ConfigBlogMarkDao;
+import core.com.dao.*;
 import core.com.model.*;
+import core.com.model.lend.BaseInfoResponse;
 import core.com.model.lend.IndexInfoReq;
-import core.com.model.lend.IndexInfoResp;
+import core.com.model.lend.BlogInfo;
 import core.com.service.front.BlogService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
@@ -35,13 +32,14 @@ public class BlogServiceImpl implements BlogService {
     private BlogMarkDao blogMarkDao;
     @Autowired
     private ConfigBlogMarkDao configBlogMarkDao;
+    @Autowired
+    private FriendshipLinkDao friendshipLinkDao;
 
     @Override
-    public LightningResponse getIndexInfo(IndexInfoReq indexInfoReq) {
+    public BaseInfoResponse getIndexInfo(IndexInfoReq indexInfoReq) {
         logger.info("getIndexInfo(): indexInfoReq={}", indexInfoReq);
-        LightningResponse response = new LightningResponse();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        List<IndexInfoResp> indexInfoRespList = new ArrayList<>();
+        BaseInfoResponse response = new BaseInfoResponse();
+        List<BlogInfo> indexInfoRespList = new ArrayList<>();
 
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
         if (blogLoanList != null) {
@@ -51,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
                 List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
                 List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
 
-                IndexInfoResp resp = new IndexInfoResp();
+                BlogInfo resp = new BlogInfo();
                 resp.setGid(blog.getGid());
                 resp.setTime(Utility.getDateTime(blog.getCreateTime()));
                 resp.setName(blog.getName());
@@ -64,17 +62,17 @@ public class BlogServiceImpl implements BlogService {
                 indexInfoRespList.add(resp);
             }
         }
-
         /**
          * 获取最新文章列表
          */
         List<BlogLoan> newBlogLoan = blogLoanDao.queryBlogLoanOrder();
 
-        resultMap.put("blogList", indexInfoRespList);
-        resultMap.put("newBlogList", newBlogLoan);
-        response.setContent(resultMap);
+        /** 查询合作链接信息 **/
+        List<FriendshipLink> friendshipLinkList = friendshipLinkDao.selectByAll();
 
-        logger.info("getIndexInfo(): response={}", response);
+        response.setBlogInfoList(indexInfoRespList);
+        response.setNewArticleList(newBlogLoan);
+        response.setFriendshipLinkList(friendshipLinkList);
         return response;
     }
 

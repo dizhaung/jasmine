@@ -42,11 +42,12 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="user_base" domainObjectName="UserBase"></table>
-        <table tableName="blog_loan" domainObjectName="BlogLoan"></table>
-        <table tableName="blog_channel" domainObjectName="BlogChannel"></table>
-        <table tableName="blog_mark" domainObjectName="BlogMark"></table>
-        <table tableName="config_blog_mark" domainObjectName="ConfigBlogMark"></table>
+        <!--<table tableName="user_base" domainObjectName="UserBase"></table>-->
+        <!--<table tableName="blog_loan" domainObjectName="BlogLoan"></table>-->
+        <!--<table tableName="blog_channel" domainObjectName="BlogChannel"></table>-->
+        <!--<table tableName="blog_mark" domainObjectName="BlogMark"></table>-->
+        <!--<table tableName="config_blog_mark" domainObjectName="ConfigBlogMark"></table>-->
+        <!--<table tableName="friendship_link" domainObjectName="FriendshipLink"></table>-->
 
     </context>
 </generatorConfiguration>

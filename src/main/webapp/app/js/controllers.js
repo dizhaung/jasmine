@@ -58,11 +58,12 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', '$
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    var resultMap = data.content;
                     // 首页列表
-                    blogList.init(resultMap.blogList);
+                    blogList.init(data.content.blogInfoList);
                     // 最新文章
-                    $scope.newBlogList = resultMap.newBlogList;
+                    $scope.newArticleList = data.content.newArticleList;
+                    // 友情链接
+                    $scope.friendshipLinkList = data.content.friendshipLinkList;
                 }
             },
             function(error){

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by wangjianan on 16-6-4.
  */
-public class IndexInfoResp {
+public class BlogInfo {
 
     private String gid;
     private String name;
@@ -104,7 +104,7 @@ public class IndexInfoResp {
 
     @Override
     public String toString() {
-        return "IndexInfoResp{" +
+        return "BlogInfo{" +
                 "gid='" + gid + '\'' +
                 ", name='" + name + '\'' +
                 ", time='" + time + '\'' +

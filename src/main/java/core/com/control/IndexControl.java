@@ -31,7 +31,7 @@ public class IndexControl {
         logger.info("===> getBlogData(): get bills, indexInfoReq={}", indexInfoReq);
         LightningResponse response = null;
         try {
-            response = blogService.getIndexInfo(indexInfoReq);
+            response = Utility.getSuccessResp(blogService.getIndexInfo(indexInfoReq));
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             logger.error("getBlogData(): error, response={}, exception={}", response, e);

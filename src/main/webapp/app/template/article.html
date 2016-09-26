@@ -59,7 +59,7 @@
                 <hr class="hr">
 
                 <table class="table table-condensed">
-                    <tr ng-repeat="blog in newBlogList">
+                    <tr ng-repeat="blog in newArticleList">
                         <td>
                             <a class="a" href="" ng-bind="blog.name"></a>
                         </td>
@@ -106,27 +106,11 @@
             <div class="thumbnail">
                 <h4 style="margin-left: 10px;">友情链接</h4>
                 <hr class="hr">
-
-                <table class="table table-condensed">
-                    <tr>
-                        <td>
-                            <a class="a" href="">王佳楠的博客</a>
-                        </td>
-                        <td>宋的博客</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a class="a" href="">王佳楠的博客</a>
-                        </td>
-                        <td>宋的博客</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a class="a" href="">王佳楠的博客</a>
-                        </td>
-                        <td>宋的博客</td>
-                    </tr>
-                </table>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="firendly in friendshipLinkList">
+                        <a href="{{firendly.url}}" ng-bind="firendly.name"></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
