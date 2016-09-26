@@ -72,7 +72,7 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     @Override
     public List<BlogLoan> queryBlogLoanOrder() {
         BlogLoanExample example = new BlogLoanExample();
-        example.setOrderByClause("create_time");
+        example.setOrderByClause("create_time desc limit 4");
         return blogLoanMapper.selectByExample(example);
     }
 }

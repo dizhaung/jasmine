@@ -46,16 +46,12 @@ controller.controller('navbarCtrl', ['$scope', 'channel', 'http', 'blogList', fu
     };
 
 }]);
-controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', function ($scope, http, $state, blogList) {
+controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', '$timeout', function ($scope, http, $state, blogList, $timeout) {
     /** 首页top 提示 **/
     $('[data-toggle="tooltip"]').tooltip();
 
-    var randomColor = function () {
-        return '#'+Math.floor(Math.random()*16777215).toString(16);
-    };
-
-    // 首页Blog 列表
-    var init = function () {
+    var initIndex = function () {
+        /** 文章首页Blog列表 **/
         http.post('/index/getBills', {
             'channelGid': null
         }).then(
@@ -63,7 +59,9 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
                 var data = answer.data;
                 if (data.status == 0) {
                     var resultMap = data.content;
-                    blogList.init(initMarkTagClass(resultMap.blogList, null));
+                    // 首页列表
+                    blogList.init(resultMap.blogList);
+                    // 最新文章
                     $scope.newBlogList = resultMap.newBlogList;
                 }
             },
@@ -71,14 +69,33 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
                 $scope.error = error;
             }
         );
+        /** 标签 **/
+        http.post('/mark/getMark', {}).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0) {
+                    $scope.markList = initMarkTagClass(data.content);
+                }
+            },
+            function(error){
+                $scope.error = error;
+            }
+        );
+
     };
-    init();
+
+    initIndex();
 
     $scope.$on('init.blog.update', function(newVal, oldVal) {
         $scope.models = blogList.blogList;
     });
 
-    var initMarkTagClass = function (markList, stype) {
+    /** 标签云的实现 **/
+    var randomColor = function () {
+        return '#'+Math.floor(Math.random()*16777215).toString(16);
+    };
+
+    var initMarkTagClass = function (markList) {
         var minFontSize = 8;
         var maxFontSize = 40;
 
@@ -95,40 +112,17 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
             var count = mark.count;
             var tag = ((count / maxCount) * 4 + 1) * minFontSize;
             var size = 10 + mark.count * 4;
-            if (stype == 'mark') {
-                mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
-            } else {
-                mark.class = "margin-right: 5px; background-color: "+  randomColor() +";";
-            }
+            mark.class = "font-size: "+ size +"px; color: "+ randomColor() +"";
         }
 
         return markList;
     };
 
-    /**
-     * 标记
-     *
-     */
-    var initMark = function () {
-        http.post('/mark/getMark', {}).then(
-            function(answer){
-                var data = answer.data;
-                if (data.status == 0) {
-                    $scope.markList = initMarkTagClass(data.content, 'mark');
-                }
-            },
-            function(error){
-                $scope.error = error;
-            }
-        );
 
-    };
-    initMark();
-
-    $scope.toMarkBlog = function (mark) {
+    $scope.toMarkBlog = function (markGid) {
         http.post('/index/getBills', {
             'channelGid': null,
-            'markGid': mark.markGid
+            'markGid': markGid
         }).then(
             function(answer){
                 var data = answer.data;
@@ -149,7 +143,6 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', fu
     $scope.goView = function (blog) {
         $state.go("view", {blog: blog});
     };
-
 }]);
 
 controller.controller('viewCtrl', ['$scope', 'http', '$state', '$stateParams', function ($scope, http, $state, $stateParams) {

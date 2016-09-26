@@ -21,7 +21,7 @@ public class Application implements EmbeddedServletContainerCustomizer {
 
     @Override
     public void customize(ConfigurableEmbeddedServletContainer configurableEmbeddedServletContainer) {
-        configurableEmbeddedServletContainer.setPort(1103);
+        configurableEmbeddedServletContainer.setPort(80);
         // 这是注释
 //        configurableEmbeddedServletContainer.setSessionTimeout(30, TimeUnit.SECONDS);
     }

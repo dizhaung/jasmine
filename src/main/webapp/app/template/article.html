@@ -24,8 +24,9 @@
                             {{model.views + " views"}}
                         </div>
                         <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind="model.content"></div>
-                        <div>
-                            <a class="label label-success" style="{{model.class}}"  ng-click="toMarkBlog(mark)" ng-repeat="mark in model.blogMarkList">#{{mark.name}}</a>
+                        <div class="repeat-widget">
+                            <!-- style="{{model.class}}" -->
+                            <a class="label label-success initBackgroundColor" ng-click="toMarkBlog(mark.gid)" ng-repeat="mark in model.blogMarkList" ng-bind="mark.name"></a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
             <div class="thumbnail">
                 <h4 style="margin-left: 10px;">标签</h4>
                 <hr class="hr" noshade="noshade" >
-                <a href="" class="a" ng-repeat="mark in markList" style="{{mark.class}}" data-toggle="tooltip" data-placement="top" title="{{mark.count}} 个话题" ng-bind="mark.markName" ng-click="toMarkBlog(mark)">
+                <a href="" class="a" ng-repeat="mark in markList" style="{{mark.class}}" data-toggle="tooltip" data-placement="top" title="{{mark.count}} 个话题" ng-bind="mark.markName" ng-click="toMarkBlog(mark.markGid)">
                 </a>
             </div>
 
