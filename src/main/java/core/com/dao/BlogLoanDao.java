@@ -20,4 +20,6 @@ public interface BlogLoanDao {
     int delete(String blogGid);
 
     List<BlogLoan> queryBlogLoanOrder();
+
+    BlogLoan selectByGid(String gid);
 }

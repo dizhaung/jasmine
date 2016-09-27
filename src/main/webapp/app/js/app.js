@@ -26,8 +26,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             }
         })
         .state('view', {
-            url: '/view',
-            params:{'blog':{}},
+            url: '/view/:gid',
+            // params:{'blog':{}},
             views: {
                 "navbar": {
                     templateUrl: 'app/template/navbar.html',

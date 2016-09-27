@@ -2,6 +2,7 @@ package core.com.control;
 
 import core.com.control.manage.BlogController;
 import core.com.model.LightningResponse;
+import core.com.model.lend.IndexDetailReq;
 import core.com.model.lend.IndexInfoReq;
 import core.com.service.front.BlogService;
 import core.com.utils.ErrorCode;
@@ -37,6 +38,20 @@ public class IndexControl {
             logger.error("getBlogData(): error, response={}, exception={}", response, e);
         }
         logger.info("<=== getBlogData(): get bills, response={}", response);
+        return response;
+    }
+
+    @RequestMapping(value = "/getBillDetail", method = RequestMethod.POST)
+    private LightningResponse getBlogDetail(@RequestBody IndexDetailReq indexDetailReq) {
+        logger.info("===> getBlogDetail(): get bills detail, indexDetailReq={}", indexDetailReq);
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(blogService.getBlogDetail(indexDetailReq));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("getBlogDetail(): error, response={}, exception={}", response, e);
+        }
+        logger.info("<=== getBlogDetail(): get bill detail, response={}", response);
         return response;
     }
 

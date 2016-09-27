@@ -5,7 +5,7 @@
                 <div class="thumbnail">
                     <div class="caption">
                         <h3>
-                            <a href="" class="title" ng-bind="model.name" ng-click="goView(model)"></a>
+                            <a href="" class="title" ng-bind="model.name" ng-click="goView(model.gid)"></a>
                         </h3>
                         <div class="caption">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -57,11 +57,10 @@
             <div class="thumbnail">
                 <h4 style="margin-left: 10px;">最新文章</h4>
                 <hr class="hr">
-
                 <table class="table table-condensed">
                     <tr ng-repeat="blog in newArticleList">
                         <td>
-                            <a class="a" href="" ng-bind="blog.name"></a>
+                            <a class="a" style="font-size: small" href="" ng-bind="blog.name" ng-click="goView(blog.gid)"></a>
                         </td>
                     </tr>
                 </table>

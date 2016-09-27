@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Exchanger;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         if (channelGid != null) {
             example.createCriteria().andChannelGidEqualTo(channelGid);
         }
-        return blogLoanMapper.selectByExampleWithBLOBs(example);
+        return blogLoanMapper.selectByExample(example);
     }
 
     @Override
@@ -74,5 +75,16 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         BlogLoanExample example = new BlogLoanExample();
         example.setOrderByClause("create_time desc limit 4");
         return blogLoanMapper.selectByExample(example);
+    }
+
+    @Override
+    public BlogLoan selectByGid(String gid) {
+        BlogLoanExample example = new BlogLoanExample();
+        example.createCriteria().andGidEqualTo(gid);
+        List<BlogLoan> list = blogLoanMapper.selectByExampleWithBLOBs(example);
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
     }
 }

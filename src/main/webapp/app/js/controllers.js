@@ -141,8 +141,8 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', '$
      * 导向详细视图
      * @param blog
      */
-    $scope.goView = function (blog) {
-        $state.go("view", {blog: blog});
+    $scope.goView = function (gid) {
+        $state.go("view", {gid: gid});
     };
 }]);
 
@@ -151,8 +151,21 @@ controller.controller('viewCtrl', ['$scope', 'http', '$state', '$stateParams', f
     $('[data-toggle="tooltip"]').tooltip();
 
     // 内容控制器
-    var model = $stateParams.blog;
-    if (model != null) {
-        $scope.model = model;
+    var blogGid = $stateParams.gid;
+    if (blogGid != null) {
+        http.post('/index/getBillDetail', {
+            'blogGid' : blogGid
+        }).then(
+            function(answer){
+                var data = answer.data;
+                if (data.status == 0) {
+                    var response = data.content;
+                    $scope.model = response.blogLoan;
+                }
+            },
+            function(error){
+                $scope.error = error;
+            }
+        );
     }
 }]);

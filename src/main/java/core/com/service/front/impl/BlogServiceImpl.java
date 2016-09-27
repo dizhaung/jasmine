@@ -1,11 +1,11 @@
 package core.com.service.front.impl;
 
 import core.com.dao.*;
+import core.com.exception.CoreException;
 import core.com.model.*;
-import core.com.model.lend.BaseInfoResponse;
-import core.com.model.lend.IndexInfoReq;
-import core.com.model.lend.BlogInfo;
+import core.com.model.lend.*;
 import core.com.service.front.BlogService;
+import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,6 +73,22 @@ public class BlogServiceImpl implements BlogService {
         response.setBlogInfoList(indexInfoRespList);
         response.setNewArticleList(newBlogLoan);
         response.setFriendshipLinkList(friendshipLinkList);
+        return response;
+    }
+
+    @Override
+    public IndexDetailResp getBlogDetail(IndexDetailReq indexDetailReq) {
+        logger.info("getBlogDetail(): indexDetailReq={}", indexDetailReq);
+        IndexDetailResp response = new IndexDetailResp();
+        if (null == indexDetailReq || null == indexDetailReq.getBlogGid()) {
+            logger.info("getBlogDetail(): indexDetailReq or gid is null");
+            throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
+        }
+        String gid = indexDetailReq.getBlogGid();
+        BlogLoan blogLoan = blogLoanDao.selectByGid(gid);
+
+        response.setBlogLoan(blogLoan);
+        logger.info("getBlogDetail(): response={}", response);
         return response;
     }
 
