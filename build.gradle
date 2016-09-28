@@ -46,6 +46,10 @@ dependencies {
     compile "org.springframework:spring-orm:${springVersion}"
     compile "org.springframework:spring-context:${springVersion}"
 
+    ///// redis //////
+    compile 'org.springframework.data:spring-data-redis:1.6.0.RELEASE'
+    compile 'redis.clients:jedis:2.7.3'
+
     compile 'org.apache.commons:commons-dbcp2:2.1'
     compile "org.mybatis:mybatis-spring:1.2.2"
     compile "org.mybatis:mybatis:3.2.8"
