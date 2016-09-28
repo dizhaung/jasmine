@@ -60,7 +60,7 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         if (channelGid != null) {
             example.createCriteria().andChannelGidEqualTo(channelGid);
         }
-        return blogLoanMapper.selectByExample(example);
+        return blogLoanMapper.selectByExampleWithBLOBs(example);
     }
 
     @Override
@@ -86,5 +86,10 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
             return list.get(0);
         }
         return null;
+    }
+
+    @Override
+    public int updateBlogView(String blogGid) {
+        return blogLoanMapper.updateViewByGid(blogGid);
     }
 }

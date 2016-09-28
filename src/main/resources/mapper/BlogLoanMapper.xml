@@ -374,4 +374,11 @@
       is_top = #{isTop,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateViewByGid" parameterType="map" >
+    update blog_loan
+    set
+    update_time = unix_timestamp(),
+    views = views + 1
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
 </mapper>

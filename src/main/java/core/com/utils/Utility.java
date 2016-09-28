@@ -105,4 +105,12 @@ public class Utility {
         }
         return true;
     }
+
+    public static String getSomeArticles(String content) {
+        if (content != null) {
+            String result = content.s
+            return
+        }
+        return null;
+    }
 }

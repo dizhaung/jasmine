@@ -85,6 +85,9 @@ public class BlogServiceImpl implements BlogService {
             throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
         }
         String gid = indexDetailReq.getBlogGid();
+        // 更新文章查看次数
+        blogLoanDao.updateBlogView(gid);
+        // 查询blog详细信息
         BlogLoan blogLoan = blogLoanDao.selectByGid(gid);
 
         response.setBlogLoan(blogLoan);

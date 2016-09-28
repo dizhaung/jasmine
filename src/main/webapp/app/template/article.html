@@ -23,7 +23,7 @@
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             {{model.views + " views"}}
                         </div>
-                        <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind="model.content"></div>
+                        <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind-html="model.content|htmlContent"></div>
                         <div class="repeat-widget">
                             <!-- style="{{model.class}}" -->
                             <a class="label label-success initBackgroundColor" ng-click="toMarkBlog(mark.gid)" ng-repeat="mark in model.blogMarkList" ng-bind="mark.name"></a>

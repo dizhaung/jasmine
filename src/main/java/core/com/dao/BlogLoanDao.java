@@ -22,4 +22,6 @@ public interface BlogLoanDao {
     List<BlogLoan> queryBlogLoanOrder();
 
     BlogLoan selectByGid(String gid);
+
+    int updateBlogView(String blogGid);
 }
