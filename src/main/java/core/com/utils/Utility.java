@@ -108,8 +108,8 @@ public class Utility {
 
     public static String getSomeArticles(String content) {
         if (content != null) {
-            String result = content.s
-            return
+//            String result = content.s
+            return null;
         }
         return null;
     }
