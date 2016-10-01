@@ -5,7 +5,7 @@
                 <div class="thumbnail">
                     <div class="caption">
                         <h3>
-                            <a href="" class="title" ng-bind="model.name" ng-click="goView(model.gid)"></a>
+                            <a href="{{host}}#view/{{model.gid}}" class="title" ng-bind="model.name"></a>
                         </h3>
                         <div class="caption">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -15,7 +15,7 @@
                             {{model.blogChannel.name}}
                             &nbsp; | &nbsp;
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <a href="" class="" data-toggle="tooltip" data-placement="top" title="由admin发布">admin</a>
+                            <a href="" class="link" data-toggle="tooltip" data-placement="top" title="由小楠同学发布">小楠同学</a>
                             &nbsp; | &nbsp;
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
                             7条评论
@@ -23,7 +23,10 @@
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             {{model.views + " views"}}
                         </div>
-                        <div class="caption" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" ng-bind-html="model.content|htmlContent"></div>
+                        <hr class="hr" noshade="noshade">
+                        <div class="caption">
+                            <p class="hide_p" ng-bind-html="model.content|htmlContent"></p>
+                        </div>
                         <div class="repeat-widget">
                             <!-- style="{{model.class}}" -->
                             <a class="label label-success initBackgroundColor" ng-click="toMarkBlog(mark.gid)" ng-repeat="mark in model.blogMarkList" ng-bind="mark.name"></a>
@@ -60,7 +63,7 @@
                 <table class="table table-condensed">
                     <tr ng-repeat="blog in newArticleList">
                         <td>
-                            <a class="a" style="font-size: small" href="" ng-bind="blog.name" ng-click="goView(blog.gid)"></a>
+                            <a class="link" style="font-size: small" href="{{host}}#view/{{blog.gid}}" ng-bind="blog.name"></a>
                         </td>
                     </tr>
                 </table>
@@ -68,8 +71,8 @@
 
             <div class="thumbnail">
                 <h4 style="margin-left: 10px;">标签</h4>
-                <hr class="hr" noshade="noshade" >
-                <a href="" class="a" ng-repeat="mark in markList" style="{{mark.class}}" data-toggle="tooltip" data-placement="top" title="{{mark.count}} 个话题" ng-bind="mark.markName" ng-click="toMarkBlog(mark.markGid)">
+                <hr class="hr" noshade="noshade">
+                <a href="" class="link" ng-repeat="mark in markList" style="{{mark.class}}" data-toggle="tooltip" data-placement="top" title="{{mark.count}} 个话题" ng-bind="mark.markName" ng-click="toMarkBlog(mark.markGid)">
                 </a>
             </div>
 
@@ -105,11 +108,14 @@
             <div class="thumbnail">
                 <h4 style="margin-left: 10px;">友情链接</h4>
                 <hr class="hr">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="firendly in friendshipLinkList">
-                        <a href="{{firendly.url}}" ng-bind="firendly.name"></a>
-                    </li>
-                </ul>
+
+                <table class="table">
+                    <tr ng-repeat="firendly in friendshipLinkList">
+                        <td>
+                            <a class="link" href="{{firendly.url}}" target="view_window" ng-bind="firendly.name"></a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

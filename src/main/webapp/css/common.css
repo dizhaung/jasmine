@@ -11,24 +11,25 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
-.a {
-    color: #7C7C7C;
+.link {
+    /*color: #7C7C7C;*/
+    color: #000000;
     padding-left: 5px;
     text-decoration: none;
 }
-.a:visited {
+.link:visited {
     text-decoration:none;
 }
-.a:active{
+.link:active{
     text-decoration:none;
 }
-.a:hover{
+.link:hover{
     color: #970714;
     text-decoration:none;
 }
 .hr {
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 1px;
     border: 0px;
     border-top: 1px solid #1e88e5;
 }

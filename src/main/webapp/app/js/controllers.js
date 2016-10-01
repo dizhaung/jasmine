@@ -136,14 +136,6 @@ controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', '$
             }
         );
     };
-
-    /**
-     * 导向详细视图
-     * @param blog
-     */
-    $scope.goView = function (gid) {
-        $state.go("view", {gid: gid});
-    };
 }]);
 
 controller.controller('viewCtrl', ['$scope', 'http', '$state', '$stateParams', function ($scope, http, $state, $stateParams) {
