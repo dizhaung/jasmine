@@ -3,6 +3,8 @@ package core.com.utils;
 import core.com.model.LightningResponse;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -112,5 +114,15 @@ public class Utility {
             return null;
         }
         return null;
+    }
+
+    /**
+     *  int --> '2016-10-01 13:28:90'
+     * @param time
+     * @return
+     */
+    public static String getDateFormat(long time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return  format.format(new Date(time * 1000));
     }
 }

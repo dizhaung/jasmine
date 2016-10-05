@@ -6,11 +6,11 @@
 var app = angular.module("app", ['ui.router', 'controllers', 'services', 'directive', 'filter']);
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     // 设置默认路由
-    $urlRouterProvider.when("", "/index");
-    $urlRouterProvider.when("/", "/index");
+    $urlRouterProvider.when("", "/index/");
+    $urlRouterProvider.when("/", "/index/");
     $stateProvider
         .state('index', {
-            url: '/index',
+            url: '/index/:gid',
             views: {
                 "navbar": {
                     templateUrl: 'app/template/navbar.html',

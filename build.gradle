@@ -26,6 +26,10 @@ jar{
     version = '0.1.0'
 }
 
+war {
+    archiveName = "jasmine.war"
+}
+
 ext {
     springVersion = "4.1.6.RELEASE"
 }
@@ -59,8 +63,11 @@ dependencies {
     compile 'org.springframework.amqp:spring-rabbit:1.4.5.RELEASE'
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.2.7.RELEASE'
 }
 
 task buildJar (type:org.gradle.api.tasks.bundling.Jar) {
     print("abcde")
 }
+

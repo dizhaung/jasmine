@@ -4,7 +4,7 @@
  * Created by wangjianan on 16-8-25.
  */
 var controller = angular.module('controllers', ['services', 'directive', 'filter']);
-controller.controller('navbarCtrl', ['$scope', 'channel', 'http', 'blogList', function ($scope, channel, http, blogList) {
+controller.controller('navbarCtrl', ['$scope', 'channel', 'http', 'blogList', '$stateParams', function ($scope, channel, http, blogList, $stateParams) {
     // 导航栏控制器
     $scope.navbarList = [];
     if (channel.channels.length <= 0) {
@@ -43,8 +43,8 @@ controller.controller('navbarCtrl', ['$scope', 'channel', 'http', 'blogList', fu
                 $scope.error = error;
             }
         );
-    };
 
+    };
 }]);
 controller.controller('articleCtrl', ['$scope', 'http', '$state', 'blogList', '$timeout', function ($scope, http, $state, blogList, $timeout) {
     /** 首页top 提示 **/
@@ -151,8 +151,7 @@ controller.controller('viewCtrl', ['$scope', 'http', '$state', '$stateParams', f
             function(answer){
                 var data = answer.data;
                 if (data.status == 0) {
-                    var response = data.content;
-                    $scope.model = response.blogLoan;
+                    $scope.model = data.content;
                 }
             },
             function(error){

@@ -89,8 +89,18 @@ public class BlogServiceImpl implements BlogService {
         blogLoanDao.updateBlogView(gid);
         // 查询blog详细信息
         BlogLoan blogLoan = blogLoanDao.selectByGid(gid);
+        String channelGid = blogLoan.getChannelGid();
+        BlogChannel blogChannel = blogChannelDao.queryChannelByGid(channelGid);
 
-        response.setBlogLoan(blogLoan);
+        response.setName(blogLoan.getName());
+        response.setGid(blogLoan.getGid());
+        response.setContent(blogLoan.getContent());
+        response.setViews(blogLoan.getViews());
+        response.setChannelGid(channelGid);
+        response.setChannelName(blogChannel.getName());
+        response.setUserGid(blogLoan.getUserGid());
+        response.setDateTime(Utility.getDateFormat(blogLoan.getCreateTime()));
+
         logger.info("getBlogDetail(): response={}", response);
         return response;
     }
