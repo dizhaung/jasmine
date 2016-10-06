@@ -48,3 +48,17 @@ body {
     color: #970714;
     text-decoration:none;
 }
+
+.bs-callout {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+.bs-callout-info {
+    border-color: #5bc0de;
+}
+.bs-callout p{
+    margin: 5px;
+}
