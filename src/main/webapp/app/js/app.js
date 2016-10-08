@@ -4,13 +4,13 @@
  * Created by wangjianan on 16-8-25.
  */
 var app = angular.module("app", ['ui.router', 'controllers', 'services', 'directive', 'filter']);
-app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
     // 设置默认路由
-    $urlRouterProvider.when("", "/index/");
-    $urlRouterProvider.when("/", "/index/");
+    $urlRouterProvider.when("", "index");
+    $urlRouterProvider.when("/", "index");
     $stateProvider
         .state('index', {
-            url: '/index/:gid',
+            url: '/index',
             views: {
                 "navbar": {
                     templateUrl: 'app/template/navbar.html',
@@ -27,7 +27,6 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
         })
         .state('view', {
             url: '/view/:gid',
-            // params:{'blog':{}},
             views: {
                 "navbar": {
                     templateUrl: 'app/template/navbar.html',
@@ -39,6 +38,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
                 }
             }
         });
+
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
         // .state('index', {
         //     url: '/index',
         //     templateUrl: 'app/template/content.html'
