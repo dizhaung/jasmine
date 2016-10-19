@@ -1,6 +1,7 @@
 package core.com.dao;
 
 import core.com.model.BlogChannel;
+import core.com.model.lend.BlogChannelMap;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface BlogChannelDao {
     List<BlogChannel> queryChannelAll();
 
     BlogChannel queryChannelByGid(String blogGid);
+
+    List<BlogChannelMap> queryChannelGroup();
 }

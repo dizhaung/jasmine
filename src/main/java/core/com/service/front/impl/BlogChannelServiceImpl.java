@@ -2,6 +2,7 @@ package core.com.service.front.impl;
 
 import core.com.dao.BlogChannelDao;
 import core.com.model.BlogChannel;
+import core.com.model.lend.BlogChannelMap;
 import core.com.service.front.BlogChannelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,5 +29,14 @@ public class BlogChannelServiceImpl implements BlogChannelService {
         List<BlogChannel> blogChannelList = blogChannelDao.queryChannelAll();
         logger.info("queryBlogChannel(): end, response={}", blogChannelList);
         return blogChannelList;
+    }
+
+    @Override
+    public List<BlogChannelMap> queryBlogChannelGroup() {
+        logger.info("queryBlogChannelGroup(): start");
+
+        List<BlogChannelMap> groupList = blogChannelDao.queryChannelGroup();
+        logger.info("queryBlogChannelGroup(): end, response={}", groupList);
+        return groupList;
     }
 }

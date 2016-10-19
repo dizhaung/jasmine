@@ -12,6 +12,10 @@
     <result column="is_valid" property="isValid" jdbcType="BIT" />
     <result column="order_num" property="orderNum" jdbcType="DOUBLE" />
   </resultMap>
+  <resultMap id="channelMap" type="core.com.model.lend.BlogChannelMap" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -272,4 +276,13 @@
       order_num = #{orderNum,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByGroupChannel" resultMap="channelMap">
+    SELECT
+      b.name,
+      count(1) AS count
+    FROM blog_loan t
+      LEFT JOIN blog_channel b ON b.gid = t.channel_gid
+    GROUP BY t.channel_gid;
+  </select>
 </mapper>

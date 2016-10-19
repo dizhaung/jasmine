@@ -3,6 +3,8 @@ package core.com.dao.mapper;
 import core.com.model.BlogChannel;
 import core.com.model.BlogChannelExample;
 import java.util.List;
+
+import core.com.model.lend.BlogChannelMap;
 import org.apache.ibatis.annotations.Param;
 
 public interface BlogChannelMapper {
@@ -27,4 +29,6 @@ public interface BlogChannelMapper {
     int updateByPrimaryKeySelective(BlogChannel record);
 
     int updateByPrimaryKey(BlogChannel record);
+
+    List<BlogChannelMap> selectByGroupChannel();
 }

@@ -38,4 +38,18 @@ public class BlogChannelController {
         logger.info("<=== getChannel(): get channel, response={}", response);
         return response;
     }
+
+    @RequestMapping(value = "/group", method = RequestMethod.POST)
+    private LightningResponse getChannelByGroup() {
+        logger.info("===> getChannel(): get getChannelByGroup");
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(blogChannelService.queryBlogChannelGroup());
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("getChannel(): error, response={}, exception={}", response, e);
+        }
+        logger.info("<=== getChannel(): get getChannelByGroup, response={}", response);
+        return response;
+    }
 }

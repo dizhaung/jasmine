@@ -4,6 +4,7 @@ import core.com.dao.BlogChannelDao;
 import core.com.dao.mapper.BlogChannelMapper;
 import core.com.model.BlogChannel;
 import core.com.model.BlogChannelExample;
+import core.com.model.lend.BlogChannelMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,5 +41,10 @@ public class BlogChannelDaoImpl implements BlogChannelDao {
             return blogChannelList.get(0);
         }
         return null;
+    }
+
+    @Override
+    public List<BlogChannelMap> queryChannelGroup() {
+        return blogChannelMapper.selectByGroupChannel();
     }
 }
