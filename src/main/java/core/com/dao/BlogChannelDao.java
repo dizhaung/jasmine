@@ -18,5 +18,7 @@ public interface BlogChannelDao {
 
     BlogChannel queryChannelByGid(String blogGid);
 
+    BlogChannel queryChannelByName(String channelName);
+
     List<BlogChannelMap> queryChannelGroup();
 }

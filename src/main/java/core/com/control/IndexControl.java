@@ -26,18 +26,33 @@ public class IndexControl {
     @Autowired
     private BlogService blogService;
 
-    @RequestMapping(value = "/getBills", method = RequestMethod.POST)
-    private LightningResponse getBlogData(@RequestBody IndexInfoReq indexInfoReq) {
-        logger.info("===> getBlogData(): get bills, indexInfoReq={}", indexInfoReq);
+    @RequestMapping(value = "/getIndexInfo", method = RequestMethod.POST)
+    private LightningResponse getIndexInfo() {
+        logger.info("===> getBlogData(): get bills");
         LightningResponse response = null;
         try {
-            response = Utility.getSuccessResp(blogService.getIndexInfo(indexInfoReq));
+            response = Utility.getSuccessResp(blogService.getIndexInfo());
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             logger.error("getBlogData(): error, response={}, exception={}", response, e);
         }
 
         logger.info("<=== getBlogData(): get bills, response={}", response);
+        return response;
+    }
+
+    @RequestMapping(value = "/getBlogInfo", method = RequestMethod.POST)
+    private LightningResponse getBlogInfo(@RequestBody IndexInfoReq indexInfoReq) {
+        logger.info("===> getBaseInfo(): get bills, indexInfoReq={}", indexInfoReq);
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(blogService.getBlogInfo(indexInfoReq));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("getBaseInfo(): error, response={}, exception={}", response, e);
+        }
+
+        logger.info("<=== getBaseInfo(): get bills, response={}", response);
         return response;
     }
 

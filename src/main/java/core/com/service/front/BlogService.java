@@ -1,10 +1,9 @@
 package core.com.service.front;
 
 import core.com.model.LightningResponse;
-import core.com.model.lend.BaseInfoResponse;
-import core.com.model.lend.IndexDetailReq;
-import core.com.model.lend.IndexDetailResp;
-import core.com.model.lend.IndexInfoReq;
+import core.com.model.lend.*;
+
+import java.util.List;
 
 /**
  *
@@ -12,7 +11,9 @@ import core.com.model.lend.IndexInfoReq;
  */
 public interface BlogService {
 
-    BaseInfoResponse getIndexInfo(IndexInfoReq indexInfoReq);
+    BaseInfoResponse getIndexInfo();
+
+    List<BlogInfo> getBlogInfo(IndexInfoReq indexInfoReq);
 
     /**
      * 查询详细信息

@@ -18,6 +18,8 @@ public interface BlogMarkDao {
 
     BlogMark queryMarkByGid(String markGid);
 
+    BlogMark queryMarkByName(String name);
+
     List<BlogMark> queryMarkByGidList(List<String> markGidList);
 
     List<BlogMarkStatistics> getBlogMarkStatistics();

@@ -36,11 +36,45 @@ public class BlogServiceImpl implements BlogService {
     private FriendshipLinkDao friendshipLinkDao;
 
     @Override
-    public BaseInfoResponse getIndexInfo(IndexInfoReq indexInfoReq) {
-        logger.info("getIndexInfo(): indexInfoReq={}", indexInfoReq);
+    public BaseInfoResponse getIndexInfo() {
+        logger.info("getIndexInfo()");
         BaseInfoResponse response = new BaseInfoResponse();
         List<BlogInfo> indexInfoRespList = new ArrayList<>();
+        /**
+         * 获取最新文章列表
+         */
+        List<BlogLoan> newBlogLoan = blogLoanDao.queryBlogLoanOrder();
 
+        /** 查询合作链接信息 **/
+        List<FriendshipLink> friendshipLinkList = friendshipLinkDao.selectByAll();
+
+        response.setBlogInfoList(indexInfoRespList);
+        response.setNewArticleList(newBlogLoan);
+        response.setFriendshipLinkList(friendshipLinkList);
+        return response;
+    }
+
+    @Override
+    public List<BlogInfo> getBlogInfo(IndexInfoReq indexInfoReq) {
+        logger.info("getBlogInfo(): indexInfoReq={}", indexInfoReq);
+
+        if (indexInfoReq.getChannelGid() != null) {
+            String channelName = indexInfoReq.getChannelGid();
+            BlogChannel channel = blogChannelDao.queryChannelByName(channelName);
+            if (channel != null) {
+                indexInfoReq.setChannelGid(channel.getGid());
+            }
+        }
+
+        if (indexInfoReq.getMarkGid() != null) {
+            String markName = indexInfoReq.getMarkGid();
+            BlogMark mark = blogMarkDao.queryMarkByName(markName);
+            if (mark != null) {
+                indexInfoReq.setMarkGid(mark.getGid());
+            }
+        }
+
+        List<BlogInfo> resultList = new ArrayList<>();
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
         if (blogLoanList != null) {
             for (BlogLoan blog : blogLoanList) {
@@ -59,21 +93,10 @@ public class BlogServiceImpl implements BlogService {
                 resp.setBlogMarkList(blogMarkList);
                 resp.setContent(blog.getContent());
 
-                indexInfoRespList.add(resp);
+                resultList.add(resp);
             }
         }
-        /**
-         * 获取最新文章列表
-         */
-        List<BlogLoan> newBlogLoan = blogLoanDao.queryBlogLoanOrder();
-
-        /** 查询合作链接信息 **/
-        List<FriendshipLink> friendshipLinkList = friendshipLinkDao.selectByAll();
-
-        response.setBlogInfoList(indexInfoRespList);
-        response.setNewArticleList(newBlogLoan);
-        response.setFriendshipLinkList(friendshipLinkList);
-        return response;
+        return resultList;
     }
 
     @Override

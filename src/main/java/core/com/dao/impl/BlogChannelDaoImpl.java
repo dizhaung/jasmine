@@ -44,6 +44,17 @@ public class BlogChannelDaoImpl implements BlogChannelDao {
     }
 
     @Override
+    public BlogChannel queryChannelByName(String channelName) {
+        BlogChannelExample example = new BlogChannelExample();
+        example.createCriteria().andNameEqualTo(channelName);
+        List<BlogChannel> blogChannelList = blogChannelMapper.selectByExample(example);
+        if (blogChannelList != null && blogChannelList.size() > 0) {
+            return blogChannelList.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public List<BlogChannelMap> queryChannelGroup() {
         return blogChannelMapper.selectByGroupChannel();
     }

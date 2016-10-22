@@ -44,6 +44,17 @@ public class BlogMarkDaoImpl implements BlogMarkDao {
     }
 
     @Override
+    public BlogMark queryMarkByName(String name) {
+        BlogMarkExample example = new BlogMarkExample();
+        example.createCriteria().andNameEqualTo(name);
+        List<BlogMark> blogMarkList = blogMarkMapper.selectByExample(example);
+        if (blogMarkList != null && blogMarkList.size() > 0) {
+            return blogMarkList.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public List<BlogMark> queryMarkByGidList(List<String> markGidList) {
         if (markGidList == null) {
             return null;
