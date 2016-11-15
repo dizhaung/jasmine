@@ -231,7 +231,7 @@ indexControllers.controller('blogCtrl', ['$scope', 'http', 'channel', 'mark', '$
             http.post('/manage/blog/add', {
                 name : name,
                 type : type,
-                channel: channel,
+                channel: channel.gid,
                 marks: marks,
                 message : html
             }).then(

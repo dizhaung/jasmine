@@ -13,9 +13,8 @@ public class AddBlogReq {
     private String name;
     private String message;
     private String type;
-    private BlogChannel channel;
+    private String channel;
     private List<String> marks;
-
 
     public String getName() {
         return name;
@@ -41,20 +40,20 @@ public class AddBlogReq {
         this.type = type;
     }
 
-    public BlogChannel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(BlogChannel channel) {
-        this.channel = channel;
-    }
-
     public List<String> getMarks() {
         return marks;
     }
 
     public void setMarks(List<String> marks) {
         this.marks = marks;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     @Override

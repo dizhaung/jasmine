@@ -40,8 +40,8 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     public AddBlogResp doBlogLoan(AddBlogReq addBlogReq) {
         logger.info("doBlogLoan(): doBlogLoan blog, addBlogReq={}", addBlogReq);
         AddBlogResp resp = null;
-        BlogChannel blogChannel = addBlogReq.getChannel();
-        if (blogChannel == null) {
+        String blogChannelGid = addBlogReq.getChannel();
+        if (blogChannelGid == null) {
             throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
         }
 
@@ -55,7 +55,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         blog.setName(addBlogReq.getName());
         blog.setUserGid("");
         blog.setType(getBlogType(addBlogReq.getType()));
-        blog.setChannelGid(blogChannel.getGid());
+        blog.setChannelGid(blogChannelGid);
         blog.setMarkGid("");
 
         List<ConfigBlogMark> configBlogMarkList = null;
