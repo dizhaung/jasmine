@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -107,7 +108,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         return count;
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
         if (blogLoan != null) {
