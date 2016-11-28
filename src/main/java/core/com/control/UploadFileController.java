@@ -51,9 +51,9 @@ public class UploadFileController {
             //最终文件名
             File realFile = new File(rootPath + File.separator + attach.getOriginalFilename());
             FileUtils.copyInputStreamToFile(attach.getInputStream(), realFile);
-
+            String callback = request.getParameter("callback");
             //下面response返回的json格式是editor.md所限制的，规范输出就OK
-            String url = "http://localhost:3000/upload_callback.html?success=1&message=success&url=http://og4nfuylr.bkt.clouddn.com/" + fileName + "&dialog_id=" + dialog_id;
+            String url = callback + "?success=1&message=success&url=http://og4nfuylr.bkt.clouddn.com/" + fileName + "&dialog_id=" + dialog_id;
             response.sendRedirect(url);
         } catch (Exception e) {
             try {
