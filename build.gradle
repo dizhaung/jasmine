@@ -71,10 +71,23 @@ dependencies {
     ///// utility, such as json, etc. //////
     compile 'com.google.code.gson:gson:2.3.1'
 
+    ///// logback //////
+    compile "ch.qos.logback:logback-core:1.1.3"
+    compile "ch.qos.logback:logback-classic:1.1.3"
+    compile "com.googlecode.sli4j:sli4j-slf4j-logback:2.0"
+    compile 'dom4j:dom4j:1.6'
+
+    ///// 七牛云////
     compile 'com.qiniu:qiniu-java-sdk:7.0.+'
 }
 
-task buildJar (type:org.gradle.api.tasks.bundling.Jar) {
-    print("abcde")
+task buildinfo << {
+    new File("src/main/resources/properties/buildinfo.properties").withWriter { w ->
+        w.write("build.module=jasmine\n")
+        w.write("build.revision=" + buildver + "\n")
+        w.write("build.tag=" + tag + "\n")
+        w.write("build.datetime =" + (new Date()).format("YYYY-MM-dd HH:mm:ss") + "\n")
+        w.write("build.hostname=" + InetAddress.localHost.hostName)
+    }
 }
 
