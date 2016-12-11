@@ -74,4 +74,24 @@ public class BlogController {
         logger.info("<=== manage delete(): response={}", response);
         return response;
     }
+
+    @RequestMapping(value = "/getBlog", method = RequestMethod.POST)
+    private LightningResponse getBlog(@RequestBody String blogGid) {
+        logger.info("===> manage getBlog(): blogGid={}", blogGid);
+        LightningResponse response = null;
+
+        if (blogGid == null) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_PARAMETER_ERROR);
+            return response;
+        }
+
+        try {
+            response = Utility.getSuccessResp(manageBlogService.getBlogInfo(blogGid));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("getBlog(): getBlog is error, exception={}", e);
+        }
+        logger.info("<=== manage getBlog(): response={}", response);
+        return response;
+    }
 }

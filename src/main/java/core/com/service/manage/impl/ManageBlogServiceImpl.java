@@ -9,6 +9,7 @@ import core.com.model.BlogLoan;
 import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
+import core.com.model.manage.GetBlogInfo;
 import core.com.service.manage.ManageBlogService;
 import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
@@ -108,6 +109,16 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         return count;
     }
 
+    @Override
+    public GetBlogInfo getBlogInfo(String blogGid) {
+        logger.info("getBlogInfo(): begin blogGid={}", blogGid);
+        GetBlogInfo info = new GetBlogInfo();
+
+        BlogLoan blogLoan = blogLoanDao.selectByGid(blogGid);
+        info.setBlogLoan(blogLoan);
+        return info;
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
@@ -120,4 +131,5 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         }
         logger.info("doBlogLoan(): end");
     }
+
 }
