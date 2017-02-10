@@ -1,5 +1,6 @@
 package core.com.service.manage;
 
+import core.com.model.BlogLoan;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
 import core.com.model.manage.GetBlogInfo;
@@ -14,6 +15,6 @@ public interface ManageBlogService {
 
     public int deleteBlogLoan(String blogLoan);
 
-    public GetBlogInfo getBlogInfo(String blogGid);
+    public BlogLoan getBlogLoan(String blogGid);
 
 }

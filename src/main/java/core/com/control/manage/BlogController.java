@@ -76,8 +76,8 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/getBlog", method = RequestMethod.POST)
-    private LightningResponse getBlog(@RequestBody String blogGid) {
-        logger.info("===> manage getBlog(): blogGid={}", blogGid);
+    private LightningResponse getBlogInfo(@RequestBody String blogGid) {
+        logger.info("===> manage getBlogInfo(): blogGid={}", blogGid);
         LightningResponse response = null;
 
         if (blogGid == null) {
@@ -86,12 +86,12 @@ public class BlogController {
         }
 
         try {
-            response = Utility.getSuccessResp(manageBlogService.getBlogInfo(blogGid));
+            response = Utility.getSuccessResp(manageBlogService.getBlogLoan(blogGid));
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
-            logger.error("getBlog(): getBlog is error, exception={}", e);
+            logger.error("getBlogInfo(): query is error, exception={}", e);
         }
-        logger.info("<=== manage getBlog(): response={}", response);
+        logger.info("<=== manage getBlogInfo(): response={}", response);
         return response;
     }
 }

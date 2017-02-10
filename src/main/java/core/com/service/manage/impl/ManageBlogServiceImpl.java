@@ -110,13 +110,8 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     }
 
     @Override
-    public GetBlogInfo getBlogInfo(String blogGid) {
-        logger.info("getBlogInfo(): begin blogGid={}", blogGid);
-        GetBlogInfo info = new GetBlogInfo();
-
-        BlogLoan blogLoan = blogLoanDao.selectByGid(blogGid);
-        info.setBlogLoan(blogLoan);
-        return info;
+    public BlogLoan getBlogLoan(String blogGid) {
+        return blogLoanDao.selectByGid(blogGid);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
