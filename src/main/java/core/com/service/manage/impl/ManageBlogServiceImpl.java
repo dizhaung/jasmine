@@ -108,6 +108,11 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         return count;
     }
 
+    @Override
+    public BlogLoan getBlogLoan(String blogGid) {
+        return blogLoanDao.selectByGid(blogGid);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
