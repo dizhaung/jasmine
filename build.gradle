@@ -8,10 +8,10 @@
  */
 buildscript {
     repositories {
-        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
     }
 }
 
@@ -19,7 +19,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'war'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 jar{
     baseName = 'jasmine'
@@ -31,17 +31,43 @@ war {
 }
 
 ext {
-    springVersion = "4.1.6.RELEASE"
+    springVersion = "4.3.6.RELEASE"
+    springBootVersion = "1.5.1.RELEASE"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task buildinfo {
+    def buildVer = ""
+    def tag = ""
+    try {
+        def revision = 'git rev-list --count HEAD'.execute().text.trim()
+        def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+        buildVer = "${revision}-${hash}"
+        tag = 'git describe --tags'.execute().text.trim()
+    } catch (any) {
+        println "warn! failed to get revision"
+    }
+
+    println buildVer
+    new File("src/main/resources/properties/buildinfo.properties").withWriter { w ->
+        w.write("build.module=harbor\n")
+        w.write("build.revision=" + buildVer + "\n")
+        w.write("build.tag=" + "tag" + "\n")
+        w.write("build.datetime =" + (new Date()).format("YYYY-MM-dd HH:mm:ss") + "\n")
+        w.write("build.hostname=" + InetAddress.localHost.hostName)
+    }
 }
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-    mavenCentral()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter")
 
     compile "org.springframework:spring-core:${springVersion}"
     compile "org.springframework:spring-web:${springVersion}"
@@ -53,8 +79,6 @@ dependencies {
     compile 'commons-fileupload:commons-fileupload:1.3.1'
 
     ///// redis //////
-    compile 'org.springframework.data:spring-data-redis:1.6.0.RELEASE'
-    compile 'redis.clients:jedis:2.7.3'
 
     compile 'org.apache.commons:commons-dbcp2:2.1'
     compile "org.mybatis:mybatis-spring:1.2.2"
@@ -80,14 +104,3 @@ dependencies {
     ///// 七牛云////
     compile 'com.qiniu:qiniu-java-sdk:7.0.+'
 }
-
-task buildinfo << {
-    new File("src/main/resources/properties/buildinfo.properties").withWriter { w ->
-        w.write("build.module=jasmine\n")
-        w.write("build.revision=" + buildver + "\n")
-        w.write("build.tag=" + tag + "\n")
-        w.write("build.datetime =" + (new Date()).format("YYYY-MM-dd HH:mm:ss") + "\n")
-        w.write("build.hostname=" + InetAddress.localHost.hostName)
-    }
-}
-
