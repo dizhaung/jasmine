@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * 标签记录表
  * Created by wangjianan on 16-8-23.
  */
 @Repository
@@ -35,5 +36,12 @@ public class ConfigBlogMarkDaoImpl implements ConfigBlogMarkDao {
         ConfigBlogMarkExample example = new ConfigBlogMarkExample();
         example.createCriteria().andMarkGidEqualTo(markGid);
         return configBlogMarkMapper.selectByExample(example);
+    }
+
+    @Override
+    public int deleteByGid(String gid) {
+        ConfigBlogMarkExample example = new ConfigBlogMarkExample();
+        example.createCriteria().andGidEqualTo(gid);
+        return configBlogMarkMapper.deleteByExample(example);
     }
 }

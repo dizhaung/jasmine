@@ -43,6 +43,11 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     }
 
     @Override
+    public BlogLoan queryBlogLoanById(Integer id) {
+        return blogLoanMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public List<BlogLoan> queryBlogLoanByMarkOrChannel(String channelGid, String markGid) {
         BlogLoanExample example = new BlogLoanExample();
         List<String> blogList = new ArrayList<>();
@@ -91,5 +96,12 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     @Override
     public int updateBlogView(String blogGid) {
         return blogLoanMapper.updateViewByGid(blogGid);
+    }
+
+    @Override
+    public int updateBlogById(BlogLoan blogLoan) {
+        BlogLoanExample example = new BlogLoanExample();
+        example.createCriteria().andIdEqualTo(blogLoan.getId());
+        return blogLoanMapper.updateByExampleSelective(blogLoan, example);
     }
 }

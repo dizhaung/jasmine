@@ -120,4 +120,21 @@ public class BlogLoan {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BlogLoan{" +
+                "id=" + id +
+                ", gid='" + gid + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userGid='" + userGid + '\'' +
+                ", channelGid='" + channelGid + '\'' +
+                ", markGid='" + markGid + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", views=" + views +
+                ", isTop=" + isTop +
+                '}';
+    }
 }

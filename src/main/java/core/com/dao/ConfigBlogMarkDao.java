@@ -14,4 +14,6 @@ public interface ConfigBlogMarkDao {
     List<ConfigBlogMark> queryConfigByBlogGid(String blogGid);
 
     List<ConfigBlogMark> queryConfigByMarkGid(String markGid);
+
+    int deleteByGid(String gid);
 }

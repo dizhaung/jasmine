@@ -15,6 +15,8 @@ public interface BlogLoanDao {
 
     List<BlogLoan> queryBlogLoan(String channelGid);
 
+    BlogLoan queryBlogLoanById(Integer id);
+
     List<BlogLoan> queryBlogLoanByMarkOrChannel(String channelGid, String markGid);
 
     int delete(String blogGid);
@@ -24,4 +26,7 @@ public interface BlogLoanDao {
     BlogLoan selectByGid(String gid);
 
     int updateBlogView(String blogGid);
+
+    int updateBlogById(BlogLoan blogLoan);
+
 }

@@ -5,11 +5,12 @@ import core.com.model.BlogChannel;
 import java.util.List;
 
 /**
- * 前端请求 - 添加Blog
+ * 前端请求 - 添加 修改 Blog
  *
  * Created by wangjianan on 16-8-17.
  */
 public class AddBlogReq {
+    private Integer id;
     private String name;
     private String message;
     private String type;
@@ -56,12 +57,22 @@ public class AddBlogReq {
         this.channel = channel;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "AddBlogReq{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", message='" + message + '\'' +
                 ", type='" + type + '\'' +
-                ", channel=" + channel +
+                ", channel='" + channel + '\'' +
                 ", marks=" + marks +
                 '}';
     }

@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * manage
+ *
  * Created by wangjianan on 16-8-17.
  */
 @RestController
@@ -32,9 +34,9 @@ public class BlogController {
     @Autowired
     private ManageBlogService manageBlogService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    private LightningResponse add(@RequestBody AddBlogReq addBlogReq) {
-        logger.info("===> manage add(): addBlogReq={}", addBlogReq);
+    @RequestMapping(value = "/do", method = RequestMethod.POST)
+    private LightningResponse doBlog(@RequestBody AddBlogReq addBlogReq) {
+        logger.info("===> manage doBlog(): addBlogReq={}", addBlogReq);
         LightningResponse response = null;
 
         if (addBlogReq == null || Utility.isBlank(addBlogReq.getName()) || Utility.isBlank(addBlogReq.getMessage())) {
@@ -46,12 +48,12 @@ public class BlogController {
             response = Utility.getSuccessResp(manageBlogService.doBlogLoan(addBlogReq));
         } catch (CoreException c) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
-            logger.error("add(): add is error, exception={}", c);
+            logger.error("doBlog(): add or update is error, exception={}", c);
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
-            logger.error("add(): add is error, exception={}", e);
+            logger.error("doBlog(): add or update is error, exception={}", e);
         }
-        logger.info("<=== manage add(): response={}", response);
+        logger.info("<=== manage doBlog(): response={}", response);
         return response;
     }
 

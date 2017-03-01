@@ -20,9 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 后台管理 Blog
@@ -41,6 +46,8 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     @Override
     public AddBlogResp doBlogLoan(AddBlogReq addBlogReq) {
         logger.info("doBlogLoan(): doBlogLoan blog, addBlogReq={}", addBlogReq);
+        Assert.notNull(addBlogReq);
+
         AddBlogResp resp = null;
         String blogChannelGid = addBlogReq.getChannel();
         if (blogChannelGid == null) {
@@ -48,38 +55,63 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         }
 
         int currentTimeStamp = Utility.getCurrentTimeStamp();
-        String blogLoanGid = Utility.generateUUID();
+        Integer id = addBlogReq.getId();
+        String gid = null;
+
         BlogLoan blog = new BlogLoan();
-        blog.setCreateTime(currentTimeStamp);
         blog.setUpdateTime(currentTimeStamp);
-        blog.setGid(blogLoanGid);
         blog.setContent(addBlogReq.getMessage());
         blog.setName(addBlogReq.getName());
-        blog.setUserGid("");
         blog.setType(getBlogType(addBlogReq.getType()));
         blog.setChannelGid(blogChannelGid);
-        blog.setMarkGid("");
 
-        List<ConfigBlogMark> configBlogMarkList = null;
-        if (addBlogReq.getMarks() != null) {
-            configBlogMarkList = new ArrayList<>();
-            for (String markGid : addBlogReq.getMarks()) {
-                String configGid = Utility.generateUUID();
-                ConfigBlogMark configBlogMark = new ConfigBlogMark();
-                configBlogMark.setGid(configGid);
-                configBlogMark.setCreateTime(currentTimeStamp);
-                configBlogMark.setUpdateTime(currentTimeStamp);
-                configBlogMark.setBlogGid(blogLoanGid);
-                configBlogMark.setMarkGid(markGid);
-                configBlogMarkList.add(configBlogMark);
+        if (id != null) {
+            blog.setId(addBlogReq.getId());
+
+            BlogLoan blogLoan = blogLoanDao.queryBlogLoanById(id);
+            if (blogLoan == null) {
+                throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
             }
+            gid = blogLoan.getGid();
+
+            // update
+            List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(gid);
+            List<String> updateMarkList = addBlogReq.getMarks();
+            if (!CollectionUtils.isEmpty(configBlogMarkList) && !CollectionUtils.isEmpty(updateMarkList)) {
+                List<String> markList = configBlogMarkList.stream().map(ConfigBlogMark::getMarkGid).collect(Collectors.toList());
+
+                // init result list
+                List<String> removeList = markList;
+                List<String> addList = updateMarkList;
+
+                // get data
+                removeList.removeAll(updateMarkList);
+                addList.removeAll(markList);
+
+                List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(addList, gid);
+                logger.info("doBlogLoan(): removeList={}, addList={}", removeList, addList);
+                doBlogLoan(blog, insertMarkList);
+
+                for (String remove : removeList) {
+                    configBlogMarkDao.deleteByGid(remove);
+                }
+            }
+        } else {
+            // add
+            gid = Utility.generateUUID();
+            blog.setCreateTime(currentTimeStamp);
+            blog.setGid(gid);
+            blog.setUserGid("");
+            blog.setMarkGid("");
+
+            List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(addBlogReq.getMarks(), gid);
+
+            // do operation data
+            doBlogLoan(blog, insertMarkList);
         }
 
-        // do operation data
-        doBlogLoan(blog, configBlogMarkList);
-
         resp = new AddBlogResp();
-        resp.setBlogGid(blogLoanGid);
+        resp.setBlogGid(gid);
         logger.info("doBlogLoan(): doBlogLoan save success, resp={}", resp);
         return resp;
     }
@@ -100,6 +132,25 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         return type;
     }
 
+    private List<ConfigBlogMark> getConfigBlogMarkList(List<String> marks, String gid) {
+        List<ConfigBlogMark> configBlogMarkList = null;
+        int currentTimeStamp = Utility.getCurrentTimeStamp();
+        if (marks != null) {
+            configBlogMarkList = new ArrayList<>();
+            for (String markGid : marks) {
+                String configGid = Utility.generateUUID();
+                ConfigBlogMark configBlogMark = new ConfigBlogMark();
+                configBlogMark.setGid(configGid);
+                configBlogMark.setCreateTime(currentTimeStamp);
+                configBlogMark.setUpdateTime(currentTimeStamp);
+                configBlogMark.setBlogGid(gid);
+                configBlogMark.setMarkGid(markGid);
+                configBlogMarkList.add(configBlogMark);
+            }
+        }
+        return configBlogMarkList;
+    }
+
     @Override
     public int deleteBlogLoan(String blogLoanGid) {
         logger.info("deleteBlogLoan(): blogLoanGid={}", blogLoanGid);
@@ -118,7 +169,11 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
         if (blogLoan != null) {
-            blogLoanDao.insert(blogLoan);
+            if (blogLoan.getId() == null) {
+                blogLoanDao.insert(blogLoan);
+            } else {
+                blogLoanDao.updateBlogById(blogLoan);
+            }
         }
 
         if (configBlogMarkList != null && configBlogMarkList.size() > 0) {
