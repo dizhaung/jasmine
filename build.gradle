@@ -52,7 +52,7 @@ task buildinfo {
 
     println buildVer
     new File("src/main/resources/properties/buildinfo.properties").withWriter { w ->
-        w.write("build.module=harbor\n")
+        w.write("build.module=jasmine\n")
         w.write("build.revision=" + buildVer + "\n")
         w.write("build.tag=" + "tag" + "\n")
         w.write("build.datetime =" + (new Date()).format("YYYY-MM-dd HH:mm:ss") + "\n")
