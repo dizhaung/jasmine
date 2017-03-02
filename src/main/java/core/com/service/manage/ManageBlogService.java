@@ -3,6 +3,7 @@ package core.com.service.manage;
 import core.com.model.BlogLoan;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
+import core.com.model.manage.BlogLoanInfo;
 import core.com.model.manage.GetBlogInfo;
 
 /**
@@ -11,10 +12,10 @@ import core.com.model.manage.GetBlogInfo;
  */
 public interface ManageBlogService {
 
-    public AddBlogResp doBlogLoan(AddBlogReq addBlogReq);
+    AddBlogResp doBlogLoan(AddBlogReq addBlogReq);
 
-    public int deleteBlogLoan(String blogLoan);
+    int deleteBlogLoan(String blogLoan);
 
-    public BlogLoan getBlogLoan(String blogGid);
+    BlogLoanInfo getBlogLoan(String blogGid);
 
 }

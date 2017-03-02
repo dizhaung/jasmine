@@ -9,6 +9,7 @@ import core.com.model.BlogLoan;
 import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
+import core.com.model.manage.BlogLoanInfo;
 import core.com.model.manage.GetBlogInfo;
 import core.com.service.manage.ManageBlogService;
 import core.com.utils.Constants;
@@ -90,11 +91,9 @@ public class ManageBlogServiceImpl implements ManageBlogService {
 
                 List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(addList, gid);
                 logger.info("doBlogLoan(): removeList={}, addList={}", removeList, addList);
-                doBlogLoan(blog, insertMarkList);
 
-                for (String remove : removeList) {
-                    configBlogMarkDao.deleteByGid(remove);
-                }
+                configBlogMarkDao.deleteByBlog(gid, removeList);
+                doBlogLoan(blog, insertMarkList);
             }
         } else {
             // add
@@ -161,8 +160,17 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     }
 
     @Override
-    public BlogLoan getBlogLoan(String blogGid) {
-        return blogLoanDao.selectByGid(blogGid);
+    public BlogLoanInfo getBlogLoan(String blogGid) {
+        logger.debug("getBlogLoan(): blogGid={}", blogGid);
+        Assert.notNull(blogGid);
+        BlogLoanInfo info = new BlogLoanInfo();
+        List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blogGid);
+
+        info.setBlogLoan(blogLoanDao.selectByGid(blogGid));
+        info.setMarkList(configBlogMarkList.stream().map(ConfigBlogMark::getMarkGid).collect(Collectors.toList()));
+
+        logger.debug("getBlogLoan(): response={}", info);
+        return info;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})

@@ -39,9 +39,10 @@ public class ConfigBlogMarkDaoImpl implements ConfigBlogMarkDao {
     }
 
     @Override
-    public int deleteByGid(String gid) {
+    public int deleteByBlog(String blogGid, List<String> markList) {
         ConfigBlogMarkExample example = new ConfigBlogMarkExample();
-        example.createCriteria().andGidEqualTo(gid);
+        example.createCriteria().andBlogGidEqualTo(blogGid)
+                .andMarkGidIn(markList);
         return configBlogMarkMapper.deleteByExample(example);
     }
 }
