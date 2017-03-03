@@ -4,13 +4,11 @@ import core.com.control.manage.BlogController;
 import core.com.dao.BlogLoanDao;
 import core.com.dao.ConfigBlogMarkDao;
 import core.com.exception.CoreException;
-import core.com.model.BlogChannel;
 import core.com.model.BlogLoan;
 import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
 import core.com.model.manage.BlogLoanInfo;
-import core.com.model.manage.GetBlogInfo;
 import core.com.service.manage.ManageBlogService;
 import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
@@ -25,9 +23,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -61,10 +59,12 @@ public class ManageBlogServiceImpl implements ManageBlogService {
 
         BlogLoan blog = new BlogLoan();
         blog.setUpdateTime(currentTimeStamp);
-        blog.setContent(addBlogReq.getMessage());
         blog.setName(addBlogReq.getName());
         blog.setType(getBlogType(addBlogReq.getType()));
         blog.setChannelGid(blogChannelGid);
+        if (addBlogReq.getMessage() != null) {
+            blog.setContent(addBlogReq.getMessage());
+        }
 
         if (id != null) {
             blog.setId(addBlogReq.getId());
@@ -82,18 +82,18 @@ public class ManageBlogServiceImpl implements ManageBlogService {
                 List<String> markList = configBlogMarkList.stream().map(ConfigBlogMark::getMarkGid).collect(Collectors.toList());
 
                 // init result list
-                List<String> removeList = markList;
-                List<String> addList = updateMarkList;
+                Set<String> removeSet = new HashSet<>(markList);
+                Set<String> addSet = new HashSet<>(updateMarkList);
 
                 // get data
-                removeList.removeAll(updateMarkList);
-                addList.removeAll(markList);
+                removeSet.removeAll(addSet);
+                addSet.removeAll(markList);
 
-                List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(addList, gid);
-                logger.info("doBlogLoan(): removeList={}, addList={}", removeList, addList);
+                List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(new ArrayList<>(addSet), gid);
+                logger.info("doBlogLoan(): removeSet={}, addSet={}", removeSet, addSet);
 
-                configBlogMarkDao.deleteByBlog(gid, removeList);
-                doBlogLoan(blog, insertMarkList);
+//                configBlogMarkDao.deleteByBlog(gid, new ArrayList<>(removeSet));
+//                doBlogLoan(blog, insertMarkList);
             }
         } else {
             // add

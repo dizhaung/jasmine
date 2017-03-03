@@ -88,7 +88,6 @@ dependencies {
     compile 'org.springframework.amqp:spring-amqp:1.4.5.RELEASE'
     compile 'org.springframework.amqp:spring-rabbit:1.4.5.RELEASE'
 
-    testCompile("org.springframework.boot:spring-boot-starter-test")
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.2.7.RELEASE'
 
@@ -103,4 +102,9 @@ dependencies {
 
     ///// 七牛云////
     compile 'com.qiniu:qiniu-java-sdk:7.0.+'
+
+    //// testing ////
+    testCompile "junit:junit:4.12"
+    testCompile "org.springframework:spring-test:${springVersion}"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
