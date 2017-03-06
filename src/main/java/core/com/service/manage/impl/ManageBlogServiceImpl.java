@@ -92,8 +92,10 @@ public class ManageBlogServiceImpl implements ManageBlogService {
                 List<ConfigBlogMark> insertMarkList = getConfigBlogMarkList(new ArrayList<>(addSet), gid);
                 logger.info("doBlogLoan(): removeSet={}, addSet={}", removeSet, addSet);
 
-//                configBlogMarkDao.deleteByBlog(gid, new ArrayList<>(removeSet));
-//                doBlogLoan(blog, insertMarkList);
+                if (!CollectionUtils.isEmpty(removeSet)) {
+                    configBlogMarkDao.deleteByBlog(gid, new ArrayList<>(removeSet));
+                }
+                doBlogLoan(blog, insertMarkList);
             }
         } else {
             // add
