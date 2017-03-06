@@ -75,9 +75,9 @@ public class BlogServiceImpl implements BlogService {
         }
 
         List<BlogInfo> resultList = new ArrayList<>();
-        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
+        List<BlogLoanWithBLOBs> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
         if (blogLoanList != null) {
-            for (BlogLoan blog : blogLoanList) {
+            for (BlogLoanWithBLOBs blog : blogLoanList) {
 
                 BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
                 List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
@@ -111,7 +111,7 @@ public class BlogServiceImpl implements BlogService {
         // 更新文章查看次数
         blogLoanDao.updateBlogView(gid);
         // 查询blog详细信息
-        BlogLoan blogLoan = blogLoanDao.selectByGid(gid);
+        BlogLoanWithBLOBs blogLoan = blogLoanDao.selectByGid(gid);
         String channelGid = blogLoan.getChannelGid();
         BlogChannel blogChannel = blogChannelDao.queryChannelByGid(channelGid);
 

@@ -2,6 +2,7 @@ package core.com.dao.mapper;
 
 import core.com.model.BlogLoan;
 import core.com.model.BlogLoanExample;
+import core.com.model.BlogLoanWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,25 +13,25 @@ public interface BlogLoanMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(BlogLoan record);
+    int insert(BlogLoanWithBLOBs record);
 
-    int insertSelective(BlogLoan record);
+    int insertSelective(BlogLoanWithBLOBs record);
 
-    List<BlogLoan> selectByExampleWithBLOBs(BlogLoanExample example);
+    List<BlogLoanWithBLOBs> selectByExampleWithBLOBs(BlogLoanExample example);
 
     List<BlogLoan> selectByExample(BlogLoanExample example);
 
-    BlogLoan selectByPrimaryKey(Integer id);
+    BlogLoanWithBLOBs selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") BlogLoan record, @Param("example") BlogLoanExample example);
+    int updateByExampleSelective(@Param("record") BlogLoanWithBLOBs record, @Param("example") BlogLoanExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") BlogLoan record, @Param("example") BlogLoanExample example);
+    int updateByExampleWithBLOBs(@Param("record") BlogLoanWithBLOBs record, @Param("example") BlogLoanExample example);
 
     int updateByExample(@Param("record") BlogLoan record, @Param("example") BlogLoanExample example);
 
-    int updateByPrimaryKeySelective(BlogLoan record);
+    int updateByPrimaryKeySelective(BlogLoanWithBLOBs record);
 
-    int updateByPrimaryKeyWithBLOBs(BlogLoan record);
+    int updateByPrimaryKeyWithBLOBs(BlogLoanWithBLOBs record);
 
     int updateByPrimaryKey(BlogLoan record);
 

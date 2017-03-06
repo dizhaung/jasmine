@@ -1,0 +1,1 @@
+ALTER TABLE `blog_loan` ADD COLUMN `markdown_content`  LONGTEXT DEFAULT NULL COMMENT 'markdown 内容' AFTER `content`;

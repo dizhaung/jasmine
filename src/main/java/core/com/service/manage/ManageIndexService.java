@@ -1,6 +1,7 @@
 package core.com.service.manage;
 
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 import core.com.model.LightningResponse;
 import core.com.model.manage.ManageIndexReq;
 
@@ -11,5 +12,5 @@ import java.util.List;
  */
 public interface ManageIndexService {
 
-    List<BlogLoan> queryBlogByType(ManageIndexReq manageIndexReq);
+    List<BlogLoanWithBLOBs> queryBlogByType(ManageIndexReq manageIndexReq);
 }

@@ -13,6 +13,7 @@ public class AddBlogReq {
     private Integer id;
     private String name;
     private String message;
+    private String markdownContent;
     private String type;
     private String channel;
     private List<String> marks;
@@ -65,12 +66,21 @@ public class AddBlogReq {
         this.id = id;
     }
 
+    public String getMarkdownContent() {
+        return markdownContent;
+    }
+
+    public void setMarkdownContent(String markdownContent) {
+        this.markdownContent = markdownContent;
+    }
+
     @Override
     public String toString() {
         return "AddBlogReq{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", message='" + message + '\'' +
+                ", markdownContent='" + markdownContent + '\'' +
                 ", type='" + type + '\'' +
                 ", channel='" + channel + '\'' +
                 ", marks=" + marks +

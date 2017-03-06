@@ -4,6 +4,7 @@ import core.com.dao.BlogLoanDao;
 import core.com.dao.TestDao;
 import core.com.exception.CoreException;
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class TestDaoImpl implements TestDao {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public void dbId(boolean flag) {
-        BlogLoan blog = new BlogLoan();
+        BlogLoanWithBLOBs blog = new BlogLoanWithBLOBs();
         int currentTimeStamp = Utility.getCurrentTimeStamp();
         blog.setCreateTime(currentTimeStamp);
         blog.setUpdateTime(currentTimeStamp);

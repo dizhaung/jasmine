@@ -2,6 +2,7 @@ package core.com.dao;
 
 
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 
 import java.util.List;
 
@@ -11,22 +12,22 @@ import java.util.List;
  */
 public interface BlogLoanDao {
 
-    int insert(BlogLoan blogLoan);
+    int insert(BlogLoanWithBLOBs blogLoan);
 
-    List<BlogLoan> queryBlogLoan(String channelGid);
+    List<BlogLoanWithBLOBs> queryBlogLoan(String channelGid);
 
     BlogLoan queryBlogLoanById(Integer id);
 
-    List<BlogLoan> queryBlogLoanByMarkOrChannel(String channelGid, String markGid);
+    List<BlogLoanWithBLOBs> queryBlogLoanByMarkOrChannel(String channelGid, String markGid);
 
     int delete(String blogGid);
 
     List<BlogLoan> queryBlogLoanOrder();
 
-    BlogLoan selectByGid(String gid);
+    BlogLoanWithBLOBs selectByGid(String gid);
 
     int updateBlogView(String blogGid);
 
-    int updateBlogById(BlogLoan blogLoan);
+    int updateBlogById(BlogLoanWithBLOBs blogLoan);
 
 }

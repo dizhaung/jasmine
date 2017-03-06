@@ -23,8 +23,6 @@ public class BlogLoan {
 
     private Boolean isTop;
 
-    private String content;
-
     public Integer getId() {
         return id;
     }
@@ -111,14 +109,6 @@ public class BlogLoan {
 
     public void setIsTop(Boolean isTop) {
         this.isTop = isTop;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 
     @Override

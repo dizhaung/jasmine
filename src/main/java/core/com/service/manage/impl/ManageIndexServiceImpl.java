@@ -2,6 +2,7 @@ package core.com.service.manage.impl;
 
 import core.com.dao.BlogLoanDao;
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 import core.com.model.LightningResponse;
 import core.com.model.manage.ManageIndexReq;
 import core.com.service.manage.ManageIndexService;
@@ -20,10 +21,10 @@ public class ManageIndexServiceImpl implements ManageIndexService {
     private BlogLoanDao blogLoanDao;
 
     @Override
-    public List<BlogLoan> queryBlogByType(ManageIndexReq manageIndexReq) {
+    public List<BlogLoanWithBLOBs> queryBlogByType(ManageIndexReq manageIndexReq) {
         LightningResponse response = new LightningResponse();
 
-        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan(manageIndexReq.getChannelGid());
+        List<BlogLoanWithBLOBs> blogLoanList = blogLoanDao.queryBlogLoan(manageIndexReq.getChannelGid());
 
         return blogLoanList;
     }

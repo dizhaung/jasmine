@@ -5,6 +5,7 @@ import core.com.dao.BlogLoanDao;
 import core.com.dao.ConfigBlogMarkDao;
 import core.com.exception.CoreException;
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
@@ -57,7 +58,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         Integer id = addBlogReq.getId();
         String gid = null;
 
-        BlogLoan blog = new BlogLoan();
+        BlogLoanWithBLOBs blog = new BlogLoanWithBLOBs();
         blog.setUpdateTime(currentTimeStamp);
         blog.setName(addBlogReq.getName());
         blog.setType(getBlogType(addBlogReq.getType()));
@@ -176,7 +177,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
-    private void doBlogLoan(BlogLoan blogLoan, List<ConfigBlogMark> configBlogMarkList) {
+    private void doBlogLoan(BlogLoanWithBLOBs blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
         if (blogLoan != null) {
             if (blogLoan.getId() == null) {
