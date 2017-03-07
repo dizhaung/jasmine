@@ -40,7 +40,7 @@ public class ManageBlogServiceImplTest extends TestBase {
         List<String> marks = new ArrayList<>();
         marks.add("87378f28-2257-413b-81d7-ae9475c81bd6");
         marks.add("6aeead61-ebe5-463f-a0bc-3aba5e790511");
-//        marks.add("8502dfe8-40c4-4432-8b1d-ade1ad8f134f");
+        marks.add("8502dfe8-40c4-4432-8b1d-ade1ad8f134f");
         marks.add("a22b80e9-acf1-4f54-8ef8-d3f579aa5a56");
 
         req.setId(40);

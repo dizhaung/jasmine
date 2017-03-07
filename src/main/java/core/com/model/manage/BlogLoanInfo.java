@@ -1,6 +1,7 @@
 package core.com.model.manage;
 
 import core.com.model.BlogLoan;
+import core.com.model.BlogLoanWithBLOBs;
 
 import java.util.List;
 
@@ -10,14 +11,14 @@ import java.util.List;
  */
 public class BlogLoanInfo {
 
-    private BlogLoan blogLoan;
+    private BlogLoanWithBLOBs blogLoan;
     private List<String> markList;
 
-    public BlogLoan getBlogLoan() {
+    public BlogLoanWithBLOBs getBlogLoan() {
         return blogLoan;
     }
 
-    public void setBlogLoan(BlogLoan blogLoan) {
+    public void setBlogLoan(BlogLoanWithBLOBs blogLoan) {
         this.blogLoan = blogLoan;
     }
 

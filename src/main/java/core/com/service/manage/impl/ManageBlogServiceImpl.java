@@ -65,6 +65,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
         blog.setChannelGid(blogChannelGid);
         if (addBlogReq.getMessage() != null) {
             blog.setContent(addBlogReq.getMessage());
+            blog.setMarkdownContent(addBlogReq.getMarkdownContent());
         }
 
         if (id != null) {

@@ -79,8 +79,6 @@ public class AddBlogReq {
         return "AddBlogReq{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", message='" + message + '\'' +
-                ", markdownContent='" + markdownContent + '\'' +
                 ", type='" + type + '\'' +
                 ", channel='" + channel + '\'' +
                 ", marks=" + marks +
