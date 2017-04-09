@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface BlogChannelDao {
 
-    int insert(BlogChannel blogChannel);
+    int insertSelective(BlogChannel blogChannel);
 
     List<BlogChannel> queryChannelAll();
 

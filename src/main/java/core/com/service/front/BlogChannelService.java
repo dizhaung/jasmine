@@ -1,6 +1,8 @@
 package core.com.service.front;
 
 import core.com.model.BlogChannel;
+import core.com.model.lend.AddChannelReq;
+import core.com.model.lend.AddChannelResp;
 import core.com.model.lend.BlogChannelMap;
 
 import java.util.List;
@@ -12,4 +14,6 @@ import java.util.List;
 public interface BlogChannelService {
     List<BlogChannel> queryBlogChannel();
     List<BlogChannelMap> queryBlogChannelGroup();
+
+    AddChannelResp addBlogChannel(AddChannelReq addChannelReq);
 }

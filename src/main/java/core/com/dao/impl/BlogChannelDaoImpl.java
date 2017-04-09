@@ -22,8 +22,8 @@ public class BlogChannelDaoImpl implements BlogChannelDao {
     private BlogChannelMapper blogChannelMapper;
 
     @Override
-    public int insert(BlogChannel blogChannel) {
-        return blogChannelMapper.insert(blogChannel);
+    public int insertSelective(BlogChannel blogChannel) {
+        return blogChannelMapper.insertSelective(blogChannel);
     }
 
     @Override

@@ -13,4 +13,8 @@ public interface Constants {
         public static final String TYPE_TRANSLATE = "翻译";
     }
 
+    public static class BlogChannel {
+        public static final String ROOT = "root";
+    }
+
 }

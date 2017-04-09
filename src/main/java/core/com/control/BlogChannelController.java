@@ -1,6 +1,7 @@
 package core.com.control;
 
 import core.com.model.LightningResponse;
+import core.com.model.lend.AddChannelReq;
 import core.com.model.lend.IndexInfoReq;
 import core.com.service.front.BlogChannelService;
 import core.com.utils.ErrorCode;
@@ -50,6 +51,20 @@ public class BlogChannelController {
             logger.error("getChannel(): error, response={}, exception={}", response, e);
         }
         logger.info("<=== getChannel(): get getChannelByGroup, response={}", response);
+        return response;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    private LightningResponse add(@RequestBody AddChannelReq addChannelReq) {
+        logger.info("===> add(): get add");
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(blogChannelService.addBlogChannel(addChannelReq));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("add(): error, response={}, exception={}", response, e);
+        }
+        logger.info("<=== add(): get add, response={}", response);
         return response;
     }
 }

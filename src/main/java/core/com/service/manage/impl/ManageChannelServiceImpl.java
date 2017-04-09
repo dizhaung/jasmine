@@ -1,10 +1,8 @@
 package core.com.service.manage.impl;
 
-import core.com.control.manage.ChannelController;
 import core.com.dao.BlogChannelDao;
 import core.com.model.BlogChannel;
 import core.com.model.manage.AddChannelRequest;
-import core.com.model.manage.AddChannelResponse;
 import core.com.service.manage.ManageChannelService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
@@ -40,7 +38,7 @@ public class ManageChannelServiceImpl implements ManageChannelService {
         blogChannel.setIsValid(Boolean.TRUE);
         blogChannel.setOrderNum(0.0);
 
-        blogChannelDao.insert(blogChannel);
+        blogChannelDao.insertSelective(blogChannel);
         logger.info("doChannel(): response={}", blogChannel);
         return blogChannel;
     }
