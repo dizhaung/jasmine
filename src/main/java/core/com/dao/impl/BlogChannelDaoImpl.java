@@ -58,4 +58,11 @@ public class BlogChannelDaoImpl implements BlogChannelDao {
     public List<BlogChannelMap> queryChannelGroup() {
         return blogChannelMapper.selectByGroupChannel();
     }
+
+    @Override
+    public int deleteByGid(String channelGid) {
+        BlogChannelExample example = new BlogChannelExample();
+        example.createCriteria().andGidEqualTo(channelGid);
+        return blogChannelMapper.deleteByExample(example);
+    }
 }

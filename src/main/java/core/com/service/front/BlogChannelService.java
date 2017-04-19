@@ -16,4 +16,6 @@ public interface BlogChannelService {
     List<BlogChannelMap> queryBlogChannelGroup();
 
     AddChannelResp addBlogChannel(AddChannelReq addChannelReq);
+
+    int delete(String channelGid);
 }

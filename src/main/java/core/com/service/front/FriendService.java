@@ -1,6 +1,8 @@
 package core.com.service.front;
 
 import core.com.model.FriendshipLink;
+import core.com.model.manage.AddFriendReq;
+import core.com.model.manage.AddFriendResp;
 
 import java.util.List;
 
@@ -12,4 +14,6 @@ import java.util.List;
 public interface FriendService {
 
     public List<FriendshipLink> getFriendInfo();
+
+    public AddFriendResp add(AddFriendReq addFriendReq);
 }

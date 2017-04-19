@@ -9,10 +9,7 @@ import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * app
@@ -65,6 +62,20 @@ public class BlogChannelController {
             logger.error("add(): error, response={}, exception={}", response, e);
         }
         logger.info("<=== add(): get add, response={}", response);
+        return response;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    private LightningResponse delete(@RequestParam String channelGid) {
+        logger.info("===> delete(): delete channel, channelGid={}", channelGid);
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(blogChannelService.delete(channelGid));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("delete(): error, response={}, exception={}", response, e);
+        }
+        logger.info("<=== delete(): delete channel, response={}", response);
         return response;
     }
 }

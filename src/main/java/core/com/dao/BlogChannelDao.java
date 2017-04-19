@@ -21,4 +21,6 @@ public interface BlogChannelDao {
     BlogChannel queryChannelByName(String channelName);
 
     List<BlogChannelMap> queryChannelGroup();
+
+    int deleteByGid(String channelGid);
 }

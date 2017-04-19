@@ -100,4 +100,20 @@ public class FriendshipLink {
     public void setViews(Integer views) {
         this.views = views;
     }
+
+    @Override
+    public String toString() {
+        return "FriendshipLink{" +
+                "id=" + id +
+                ", gid='" + gid + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userGid='" + userGid + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                ", isVaild=" + isVaild +
+                ", views=" + views +
+                '}';
+    }
 }

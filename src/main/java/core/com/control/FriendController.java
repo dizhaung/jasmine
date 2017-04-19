@@ -1,12 +1,14 @@
 package core.com.control;
 
 import core.com.model.LightningResponse;
+import core.com.model.manage.AddFriendReq;
 import core.com.service.front.FriendService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,21 @@ public class FriendController {
         }
 
         logger.info("<=== getFriend(): get bills, response={}", response);
+        return response;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    private LightningResponse add(@RequestBody AddFriendReq addFriendReq) {
+        logger.info("===> add(): add={}", addFriendReq);
+        LightningResponse response = null;
+        try {
+            response = Utility.getSuccessResp(friendService.add(addFriendReq));
+        } catch (Exception e) {
+            response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
+            logger.error("add(): error, response={}, exception={}", response, e);
+        }
+
+        logger.info("<=== add(): get bills, response={}", response);
         return response;
     }
 }

@@ -64,4 +64,13 @@ public class BlogChannelServiceImpl implements BlogChannelService {
         blogChannelDao.insertSelective(addChannel);
         return null;
     }
+
+    @Override
+    public int delete(String channelGid) {
+        if (Utility.isBlank(channelGid)) {
+            throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
+        }
+
+        return blogChannelDao.deleteByGid(channelGid);
+    }
 }

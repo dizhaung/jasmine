@@ -10,4 +10,6 @@ import java.util.List;
 public interface FriendshipLinkDao {
 
     public List<FriendshipLink> selectByAll();
+
+    public int insertSelective(FriendshipLink friendshipLink);
 }

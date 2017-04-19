@@ -24,4 +24,9 @@ public class FriendshipLinkDaoImpl implements FriendshipLinkDao {
         example.createCriteria().andIsVaildEqualTo(true);
         return friendshipLinkMapper.selectByExample(example);
     }
+
+    @Override
+    public int insertSelective(FriendshipLink friendshipLink) {
+        return friendshipLinkMapper.insertSelective(friendshipLink);
+    }
 }
