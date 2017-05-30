@@ -1,0 +1,190 @@
+<#macro head>
+<head lang="en">
+    <title>佳楠的个人博客</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <base href="/">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    <link href="http://og4nfuylr.bkt.clouddn.com/wang.png" rel="icon">
+    <script src="../assets/lib/jquery/jquery.min.js"></script>
+    <script src="../assets/lib/bootstrap/bootstrap.min.js"></script>
+
+    <meta name="og:site_name" content="佳楠的个人博客">
+    <meta name="og:url" content="https://www.oopmind.com">
+    <meta name="theme-color" content="#007fff">
+    <meta name="keywords" content="安全技术,人工智能,Java,AI开发,机器学习,智能世界,读后感,书籍分享,思维导图">
+    <meta name="description"
+          content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。有分享才有进步，分享促进技术变革。">
+</head>
+</#macro>
+
+<#macro article type>
+    <#if type="yes">
+    <!-- 内容区 -->
+    <article>
+        <div class="container-fluid">
+            <!--<home_article></home_article>-->
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
+                <#list infoList as item>
+                    <div class="row-fluid">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3>
+                                    <a href="/blog/view/${item.gid}" class="title">${item.name}</a>
+                                </h3>
+                                <div class="caption">
+                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                ${item.time}"前"
+                                    &nbsp; | &nbsp;
+                                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                                ${item.blogChannel.name}
+                                    &nbsp; | &nbsp;
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <a href="" class="link" data-toggle="tooltip" data-placement="top" title="由小楠同学发布">小楠同学</a>
+                                    &nbsp; | &nbsp;
+                                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                    7条评论
+                                    &nbsp; | &nbsp;
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                ${item.views} views
+                                </div>
+                                <hr class="hr" noshade="noshade">
+                                <div class="caption hide_p">
+                                    <div>
+                                    ${item.gid}
+                                    </div>
+                                </div>
+                                <div class="repeat-widget">
+                                    <p></p>
+                                    <#list item.blogMarkList as mark>
+                                        <a class="label label-success" colorIn>${mark.name}</a>
+                                    </#list>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+            <div class="col-md-3">
+                <!-- 查询 -->
+                <!--<div class="thumbnail">-->
+                <!--<div class="input-group">-->
+                <!--<input type="text" class="form-control" placeholder="Search for...">-->
+                <!--<span class="input-group-btn">-->
+                <!--<button class="btn btn-default" type="button">-->
+                <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <!--</span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="alert alert-warning alert-dismissible" role="alert">-->
+                <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+                <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+                <!--<strong>Warning!</strong> 主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。现在我给网站添加了云音乐，各位写代码写累了不妨来听听音乐O(∩_∩)O~-->
+                <!--</div>-->
+                <div class="alert alert-info" role="alert">
+                    主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。现在我给网站添加了云音乐，各位写代码写累了不妨来听听音乐O(∩_∩)O~
+                </div>
+
+                <div class="thumbnail">
+                    <h4 style="margin-left: 10px;">最新文章</h4>
+                    <hr class="hr">
+                    <table class="table table-condensed">
+                        <#list response.newArticleList as item>
+                            <tr>
+                                <td>
+                                    <a class="link" style="font-size: small"
+                                       routerLink="/view/{{model.gid}}">${item.name}</a>
+                                </td>
+                            </tr>
+                        </#list>
+                    </table>
+                </div>
+
+                <div class="thumbnail">
+                    <h4 style="margin-left: 10px;">标签</h4>
+                    <hr class="hr" noshade="noshade">
+                    <#list markList as item>
+                        <a href="" class="link" [markCloud]="item.count" data-toggle="tooltip"
+                           data-placement="top" title="${item.count} 个话题" (click)="goMark(mark.markGid)">
+                        ${item.markName}
+                        </a>
+                    </#list>
+                </div>
+
+                <div class="thumbnail">
+                    <h4 style="margin-left: 10px;">分类</h4>
+                    <hr class="hr" noshade="noshade">
+                    <ul class="list-group">
+                        <#list channelMapList as channel>
+                            <li class="list-group-item">
+                                <span class="badge badge-info">${channel.count}</span>
+                            ${channel.name}
+                            </li>
+                        </#list>
+                    </ul>
+                </div>
+
+                <div class="thumbnail">
+                    <h4 style="margin-left: 10px;">友情链接</h4>
+                    <hr class="hr">
+
+                    <table class="table">
+                        <#list response.friendshipLinkList as friend>
+                            <tr>
+                                <td>
+                                    <a class="link" href="${friend.url}" target="view_window">${friend.name}</a>
+                                </td>
+                            </tr>
+                        </#list>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </article>
+    <#else>
+    <div class="container">
+        <div class="col-md-12 thumbnail" style="padding-left: 50px; padding-right: 30px;">
+            <div class="caption page-header" style="text-align: center">
+                <h3>
+                    <span>${blog.name}</span>
+                </h3>
+                <div class="caption">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                ${blog.dateTime}
+                    &nbsp; | &nbsp;
+                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                ${blog.channelName}
+                    &nbsp; | &nbsp;
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <a href="" class="" data-toggle="tooltip" data-placement="top" title="由admin发布">admin</a>
+                    &nbsp; | &nbsp;
+                    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                    7条评论
+                    &nbsp; | &nbsp;
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                ${blog.views} views
+                </div>
+                <hr class="hr" noshade="noshade">
+                <!--<div class="caption" ng-bind-html="model.content|htmlContent"></div>-->
+            </div>
+            <div>${blog.content}</div>
+            <div class="bs-docs-section">
+                <div class="bs-callout bs-callout-info">
+                    <p>原文地址 : <a routerLink="/view/${blog.gid}">http://www.oopmind.com/view/${blog.gid}</a></p>
+                    <p>本站遵循 : 署名-非商业性使用-相同方式共享 2.5 中国大陆 (CC BY-NC-SA 2.5)</p>
+                    <p>版权声明 : 原创文章转载时，请务必以超链接形式标明文章原始出处</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </#if>
+
+</#macro>
