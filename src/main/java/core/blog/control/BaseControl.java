@@ -1,13 +1,10 @@
 package core.blog.control;
 
 import core.com.model.BlogChannel;
-import core.com.model.LightningResponse;
 import core.com.model.lend.*;
 import core.com.service.front.BlogChannelService;
 import core.com.service.front.BlogMarkService;
 import core.com.service.front.BlogService;
-import core.com.utils.ErrorCode;
-import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
@@ -25,9 +21,8 @@ import java.util.List;
  * Created by wangjianan on 17-5-30.
  */
 @Controller
-@RequestMapping(value = "/blog")
-public class IndexBlogControl {
-    private static final Logger logger = LoggerFactory.getLogger(IndexBlogControl.class);
+public class BaseControl {
+    private static final Logger logger = LoggerFactory.getLogger(BaseControl.class);
 
     @Autowired
     private BlogService blogService;
@@ -38,7 +33,7 @@ public class IndexBlogControl {
     @Autowired
     private BlogMarkService blogMarkService;
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/")
     private String index(Model model) {
         logger.info("===> index(): get bills");
         BaseInfoResponse response = null;

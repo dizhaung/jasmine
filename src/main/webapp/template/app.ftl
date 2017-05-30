@@ -35,7 +35,7 @@
                         <div class="thumbnail">
                             <div class="caption">
                                 <h3>
-                                    <a href="/blog/view/${item.gid}" class="title">${item.name}</a>
+                                    <a href="/view/${item.gid}" class="title">${item.name}</a>
                                 </h3>
                                 <div class="caption">
                                     <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
