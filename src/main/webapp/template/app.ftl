@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../assets/test/simple-line-icons.css">
     <script src="../assets/lib/jquery/jquery.min.js"></script>
     <script src="../assets/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="../assets/test/menu-directive.js"></script>
 
     <meta name="og:site_name" content="佳楠的个人博客">
     <meta name="og:url" content="https://www.oopmind.com">
@@ -223,7 +224,7 @@
         <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only" id="navbar-collapse">
             <!-- buttons -->
             <div class="nav navbar-nav hidden-xs">
-                <a menu-toggle class="btn no-shadow navbar-btn" data-toggle="app-aside-folded" data-target="menu_app">
+                <a class="btn no-shadow navbar-btn" data-toggle="class:app-aside-folded" data-target="menu_app">
                     <i class="fa fa-dedent fa-fw text"></i>
                     <i class="fa fa-indent fa-fw text-active"></i>
                 </a>
