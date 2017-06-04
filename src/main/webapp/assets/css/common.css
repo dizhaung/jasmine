@@ -5,7 +5,8 @@ body{
 */
 body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'����' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 body {
-    background: url(../image/bg.jpg) no-repeat center center fixed;
+    /*background: url(../image/bg.jpg) no-repeat center center fixed;*/
+    /*background-color: #dedede;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -114,3 +115,6 @@ body {
 .badge-inverse:hover {
     background-color: #1a1a1a;
 }
+
+/** home **/
+a.label:hover{background-color:#356635;text-decoration:none;cursor:pointer}

@@ -1,14 +1,19 @@
 <#import "./app.ftl" as app/>
+<#import "./introduction.ftl" as introduction>
+<#import "./navbar.ftl" as navbar/>
 <!DOCTYPE html>
 <html>
-<@app.head></@app.head>
+<head lang="en">
+    <@app.head></@app.head>
+</head>
 <body>
-    <#--<#include "header.ftl">-->
-    <#--<@app.article type="${type}"></@app.article>-->
     <div class="app app-header-fixed" id="menu_app">
-        <@app.navbar></@app.navbar>
-        <@app.menu></@app.menu>
-        <@app.content></@app.content>
+        <@navbar.navbar></@navbar.navbar>
+        <@introduction.introduction></@introduction.introduction>
+        <div class="app-content">
+            <@app.article type="${type}"></@app.article>
+        </div>
+        <@app.footer></@app.footer>
     </div>
 </body>
 </html>

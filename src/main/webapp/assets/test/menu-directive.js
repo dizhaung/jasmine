@@ -12,18 +12,10 @@ $(document).ready(function(){
         var $root = document.getElementById($target);
         var isTrue = $root.classList.contains($temp);
         
-        console.info(aaa.classList.contains($temp));
-        console.info($temp);
-        console.info(isTrue);
-
         if (isTrue) {
-            $root.classList.remove($class);
+            $root.classList.remove($temp);
         } else {
-            $root.classList.add(toggle);
+            $root.classList.add($temp);
         }
-        console.log($root);
-        console.log($class);
-        console.log($target);
-        $(this).toggleClass('active');
     });
 });
