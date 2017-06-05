@@ -30,4 +30,6 @@ public interface BlogLoanDao {
 
     int updateBlogById(BlogLoanWithBLOBs blogLoan);
 
+    List<BlogLoan> queryBlogLoan();
+
 }

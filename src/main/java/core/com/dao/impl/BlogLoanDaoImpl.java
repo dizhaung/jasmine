@@ -105,4 +105,10 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         example.createCriteria().andIdEqualTo(blogLoan.getId());
         return blogLoanMapper.updateByExampleSelective(blogLoan, example);
     }
+
+    @Override
+    public List<BlogLoan> queryBlogLoan() {
+        BlogLoanExample example = new BlogLoanExample();
+        return blogLoanMapper.selectByExample(example);
+    }
 }

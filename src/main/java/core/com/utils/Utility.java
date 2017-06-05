@@ -122,7 +122,7 @@ public class Utility {
      * @return
      */
     public static String getDateFormat(long time) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return  format.format(new Date(time * 1000));
     }
 }
