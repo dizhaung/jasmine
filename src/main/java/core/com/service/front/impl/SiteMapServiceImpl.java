@@ -30,10 +30,20 @@ public class SiteMapServiceImpl implements SiteMapService {
     public void doSiteMapXml() {
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
         if (blogLoanList != null && blogLoanList.size() > 0) {
-            double priority_ = 0.9;
+            double priority_ = 0.75;
             // 创建文件
             Document document = DocumentHelper.createDocument();
+            String str = document.getPath();
             Element urlSet = document.addElement("urlset");
+
+            urlSet.addAttribute("xmlns ", "http://www.sitemaps.org/schemas/sitemap/0.9"); // "xmlns
+            // "必须要有空格,否则会报错
+            urlSet.addAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
+
+            urlSet.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+
+            urlSet.addAttribute("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 " +
+                                "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
             for (BlogLoan loan : blogLoanList) {
                 String gid = loan.getGid();
                 int updateTime = loan.getUpdateTime();
@@ -41,13 +51,16 @@ public class SiteMapServiceImpl implements SiteMapService {
                 Element loc = url.addElement("loc");
                 Element priority = url.addElement("priority");
                 Element lastMod = url.addElement("lastmod");
+                Element changeFreq = url.addElement("changefreq");
+
                 loc.setText(getUrl(gid));
                 priority.setText(String.valueOf(priority_));
-                lastMod.setText(Utility.getDateFormat(updateTime));
+                changeFreq.setText("daily");
+                lastMod.setText(Utility.getDateFormat2(updateTime));
             }
 
             try {
-                FileWriter writer = new FileWriter("src/main/webapp/sitemap.xml");
+                FileWriter writer = new FileWriter("/www/server/jasmine_8080/webapps/ROOT");
                 XMLWriter xmlWriter = new XMLWriter(writer);
                 xmlWriter.write(document);
                 xmlWriter.close();

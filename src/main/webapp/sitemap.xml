@@ -1,24 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="https://www.xj123.info/wp-content/plugins/google-sitemap-generator/sitemap.xsl"?>
-<!-- generated-on="2017 年 6 月 4 日 2:43 pm" -->
-<sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<sitemap>
-		<loc>https://www.oopmind.com/view/2751ff33-05f2-49b6-8b42-67224a9e6840</loc>
-		<lastmod>2017-02-16T15:05:50+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.oopmind.com/view/805afbdb-0cb5-4fce-9342-7be155b60625</loc>
-		<lastmod>2017-02-16T15:05:50+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.oopmind.com/view/f858ea65-badf-4a9d-bdbd-4f748fe3a631</loc>
-		<lastmod>2017-02-16T15:05:50+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.oopmind.com/view/de5afa12-87de-4a09-af73-6a46aac1bf7d</loc>
-		<lastmod>2017-02-16T15:05:50+00:00</lastmod>
-	</sitemap>
-	<sitemap>
-		<loc>https://www.oopmind.com/view/cfd198e1-765d-4c08-8723-7c45be5794a8</loc>
-		<lastmod>2017-02-16T15:05:50+00:00</lastmod>
-	</sitemap>
-</sitemapindex>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns ="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"><url><loc>http://www.oopmind.com/view/189f654f-3638-45e4-bcbc-9857629f5a39</loc><priority>0.75</priority><lastmod>2017-06-05</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/44686664-fe98-40a6-9b00-31c74d5053ca</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/a9a582d5-0c63-414d-a011-a8928ebd6553</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/82ed49c8-7c85-4806-a49b-d7a2ebc09005</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/b1cd9f74-5580-446e-b435-cd0486ca25a7</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/3ee093e5-c671-4c41-bcba-10dd78678069</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/222bd559-040c-4d20-b7c0-37e7d654c9c3</loc><priority>0.75</priority><lastmod>2017-02-22</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/ac11abac-e173-4f05-8241-dee1750d7e10</loc><priority>0.75</priority><lastmod>2017-06-04</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/ef2a9601-a29b-469b-a55d-b33fe19414cf</loc><priority>0.75</priority><lastmod>2017-05-30</lastmod><changefreq>daily</changefreq></url><url><loc>http://www.oopmind.com/view/7be1aaad-70ef-4704-b096-f5a043b5083a</loc><priority>0.75</priority><lastmod>2017-04-12</lastmod><changefreq>daily</changefreq></url></urlset>

@@ -17,8 +17,7 @@ public class SiteMapControl {
     private SiteMapService siteMapService;
 
     @RequestMapping(value = "/doSiteMap")
-    public String doSiteMapXml() {
+    public void doSiteMapXml() {
         siteMapService.doSiteMapXml();
-        return "index.ftl";
     }
 }

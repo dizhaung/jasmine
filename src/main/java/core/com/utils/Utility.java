@@ -125,4 +125,14 @@ public class Utility {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return  format.format(new Date(time * 1000));
     }
+
+    /**
+     *  int --> '2016-10-01'
+     * @param time
+     * @return
+     */
+    public static String getDateFormat2(long time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return  format.format(new Date(time * 1000));
+    }
 }
