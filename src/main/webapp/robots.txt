@@ -4,4 +4,4 @@ Disallow: /upload
 Disallow: *.md
 Allow: /
 
-Sitemap: https://www.oopmind.com/sitemap.xml
+Sitemap: http://www.oopmind.com/sitemap.xml
