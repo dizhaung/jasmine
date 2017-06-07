@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /assets
+Disallow: /upload
+Disallow: *.md
+Allow: /
+
+Sitemap: https://www.oopmind.com/sitemap.xml
