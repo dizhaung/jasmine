@@ -54,7 +54,6 @@
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text"
-                               typeahead="state for state in states | filter:$viewValue | limitTo:8"
                                class="form-control input-sm bg-light no-border rounded padder"
                                placeholder="Search projects...">
                         <span class="input-group-btn">

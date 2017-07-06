@@ -71,7 +71,7 @@
                                     <div class="repeat-widget">
                                         <p></p>
                                         <#list item.blogMarkList as mark>
-                                            <a class="label label-success" colorIn>${mark.name}</a>
+                                            <a class="label label-success">${mark.name}</a>
                                         </#list>
                                     </div>
                                 </div>
@@ -91,8 +91,7 @@
                             <#list response.newArticleList as item>
                                 <tr>
                                     <td>
-                                        <a class="link" style="font-size: small"
-                                           routerLink="/view/{{model.gid}}">${item.name}</a>
+                                        <a class="link" style="font-size: small" href="/view/${item.gid}">${item.name}</a>
                                     </td>
                                 </tr>
                             </#list>

@@ -7,7 +7,7 @@
     <@app.head></@app.head>
 </head>
 <body>
-    <div class="app app-header-fixed" id="menu_app">
+    <div class="app app-header-fixed app-aside-folded" id="menu_app">
         <@navbar.navbar></@navbar.navbar>
         <@introduction.introduction></@introduction.introduction>
         <div class="app-content">

@@ -83,50 +83,6 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="/mark">
-                                <i class="glyphicon glyphicon-bookmark icon text-info-dker"></i>
-                                <span class="font-bold">标签</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/channel">
-                                <i class="glyphicon glyphicon-briefcase icon text-info-lter"></i>
-                                <span class="font-bold">类型</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/blog" class="auto">
-                                        <span class="pull-right text-muted">
-                                        <i class="fa fa-fw fa-angle-right text"></i>
-                                        <i class="fa fa-fw fa-angle-down text-active"></i>
-                                        </span>
-                                <i class="glyphicon glyphicon-th-large icon text-success"></i>
-                                <span class="font-bold">文章</span>
-                            </a>
-                            <ul class="nav nav-sub dk">
-                                <li class="nav-sub-header">
-                                    <a href>
-                                        <span>文章</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span>Note</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span>Contacts</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span>Weather</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="/friend">
                                 <i class="glyphicon glyphicon-briefcase icon text-info-lter"></i>
                                 <span class="font-bold">友链</span>
