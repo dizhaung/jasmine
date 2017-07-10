@@ -1,7 +1,12 @@
+<!--
+
+首页左边导航框
+
+-->
 <#macro introduction>
     <!-- menu -->
-    <div class="app-aside hidden-xs bg-dark" id="app-aside">
-        <div class="aside-wrap">
+    <div class="app-aside hidden-xs bg-dark" id="app-aside" style="position: fixed; height: 100%; ">
+        <div class="aside-wrap" style="height: 100%; background-size: cover; background-image: url(http://og4nfuylr.bkt.clouddn.com/1000X400.jpg)">
             <div class="navi-wrap">
                 <!-- user -->
                 <div class="clearfix hidden-xs text-center" id="aside-user">
@@ -20,7 +25,7 @@
                               <span class="text-muted text-xs block">程序猿</span>
                             </span>
                         </a>
-                        <!-- dropdown -->
+                        <!-- 展示个人信息 -->
                         <ul class="dropdown-menu animated fadeInRight w hidden-folded">
                             <li class="wrapper b-b m-b-sm bg-info m-t-n-xs">
                                 <span class="arrow top hidden-folded arrow-info"></span>
@@ -44,7 +49,6 @@
                         </ul>
                         <!-- / dropdown -->
                     </div>
-                    <div class="line dk hidden-folded"></div>
                 </div>
                 <!-- / user -->
 
@@ -56,10 +60,10 @@
                         </li>
                         <li>
                             <a href="" class="auto">
-                                        <span class="pull-right text-muted">
-                                        <i class="fa fa-fw fa-angle-right text"></i>
-                                        <i class="fa fa-fw fa-angle-down text-active"></i>
-                                        </span>
+                                <span class="pull-right text-muted">
+                                    <i class="fa fa-fw fa-angle-right text"></i>
+                                    <i class="fa fa-fw fa-angle-down text-active"></i>
+                                </span>
                                 <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
                                 <span class="font-bold">仪表盘</span>
                             </a>
