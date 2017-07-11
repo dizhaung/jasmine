@@ -691,7 +691,6 @@ body {
 .app-header-fixed .app-header {
   position: fixed;
   top: 0;
-  height: 100%;
   width: 100%;
 }
 
@@ -2991,11 +2990,11 @@ fieldset[disabled] .i-checks input + i:before {
 }
 
 .bg-dark .text-muted {
-  color: #8b8e99 !important;
+  color: #FFF !important;
 }
 
 .bg-dark .text-lt {
-  color: #eaebed !important;
+  color: #FFF !important;
 }
 
 .bg-dark.auto .list-group-item,

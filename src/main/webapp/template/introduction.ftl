@@ -55,37 +55,6 @@
                 <!-- nav -->
                 <nav class="navi">
                     <ul class="nav">
-                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                            <span>导航</span>
-                        </li>
-                        <li>
-                            <a href="" class="auto">
-                                <span class="pull-right text-muted">
-                                    <i class="fa fa-fw fa-angle-right text"></i>
-                                    <i class="fa fa-fw fa-angle-down text-active"></i>
-                                </span>
-                                <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                                <span class="font-bold">仪表盘</span>
-                            </a>
-                            <ul class="nav nav-sub dk">
-                                <li class="nav-sub-header">
-                                    <a href>
-                                        <span>仪表盘</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span>Dashboard v1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <b class="label bg-info pull-right">N</b>
-                                        <span>Dashboard v2</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="/friend">
                                 <i class="glyphicon glyphicon-briefcase icon text-info-lter"></i>

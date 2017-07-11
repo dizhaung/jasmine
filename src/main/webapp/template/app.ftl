@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../assets/css/common.css">
-    <link rel="stylesheet" href="../assets/css/dark.css">
-    <link rel="stylesheet" href="../assets/lib/editormd/css/editormd.css" />
     <link href="http://og4nfuylr.bkt.clouddn.com/wang.png" rel="icon">
 
     <link rel="stylesheet" href="../assets/test/animate.css">
@@ -20,7 +18,6 @@
     <link rel="stylesheet" href="../assets/test/simple-line-icons.css">
 
     <script src="../assets/lib/jquery/jquery.js"></script>
-    <script src="../assets/lib/editormd/editormd.js"></script>
     <script src="../assets/lib/bootstrap/bootstrap.min.js"></script>
     <script src="../assets/lib/bootstrap/bootstrap-confirmation.js"></script>
     <script src="../assets/test/menu-directive.js"></script>
