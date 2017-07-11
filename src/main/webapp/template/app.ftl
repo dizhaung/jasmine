@@ -30,6 +30,14 @@
     <meta name="theme-color" content="#007fff">
     <meta name="keywords" content="安全技术,人工智能,Java,AI开发,机器学习,智能世界,读后感,书籍分享,思维导图">
     <meta name="description" content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。有分享才有进步，分享促进技术变革。">
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9497367971656587",
+            enable_page_level_ads: true
+        });
+    </script>
 </#macro>
 
 <#macro article type>
