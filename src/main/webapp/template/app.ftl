@@ -1,6 +1,10 @@
 <#import "./navbar.ftl" as navbar>
 <#macro head>
-    <title>佳楠的博客</title>
+    <#if blog??>
+        <title>${blog.name!} | 佳楠博客</title>
+    <#else>
+        <title>佳楠博客</title>
+    </#if>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
@@ -49,7 +53,7 @@
                             <div class="thumbnail">
                                 <div class="caption">
                                     <h3>
-                                        <a href="/view/${item.gid}" class="title">${item.name}</a>
+                                        <a href="/view/${item.id}" class="title">${item.name}</a>
                                     </h3>
                                     <div class="caption">
                                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -96,7 +100,7 @@
                             <#list response.newArticleList as item>
                                 <tr>
                                     <td>
-                                        <a class="link" style="font-size: small" href="/view/${item.gid}">${item.name}</a>
+                                        <a class="link" style="font-size: small" href="/view/${item.id}">${item.name}</a>
                                     </td>
                                 </tr>
                             </#list>
@@ -174,7 +178,7 @@
                 <div>${blog.content}</div>
                 <div class="bs-docs-section">
                     <div class="bs-callout bs-callout-info">
-                        <p>原文地址 : <a href="/view/${blog.gid}">http://www.oopmind.com/view/${blog.gid}</a></p>
+                        <p>原文地址 : <a href="/view/${blog.id}">http://www.oopmind.com/view/${blog.id}</a></p>
                         <p>本站遵循 : 署名-非商业性使用-相同方式共享 2.5 中国大陆 (CC BY-NC-SA 2.5)</p>
                         <p>版权声明 : 原创文章转载时，请务必以超链接形式标明文章原始出处</p>
                     </div>

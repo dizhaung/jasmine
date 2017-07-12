@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Exchanger;
 import java.util.stream.Collectors;
 
 /**
@@ -95,8 +93,19 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     }
 
     @Override
-    public int updateBlogView(String blogGid) {
-        return blogLoanMapper.updateViewByGid(blogGid);
+    public BlogLoanWithBLOBs selectById(Integer id) {
+        BlogLoanExample example = new BlogLoanExample();
+        example.createCriteria().andIdEqualTo(id);
+        List<BlogLoanWithBLOBs> list = blogLoanMapper.selectByExampleWithBLOBs(example);
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public int updateBlogView(Integer blogId) {
+        return blogLoanMapper.updateViewById(blogId);
     }
 
     @Override

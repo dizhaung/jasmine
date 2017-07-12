@@ -61,13 +61,13 @@ public class BaseControl {
         return "index.ftl";
     }
 
-    @RequestMapping(value = "/view/{gid}")
-    private String view(Model model, @PathVariable("gid") String gid) {
-        logger.info("===> view(): to view, gid={}", gid);
+    @RequestMapping(value = "/view/{id}")
+    private String view(Model model, @PathVariable("id") Integer id) {
+        logger.info("===> view(): to view, id={}", id);
         IndexDetailResp indexDetailResp = null;
         try {
             IndexDetailReq indexDetailReq = new IndexDetailReq();
-            indexDetailReq.setBlogGid(gid);
+            indexDetailReq.setBlogId(id);
             indexDetailResp = blogService.getBlogDetail(indexDetailReq);
             List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
 

@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class BlogInfo {
 
+    private Integer id;
     private String gid;
     private String name;
     private String time;
@@ -21,6 +22,14 @@ public class BlogInfo {
     private UserBase userBase;
     private BlogChannel blogChannel;
     private List<BlogMark> blogMarkList;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getGid() {
         return gid;

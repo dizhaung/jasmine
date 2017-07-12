@@ -15,6 +15,7 @@ public interface BlogService {
 
     List<BlogInfo> getBlogInfo(IndexInfoReq indexInfoReq);
 
+
     /**
      * 查询详细信息
      *
@@ -22,4 +23,5 @@ public interface BlogService {
      * @return
      */
     IndexDetailResp getBlogDetail(IndexDetailReq indexDetailReq);
+
 }

@@ -26,7 +26,9 @@ public interface BlogLoanDao {
 
     BlogLoanWithBLOBs selectByGid(String gid);
 
-    int updateBlogView(String blogGid);
+    BlogLoanWithBLOBs selectById(Integer id);
+
+    int updateBlogView(Integer blogId);
 
     int updateBlogById(BlogLoanWithBLOBs blogLoan);
 

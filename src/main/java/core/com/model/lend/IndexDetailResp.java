@@ -8,6 +8,7 @@ import core.com.model.UserBase;
  */
 public class IndexDetailResp {
 
+    private Integer id;
     private String gid;
     private String name;
     private String dateTime;
@@ -17,6 +18,14 @@ public class IndexDetailResp {
     private String content;
     private String userGid;
     private String userName;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getGid() {
         return gid;

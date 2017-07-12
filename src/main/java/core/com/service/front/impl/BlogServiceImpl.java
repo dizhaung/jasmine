@@ -84,6 +84,7 @@ public class BlogServiceImpl implements BlogService {
                 List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
 
                 BlogInfo resp = new BlogInfo();
+                resp.setId(blog.getId());
                 resp.setGid(blog.getGid());
                 resp.setTime(Utility.getDateTime(blog.getCreateTime()));
                 resp.setName(blog.getName());
@@ -103,18 +104,19 @@ public class BlogServiceImpl implements BlogService {
     public IndexDetailResp getBlogDetail(IndexDetailReq indexDetailReq) {
         logger.info("getBlogDetail(): indexDetailReq={}", indexDetailReq);
         IndexDetailResp response = new IndexDetailResp();
-        if (null == indexDetailReq || null == indexDetailReq.getBlogGid()) {
+        if (null == indexDetailReq || null == indexDetailReq.getBlogId()) {
             logger.info("getBlogDetail(): indexDetailReq or gid is null");
             throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
         }
-        String gid = indexDetailReq.getBlogGid();
+        Integer id = indexDetailReq.getBlogId();
         // 更新文章查看次数
-        blogLoanDao.updateBlogView(gid);
+        blogLoanDao.updateBlogView(id);
         // 查询blog详细信息
-        BlogLoanWithBLOBs blogLoan = blogLoanDao.selectByGid(gid);
+        BlogLoanWithBLOBs blogLoan = blogLoanDao.selectById(id);
         String channelGid = blogLoan.getChannelGid();
         BlogChannel blogChannel = blogChannelDao.queryChannelByGid(channelGid);
 
+        response.setId(blogLoan.getId());
         response.setName(blogLoan.getName());
         response.setGid(blogLoan.getGid());
         response.setContent(blogLoan.getContent());

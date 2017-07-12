@@ -390,11 +390,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateViewByGid" parameterType="map" >
+  <update id="updateViewById" parameterType="map" >
     update blog_loan
     set
     update_time = unix_timestamp(),
     views = views + 1
-    where gid = #{gid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

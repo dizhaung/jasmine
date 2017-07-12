@@ -35,5 +35,5 @@ public interface BlogLoanMapper {
 
     int updateByPrimaryKey(BlogLoan record);
 
-    int updateViewByGid(@Param("gid") String gid);
+    int updateViewById(@Param("id") Integer id);
 }

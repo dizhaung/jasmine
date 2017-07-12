@@ -45,7 +45,7 @@ public class SiteMapServiceImpl implements SiteMapService {
             urlSet.addAttribute("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 " +
                                 "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
             for (BlogLoan loan : blogLoanList) {
-                String gid = loan.getGid();
+                Integer id = loan.getId();
                 int updateTime = loan.getUpdateTime();
                 Element url = urlSet.addElement("url");
                 Element loc = url.addElement("loc");
@@ -53,7 +53,7 @@ public class SiteMapServiceImpl implements SiteMapService {
                 Element lastMod = url.addElement("lastmod");
                 Element changeFreq = url.addElement("changefreq");
 
-                loc.setText(getUrl(gid));
+                loc.setText(getUrl(id));
                 priority.setText(String.valueOf(priority_));
                 changeFreq.setText("daily");
                 lastMod.setText(Utility.getDateFormat2(updateTime));
@@ -71,8 +71,8 @@ public class SiteMapServiceImpl implements SiteMapService {
         }
     }
 
-    private String getUrl(String gid) {
-        return "http://www.oopmind.com/view/" + gid;
+    private String getUrl(Integer id) {
+        return "http://www.oopmind.com/view/" + String.valueOf(id);
     }
 
 }
