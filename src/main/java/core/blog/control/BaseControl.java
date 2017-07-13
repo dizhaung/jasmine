@@ -61,7 +61,7 @@ public class BaseControl {
         return "index.ftl";
     }
 
-    @RequestMapping(value = "/view/{id}")
+    @RequestMapping(value = "/{id}.html")
     private String view(Model model, @PathVariable("id") Integer id) {
         logger.info("===> view(): to view, id={}", id);
         IndexDetailResp indexDetailResp = null;

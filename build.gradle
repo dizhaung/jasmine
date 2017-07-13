@@ -101,6 +101,7 @@ dependencies {
     compile "ch.qos.logback:logback-classic:1.1.3"
     compile "com.googlecode.sli4j:sli4j-slf4j-logback:2.0"
     compile 'dom4j:dom4j:1.6'
+    compile 'com.sun.xml.bind:jaxb-impl:2.0.1'
 
     ///// 七牛云////
     compile 'com.qiniu:qiniu-java-sdk:7.0.+'
