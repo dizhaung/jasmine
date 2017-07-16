@@ -19,13 +19,9 @@ public class SiteMapControl {
     @Autowired
     private SiteMapService siteMapService;
 
-    @RequestMapping(value = "/doSiteMap")
-    public void doSiteMapXml() {
-        siteMapService.doSiteMapXml();
-    }
-
     @RequestMapping(value = "/sitemap.xml")
-    public @ResponseBody SiteMapXml siteMapXml() {
+    @ResponseBody
+    public String siteMapXml() {
         return siteMapService.siteMapXml();
     }
 }

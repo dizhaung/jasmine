@@ -1,5 +1,6 @@
 package core.com.service.front.impl;
 
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 import core.com.dao.BlogLoanDao;
 import core.com.model.BlogLoan;
 import core.com.model.common.SiteMapXml;
@@ -15,11 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by wangjianan on 17-6-5.
  */
 @Service
@@ -30,23 +36,17 @@ public class SiteMapServiceImpl implements SiteMapService {
     private BlogLoanDao blogLoanDao;
 
     @Override
-    public void doSiteMapXml() {
+    public String siteMapXml() {
+
+        Document document = DocumentHelper.createDocument();
+        Element urlSet = document.addElement("urlset");
+        urlSet.addAttribute("xmlns ", "http://www.sitemaps.org/schemas/sitemap/0.9"); // "xmlns
+        urlSet.addAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
+        urlSet.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+        urlSet.addAttribute("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 " + "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
+
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
-        if (blogLoanList != null && blogLoanList.size() > 0) {
-            double priority_ = 0.75;
-            // 创建文件
-            Document document = DocumentHelper.createDocument();
-            String str = document.getPath();
-            Element urlSet = document.addElement("urlset");
-
-            urlSet.addAttribute("xmlns ", "http://www.sitemaps.org/schemas/sitemap/0.9"); // "xmlns
-            // "必须要有空格,否则会报错
-            urlSet.addAttribute("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
-
-            urlSet.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-
-            urlSet.addAttribute("xsi:schemaLocation", "http://www.sitemaps.org/schemas/sitemap/0.9 " +
-                                "http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd");
+        if (!CollectionUtils.isEmpty(blogLoanList)) {
             for (BlogLoan loan : blogLoanList) {
                 Integer id = loan.getId();
                 int updateTime = loan.getUpdateTime();
@@ -54,45 +54,24 @@ public class SiteMapServiceImpl implements SiteMapService {
                 Element loc = url.addElement("loc");
                 Element priority = url.addElement("priority");
                 Element lastMod = url.addElement("lastmod");
-                Element changeFreq = url.addElement("changefreq");
 
                 loc.setText(getUrl(id));
-                priority.setText(String.valueOf(priority_));
-                changeFreq.setText("daily");
+                priority.setText(String.valueOf(0.8));
                 lastMod.setText(Utility.getDateFormat2(updateTime));
             }
-
-            try {
-                FileWriter writer = new FileWriter("/www/server/jasmine_8080/webapps/ROOT");
-                XMLWriter xmlWriter = new XMLWriter(writer);
-                xmlWriter.write(document);
-                xmlWriter.close();
-            } catch (Exception e) {
-                logger.error("doSiteMapXml(): do error, exception: ", e);
-            }
-
         }
-    }
-
-    @Override
-    public SiteMapXml siteMapXml() {
-        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoan();
-        if (!CollectionUtils.isEmpty(blogLoanList)) {
-            SiteMapXml xml = new SiteMapXml();
-            List<SiteMapXml.Sitemap> list = new ArrayList<>();
-            for (BlogLoan loan : blogLoanList) {
-                Integer id = loan.getId();
-                int updateTime = loan.getUpdateTime();
-                SiteMapXml.Sitemap sitemap = new SiteMapXml.Sitemap();
-                sitemap.setLoc(getUrl(id));
-                sitemap.setLastmod(Utility.getDateFormat2(updateTime));
-                sitemap.setPriority(String.valueOf(0.8));
-                list.add(sitemap);
-            }
-            xml.setSitemapList(list);
-            return xml;
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("./sitemap.xml");
+            XMLWriter xmlWriter = new XMLWriter(writer);
+            xmlWriter.write(document);
+            String response = xmlWriter.toString();
+            xmlWriter.close();
+            return response;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return null;
+        return "";
     }
 
     private String getUrl(Integer id) {

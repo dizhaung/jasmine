@@ -1,5 +1,6 @@
 package core.com.model.common;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class SiteMapXml {
 
     private List<Sitemap> sitemapList;
 
-    @XmlRootElement(name = "sitemap")
+//    @XmlRootElement(name = "sitemap")
     public static class Sitemap {
         private String loc;
         private String lastmod;
@@ -39,6 +40,7 @@ public class SiteMapXml {
         }
     }
 
+    @XmlElement(name = "url")
     public List<Sitemap> getSitemapList() {
         return sitemapList;
     }
