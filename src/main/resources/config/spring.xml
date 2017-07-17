@@ -31,7 +31,7 @@
         <property name="location" value="classpath:properties/freemarker.properties" />
     </bean>
 
-    <!-- 配置freeMarker模板加載地址 -->
+    <!-- 配置freeMarker环境配置 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <!-- 視圖解析器會在/WEB-INF/ftl/路徑下掃描視圖文件 -->
         <property name="templateLoaderPath" value="/template/" />
@@ -64,6 +64,23 @@
         <property name="prefix" value="/template/"/>
         <property name="suffix" value=".html"/>
         <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
+    </bean>
+
+    <bean id="freemarkerViewResolver1" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <!-- 掃描路徑內所有以ftl結尾的文件 -->
+        <property name="viewNames">
+            <array>
+                <value>*.xml</value>
+            </array>
+        </property>
+        <property name="contentType" value="application/xml; charset=UTF-8" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="requestContextAttribute" value="request" />
+        <!-- 給視圖解析器配置優先級，你可以給之前jsp視圖解析器的值配為2 -->
+        <property name="order" value="2" />
     </bean>
 
 </beans>

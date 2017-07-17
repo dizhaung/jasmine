@@ -1,14 +1,11 @@
 package core.com.model.common;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement(name = "urlset", namespace = "http://www.sitemaps.org/schemas/sitemap/0.9")
 public class SiteMapXml {
 
     private List<Sitemap> sitemapList;
 
-    @XmlRootElement(name = "sitemap")
     public static class Sitemap {
         private String loc;
         private String lastmod;

@@ -5,6 +5,7 @@ import core.com.service.front.SiteMapService;
 import org.dom4j.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,13 +20,9 @@ public class SiteMapControl {
     @Autowired
     private SiteMapService siteMapService;
 
-    @RequestMapping(value = "/doSiteMap")
-    public void doSiteMapXml() {
-        siteMapService.doSiteMapXml();
-    }
-
     @RequestMapping(value = "/sitemap.xml")
-    public @ResponseBody SiteMapXml siteMapXml() {
-        return siteMapService.siteMapXml();
+    public String siteMapXml(Model model) {
+        model.addAttribute("siteMap", siteMapService.siteMapXml());
+        return "sitemap.xml";
     }
 }

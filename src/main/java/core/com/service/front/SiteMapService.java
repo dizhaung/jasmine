@@ -7,7 +7,5 @@ import core.com.model.common.SiteMapXml;
  */
 public interface SiteMapService {
 
-    public void doSiteMapXml();
-
     SiteMapXml siteMapXml();
 }
