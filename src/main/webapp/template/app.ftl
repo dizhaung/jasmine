@@ -53,7 +53,7 @@
                             <div class="thumbnail">
                                 <div class="caption">
                                     <h3>
-                                        <a href="/view/${item.id}" class="title">${item.name}</a>
+                                        <a href="/${item.id}.html" class="title">${item.name}</a>
                                     </h3>
                                     <div class="caption">
                                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -74,7 +74,7 @@
                                     <hr class="hr" noshade="noshade">
                                     <div class="caption hide_p">
                                         <div>
-                                        ${item.gid}
+                                        <#--${item.gid}-->
                                         </div>
                                     </div>
                                     <div class="repeat-widget">
@@ -100,7 +100,7 @@
                             <#list response.newArticleList as item>
                                 <tr>
                                     <td>
-                                        <a class="link" style="font-size: small" href="/view/${item.id}">${item.name}</a>
+                                        <a class="link" style="font-size: small" href="/${item.id}.html">${item.name}</a>
                                     </td>
                                 </tr>
                             </#list>
@@ -178,7 +178,7 @@
                 <div>${blog.content}</div>
                 <div class="bs-docs-section">
                     <div class="bs-callout bs-callout-info">
-                        <p>原文地址 : <a href="/view/${blog.id}">http://www.oopmind.com/view/${blog.id}</a></p>
+                        <p>原文地址 : <a href="/${blog.id}.html">http://www.oopmind.com/${blog.id}.html</a></p>
                         <p>本站遵循 : 署名-非商业性使用-相同方式共享 2.5 中国大陆 (CC BY-NC-SA 2.5)</p>
                         <p>版权声明 : 原创文章转载时，请务必以超链接形式标明文章原始出处</p>
                     </div>
