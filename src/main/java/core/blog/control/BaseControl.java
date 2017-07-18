@@ -71,8 +71,14 @@ public class BaseControl {
             indexDetailResp = blogService.getBlogDetail(indexDetailReq);
             List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
 
+            StringBuffer channelMeta = new StringBuffer();
+            for (BlogChannel blogChannel : channelList) {
+                channelMeta.append(blogChannel.getName());
+            }
+
             model.addAttribute("channelList", channelList);
             model.addAttribute("blog", indexDetailResp);
+            model.addAttribute("channel_meta", channelMeta);
             model.addAttribute("type", "no");
         } catch (Exception e) {
             logger.error("view(): error, response={}, exception={}", indexDetailResp, e);

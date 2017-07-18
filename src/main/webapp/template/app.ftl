@@ -26,10 +26,15 @@
     <script src="../assets/lib/bootstrap/bootstrap-confirmation.js"></script>
     <script src="../assets/test/menu-directive.js"></script>
 
-    <meta name="og:site_name" content="佳楠的博客">
-    <meta name="og:url" content="https://www.oopmind.com">
-    <meta name="theme-color" content="#007fff">
-    <meta name="keywords" content="安全技术,人工智能,Java,AI开发,机器学习,智能世界,读后感,书籍分享,思维导图">
+    <#if blog??>
+    <meta name="og:url" content="https://www.oopmind.com/${blog.id!}.html">
+    </#if>
+
+    <#assign channel_meta = "">
+    <#list channelList as item>
+        <#assign channel_meta += "${item.name},">
+    </#list>
+    <meta name="keywords" content="${channel_meta}">
     <meta name="description" content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。有分享才有进步，分享促进技术变革。">
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

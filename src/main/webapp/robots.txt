@@ -1,7 +1,6 @@
 User-agent: *
 Disallow: /assets
 Disallow: /upload
-Disallow: *.md
 Allow: /
 
 Sitemap: http://www.oopmind.com/sitemap.xml
