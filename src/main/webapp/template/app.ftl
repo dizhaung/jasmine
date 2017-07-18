@@ -39,6 +39,16 @@
             enable_page_level_ads: true
         });
     </script>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?94f60b01baa9355763a8c83ee9c5f7a7";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </#macro>
 
 <#macro article type>
