@@ -135,4 +135,8 @@ public class Utility {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return  format.format(new Date(time * 1000));
     }
+
+    public static String getUrl(Integer id) {
+        return "http://www.oopmind.com/" + String.valueOf(id) + ".html";
+    }
 }

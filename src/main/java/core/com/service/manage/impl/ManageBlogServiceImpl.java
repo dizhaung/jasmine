@@ -10,6 +10,7 @@ import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
 import core.com.model.manage.BlogLoanInfo;
+import core.com.service.front.BaiduUrlService;
 import core.com.service.manage.ManageBlogService;
 import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
@@ -42,6 +43,8 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     private BlogLoanDao blogLoanDao;
     @Autowired
     private ConfigBlogMarkDao configBlogMarkDao;
+    @Autowired
+    private BaiduUrlService baiduUrlService;
 
     @Override
     public AddBlogResp doBlogLoan(AddBlogReq addBlogReq) {
@@ -111,6 +114,9 @@ public class ManageBlogServiceImpl implements ManageBlogService {
 
             // do operation data
             doBlogLoan(blog, insertMarkList);
+
+            // 每次新增，主动推送baidu url
+            baiduUrlService.pushUrl(gid);
         }
 
         resp = new AddBlogResp();

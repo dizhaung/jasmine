@@ -34,7 +34,7 @@ public class SiteMapServiceImpl implements SiteMapService {
                 Integer id = loan.getId();
                 int updateTime = loan.getUpdateTime();
                 SiteMapXml.Sitemap sitemap = new SiteMapXml.Sitemap();
-                sitemap.setLoc(getUrl(id));
+                sitemap.setLoc(Utility.getUrl(id));
                 sitemap.setLastmod(Utility.getDateFormat2(updateTime));
                 sitemap.setPriority(String.valueOf(0.8));
                 list.add(sitemap);
@@ -43,10 +43,6 @@ public class SiteMapServiceImpl implements SiteMapService {
             return xml;
         }
         return null;
-    }
-
-    private String getUrl(Integer id) {
-        return "http://www.oopmind.com/" + String.valueOf(id) + ".html";
     }
 
 }

@@ -22,10 +22,14 @@ public class SiteMapControl {
     private BaiduUrlService baiduUrlService;
 
     @RequestMapping(value = "/sitemap.xml")
-
     public String siteMapXml(Model model) {
-        baiduUrlService.pushUrl();
         model.addAttribute("siteMap", siteMapService.siteMapXml());
         return "sitemap.xml";
+    }
+
+    @RequestMapping(value = "/push")
+    public String push() {
+        baiduUrlService.pushUrl();
+        return "success";
     }
 }

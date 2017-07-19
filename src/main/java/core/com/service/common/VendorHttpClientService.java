@@ -84,7 +84,7 @@ public class VendorHttpClientService {
         headers.set("User-Agent", "curl/7.12.1");
         headers.set("Content-Length", "83");
         headers.set("Content-type", "text/plain");
-        HttpEntity<String> entity = new HttpEntity<String>(new Gson().toJson(body), headers);
+        HttpEntity<String> entity = new HttpEntity<String>(body.toString(), headers);
         return restTimeoutTemplate.postForObject(apiUrl, entity, clazz);
     }
 }

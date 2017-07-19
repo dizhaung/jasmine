@@ -6,4 +6,6 @@ package core.com.service.front;
 public interface BaiduUrlService {
 
     void pushUrl();
+
+    void pushUrl(String gid);
 }
