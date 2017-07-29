@@ -198,17 +198,14 @@
                         <p>版权声明 : 原创文章转载时，请务必以超链接形式标明文章原始出处</p>
                     </div>
                 </div>
-                <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-                <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-                <script>
-                    var cloudTieConfig = {
-                        url: document.location.href,
-                        sourceId: "",
-                        productKey: "b3c473e73137436da0ee469ec2e4dff0",
-                        target: "cloud-tie-wrapper"
-                    };
-                    var yunManualLoad = true;
-                    Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+
+                <div id="SOHUCS" sid="${blog.gid}"></div>
+                <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+                <script type="text/javascript">
+                    window.changyan.api.config({
+                        appid: 'cyt8sabko',
+                        conf: 'prod_739465ce3207f75ad83ee655b0d03610'
+                    });
                 </script>
             </div>
         </div>
