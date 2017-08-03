@@ -11,7 +11,7 @@
                 <i class="glyphicon glyphicon-align-justify"></i>
             </button>
             <!-- brand -->
-            <a href="" class="navbar-brand text-lt">
+            <a href="/" class="navbar-brand text-lt">
                 <i class="fa fa-btc"></i>
                 <img src="../assets/image/logo.png" alt="." class="hide">
                 <span class="hidden-folded m-l-xs">oopMind</span>
@@ -34,7 +34,7 @@
             <ul class="nav navbar-nav">
                 <#list channelList as item>
                     <li>
-                        <a>${item.name}</a>
+                        <a href="/channel/${item.name}">${item.name}</a>
                     </li>
                 </#list>
 

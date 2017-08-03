@@ -1,4 +1,4 @@
-package core.blog.control;
+package core.com.blog.control;
 
 import core.com.service.front.BaiduUrlService;
 import core.com.service.front.SiteMapService;

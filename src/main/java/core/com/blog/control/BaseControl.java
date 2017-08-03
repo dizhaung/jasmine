@@ -1,5 +1,6 @@
-package core.blog.control;
+package core.com.blog.control;
 
+import core.com.blog.service.IndexBlogService;
 import core.com.model.BlogChannel;
 import core.com.model.lend.*;
 import core.com.service.front.BlogChannelService;
@@ -31,33 +32,45 @@ public class BaseControl {
     private BlogChannelService blogChannelService;
 
     @Autowired
-    private BlogMarkService blogMarkService;
+    private IndexBlogService indexBlogService;
 
     @RequestMapping(value = "/")
     private String index(Model model) {
         logger.info("===> index(): get bills");
-        BaseInfoResponse response = null;
         try {
-            response = blogService.getIndexInfo();
-
-            IndexInfoReq indexInfoReq = new IndexInfoReq();
-            List<BlogChannelMap> channelMapList = blogChannelService.queryBlogChannelGroup();
-            List<BlogInfo> infoList = blogService.getBlogInfo(indexInfoReq);
-            List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
-            List<MarkPanelResponse> markList = blogMarkService.getBlogMarkStatistics();
-
-            model.addAttribute("channelList", channelList);
-            model.addAttribute("markList", markList);
-            model.addAttribute("channelMapList", channelMapList);
-            model.addAttribute("infoList", infoList);
-            model.addAttribute("response", response);
-            model.addAttribute("type", "yes");
+            model = indexBlogService.indexInfo(model, null, null);
         } catch (Exception e) {
-            logger.error("index(): error, response={}, exception={}", response, e);
+            logger.error("index(): error, response={}, exception={}", e);
             return "404.ftl";
         }
 
-        logger.info("<=== index(): get bills, response={}", response);
+        logger.info("<=== index(): get bills");
+        return "index.ftl";
+    }
+
+    @RequestMapping(value = "/channel/{channelName}")
+    private String indexChannel(Model model, @PathVariable("channelName") String channelName) {
+
+        try {
+            model = indexBlogService.indexInfo(model, channelName, null);
+        } catch (Exception e) {
+            logger.error("index(): error, response={}", e);
+            return "404.ftl";
+        }
+        logger.info("<=== indexChannel(): get bills");
+        return "index.ftl";
+    }
+
+    @RequestMapping(value = "/mark/{markName}")
+    private String indexMark(Model model, @PathVariable("markName") String markName) {
+
+        try {
+            model = indexBlogService.indexInfo(model, null, markName);
+        } catch (Exception e) {
+            logger.error("index(): error, response={}", e);
+            return "404.ftl";
+        }
+        logger.info("<=== indexChannel(): get bills");
         return "index.ftl";
     }
 

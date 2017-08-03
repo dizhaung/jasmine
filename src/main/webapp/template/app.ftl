@@ -37,14 +37,6 @@
     <meta name="keywords" content="${channel_meta}">
     <meta name="description" content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。有分享才有进步，分享促进技术变革。">
 
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9497367971656587",
-            enable_page_level_ads: true
-        });
-    </script>
-
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -72,7 +64,7 @@
                                     </h3>
                                     <div class="caption">
                                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                                    ${item.time}"前"
+                                    ${item.time}前
                                         &nbsp; | &nbsp;
                                         <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
                                     ${item.blogChannel.name}
@@ -89,7 +81,11 @@
                                     <hr class="hr" noshade="noshade">
                                     <div class="caption hide_p">
                                         <div>
-                                        <#--${item.gid}-->
+                                            <#--<#if item.content?length lt 20>-->
+                                            <#--${item.content}-->
+                                            <#--<#else>-->
+                                            <#--${item.content[0..21]}...-->
+                                            <#--</#if>-->
                                         </div>
                                     </div>
                                     <div class="repeat-widget">
@@ -126,9 +122,8 @@
                         <h4 style="margin-left: 10px;">标签</h4>
                         <hr class="hr" noshade="noshade">
                         <#list markList as item>
-                            <a href="" class="link" [markCloud]="item.count" data-toggle="tooltip"
-                               data-placement="top" title="${item.count} 个话题" (click)="goMark(mark.markGid)">
-                            ${item.markName}
+                            <a href="/mark/${item.markName}" class="link" data-toggle="tooltip" data-placement="top" title="${item.count} 个话题">
+                                ${item.markName}
                             </a>
                         </#list>
                     </div>
@@ -138,10 +133,12 @@
                         <hr class="hr" noshade="noshade">
                         <ul class="list-group">
                             <#list channelMapList as channel>
-                                <li class="list-group-item">
-                                    <span class="badge badge-info">${channel.count}</span>
-                                ${channel.name}
-                                </li>
+                                <a href="/channel/${channel.name}" class="link" >
+                                    <li class="list-group-item">
+                                        <span class="badge badge-info">${channel.count}</span>
+                                        ${channel.name}
+                                    </li>
+                                </a>
                             </#list>
                         </ul>
                     </div>

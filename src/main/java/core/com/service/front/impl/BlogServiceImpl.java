@@ -68,7 +68,7 @@ public class BlogServiceImpl implements BlogService {
 
         if (indexInfoReq.getMarkGid() != null) {
             String markName = indexInfoReq.getMarkGid();
-            BlogMark mark = blogMarkDao.queryMarkByGid(markName);
+            BlogMark mark = blogMarkDao.queryMarkByName(markName);
             if (mark != null) {
                 indexInfoReq.setMarkGid(mark.getGid());
             }
