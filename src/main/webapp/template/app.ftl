@@ -1,5 +1,6 @@
 <#import "./navbar.ftl" as navbar>
 <#macro head>
+    <meta name="google-site-verification" content="b_CnJf5BOPuJUVLu7TigxhZtnJhURigLj6pxJ7kv9sA" />
     <#if blog??>
         <title>${blog.name!} | 佳楠博客</title>
     <#else>
