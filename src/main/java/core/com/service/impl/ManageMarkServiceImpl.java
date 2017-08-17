@@ -1,10 +1,9 @@
-package core.com.service.manage.impl;
+package core.com.service.impl;
 
-import core.com.dao.BlogChannelDao;
 import core.com.dao.BlogMarkDao;
 import core.com.model.BlogMark;
 import core.com.model.manage.AddMarkRequest;
-import core.com.service.manage.ManageMarkService;
+import core.com.service.ManageMarkService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package core.com.service.front;
+package core.com.service.common;
 
 import core.com.model.common.SiteMapXml;
 

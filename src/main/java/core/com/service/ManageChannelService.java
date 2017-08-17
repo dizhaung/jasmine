@@ -1,4 +1,4 @@
-package core.com.service.manage;
+package core.com.service;
 
 import core.com.model.BlogChannel;
 import core.com.model.manage.AddChannelRequest;

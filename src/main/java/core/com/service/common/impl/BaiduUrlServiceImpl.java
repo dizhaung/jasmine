@@ -1,12 +1,10 @@
-package core.com.service.front.impl;
+package core.com.service.common.impl;
 
 import core.com.dao.BlogLoanDao;
 import core.com.model.BlogLoan;
-import core.com.model.common.BaiduUrlRequest;
 import core.com.model.common.BaiduUrlResponse;
-import core.com.model.common.SiteMapXml;
+import core.com.service.common.BaiduUrlService;
 import core.com.service.common.VendorHttpClientService;
-import core.com.service.front.BaiduUrlService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

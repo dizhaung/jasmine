@@ -18,7 +18,7 @@ public interface BlogLoanDao {
 
     BlogLoan queryBlogLoanById(Integer id);
 
-    List<BlogLoanWithBLOBs> queryBlogLoanByMarkOrChannel(String channelGid, String markGid);
+    List<BlogLoan> queryBlogLoanByMarkOrChannelLimit(String channelGid, String markGid, Integer pageIndex, Integer pageSize);
 
     int delete(String blogGid);
 

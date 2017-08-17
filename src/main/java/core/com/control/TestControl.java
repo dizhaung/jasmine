@@ -1,7 +1,7 @@
 package core.com.control;
 
 import core.com.model.LightningResponse;
-import core.com.service.manage.TestService;
+import core.com.service.TestService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package core.com.service.manage.impl;
+package core.com.service.impl;
 
 import core.com.control.manage.BlogController;
 import core.com.dao.BlogLoanDao;
@@ -10,8 +10,8 @@ import core.com.model.ConfigBlogMark;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
 import core.com.model.manage.BlogLoanInfo;
-import core.com.service.front.BaiduUrlService;
-import core.com.service.manage.ManageBlogService;
+import core.com.service.common.BaiduUrlService;
+import core.com.service.ManageBlogService;
 import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;

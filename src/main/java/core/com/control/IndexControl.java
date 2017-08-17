@@ -3,7 +3,7 @@ package core.com.control;
 import core.com.model.LightningResponse;
 import core.com.model.lend.IndexDetailReq;
 import core.com.model.lend.IndexInfoReq;
-import core.com.service.front.BlogService;
+import core.com.service.BlogService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class IndexControl {
         logger.info("===> getBaseInfo(): get bills, indexInfoReq={}", indexInfoReq);
         LightningResponse response = null;
         try {
-            response = Utility.getSuccessResp(blogService.getBlogInfo(indexInfoReq));
+            response = Utility.getSuccessResp(blogService.queryInfoByLimit(indexInfoReq));
         } catch (Exception e) {
             response = Utility.getErrorResponse(ErrorCode.SYS_FAIL);
             logger.error("getBaseInfo(): error, response={}, exception={}", response, e);

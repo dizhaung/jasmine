@@ -1,4 +1,4 @@
-package core.com.service.front;
+package core.com.service;
 
 import core.com.model.LightningResponse;
 import core.com.model.lend.*;
@@ -13,9 +13,6 @@ public interface BlogService {
 
     BaseInfoResponse getIndexInfo();
 
-    List<BlogInfo> getBlogInfo(IndexInfoReq indexInfoReq);
-
-
     /**
      * 查询详细信息
      *
@@ -23,5 +20,13 @@ public interface BlogService {
      * @return
      */
     IndexDetailResp getBlogDetail(IndexDetailReq indexDetailReq);
+
+    /**
+     * 分页查询
+     *
+     * @param indexInfoReq 参数
+     * @return 返回详情
+     */
+    List<BlogInfo> queryInfoByLimit(IndexInfoReq indexInfoReq);
 
 }

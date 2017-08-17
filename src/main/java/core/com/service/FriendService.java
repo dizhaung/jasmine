@@ -1,4 +1,4 @@
-package core.com.service.front;
+package core.com.service;
 
 import core.com.model.FriendshipLink;
 import core.com.model.manage.AddFriendReq;

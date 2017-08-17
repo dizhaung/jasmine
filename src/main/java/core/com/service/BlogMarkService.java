@@ -1,4 +1,4 @@
-package core.com.service.front;
+package core.com.service;
 
 import core.com.model.BlogMark;
 import core.com.model.lend.MarkPanelResponse;

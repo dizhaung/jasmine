@@ -1,4 +1,4 @@
-package core.com.service.front;
+package core.com.service.common;
 
 /**
  * Created by wangjianan on 17-7-18.

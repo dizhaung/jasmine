@@ -1,10 +1,10 @@
-package core.com.service.front.impl;
+package core.com.service.impl;
 
 import core.com.dao.FriendshipLinkDao;
 import core.com.model.FriendshipLink;
 import core.com.model.manage.AddFriendReq;
 import core.com.model.manage.AddFriendResp;
-import core.com.service.front.FriendService;
+import core.com.service.FriendService;
 import core.com.utils.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

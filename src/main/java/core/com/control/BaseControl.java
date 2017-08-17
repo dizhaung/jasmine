@@ -1,11 +1,14 @@
-package core.com.blog.control;
+package core.com.control;
 
-import core.com.blog.service.IndexBlogService;
+import core.com.exception.CoreException;
+import core.com.model.lend.IndexInfoReq;
+import core.com.service.BaseService;
 import core.com.model.BlogChannel;
-import core.com.model.lend.*;
-import core.com.service.front.BlogChannelService;
-import core.com.service.front.BlogMarkService;
-import core.com.service.front.BlogService;
+import core.com.model.lend.IndexDetailReq;
+import core.com.model.lend.IndexDetailResp;
+import core.com.service.BlogChannelService;
+import core.com.service.BlogService;
+import core.com.utils.ErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,13 +36,17 @@ public class BaseControl {
     private BlogChannelService blogChannelService;
 
     @Autowired
-    private IndexBlogService indexBlogService;
+    private BaseService baseService;
 
     @RequestMapping(value = "/")
-    private String index(Model model) {
-        logger.info("===> index(): get bills");
+    private String index(Model model, @RequestParam(value = "page", required = false) Integer page) {
+        logger.info("===> index(): page={}", page);
+
         try {
-            model = indexBlogService.indexInfo(model, null, null);
+            IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setPageIndex(page == null ? 1 : page);
+            indexInfoReq.setPageSize(10);
+            model = baseService.indexInfo(model, indexInfoReq);
         } catch (Exception e) {
             logger.error("index(): error, response={}, exception={}", e);
             return "404.ftl";
@@ -49,10 +57,14 @@ public class BaseControl {
     }
 
     @RequestMapping(value = "/channel/{channelName}")
-    private String indexChannel(Model model, @PathVariable("channelName") String channelName) {
+    private String indexChannel(Model model, @PathVariable("channelName") String channelName, @RequestParam(value = "page", required = false) Integer page) {
 
         try {
-            model = indexBlogService.indexInfo(model, channelName, null);
+            IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setPageSize(10);
+            indexInfoReq.setPageIndex(page);
+            indexInfoReq.setChannelGid(channelName);
+            model = baseService.indexInfo(model, indexInfoReq);
         } catch (Exception e) {
             logger.error("index(): error, response={}", e);
             return "404.ftl";
@@ -62,10 +74,14 @@ public class BaseControl {
     }
 
     @RequestMapping(value = "/mark/{markName}")
-    private String indexMark(Model model, @PathVariable("markName") String markName) {
+    private String indexMark(Model model, @PathVariable("markName") String markName, @RequestParam(value = "page", required = false) Integer page) {
 
         try {
-            model = indexBlogService.indexInfo(model, null, markName);
+            IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setMarkGid(markName);
+            indexInfoReq.setPageSize(10);
+            indexInfoReq.setPageIndex(page);
+            model = baseService.indexInfo(model, indexInfoReq);
         } catch (Exception e) {
             logger.error("index(): error, response={}", e);
             return "404.ftl";

@@ -2,7 +2,7 @@ package core.com.control.manage;
 
 import core.com.model.LightningResponse;
 import core.com.model.manage.ManageIndexReq;
-import core.com.service.manage.ManageIndexService;
+import core.com.service.ManageIndexService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;

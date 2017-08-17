@@ -1,9 +1,9 @@
-package core.com.service.front.impl;
+package core.com.service.common.impl;
 
 import core.com.dao.BlogLoanDao;
 import core.com.model.BlogLoan;
 import core.com.model.common.SiteMapXml;
-import core.com.service.front.SiteMapService;
+import core.com.service.common.SiteMapService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

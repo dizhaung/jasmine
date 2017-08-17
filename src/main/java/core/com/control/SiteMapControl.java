@@ -1,7 +1,7 @@
-package core.com.blog.control;
+package core.com.control;
 
-import core.com.service.front.BaiduUrlService;
-import core.com.service.front.SiteMapService;
+import core.com.service.common.BaiduUrlService;
+import core.com.service.common.SiteMapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

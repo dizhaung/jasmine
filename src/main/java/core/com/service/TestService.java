@@ -1,4 +1,4 @@
-package core.com.service.manage;
+package core.com.service;
 
 /**
  * Created by wangjianan on 16-11-24.

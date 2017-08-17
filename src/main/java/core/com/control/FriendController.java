@@ -2,7 +2,7 @@ package core.com.control;
 
 import core.com.model.LightningResponse;
 import core.com.model.manage.AddFriendReq;
-import core.com.service.front.FriendService;
+import core.com.service.FriendService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;

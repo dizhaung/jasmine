@@ -3,7 +3,7 @@ package core.com.control;
 import core.com.model.LightningResponse;
 import core.com.model.lend.AddChannelReq;
 import core.com.model.lend.IndexInfoReq;
-import core.com.service.front.BlogChannelService;
+import core.com.service.BlogChannelService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;

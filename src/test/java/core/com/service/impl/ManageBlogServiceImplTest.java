@@ -3,7 +3,6 @@ package core.com.service.impl;
 import core.com.base.TestBase;
 import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddBlogResp;
-import core.com.service.manage.impl.ManageBlogServiceImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

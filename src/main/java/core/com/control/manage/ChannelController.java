@@ -1,9 +1,8 @@
 package core.com.control.manage;
 
 import core.com.model.LightningResponse;
-import core.com.model.manage.AddBlogReq;
 import core.com.model.manage.AddChannelRequest;
-import core.com.service.manage.ManageChannelService;
+import core.com.service.ManageChannelService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package core.com.service.front.impl;
+package core.com.service.impl;
 
 import core.com.dao.BlogChannelDao;
 import core.com.exception.CoreException;
@@ -6,7 +6,7 @@ import core.com.model.BlogChannel;
 import core.com.model.lend.AddChannelReq;
 import core.com.model.lend.AddChannelResp;
 import core.com.model.lend.BlogChannelMap;
-import core.com.service.front.BlogChannelService;
+import core.com.service.BlogChannelService;
 import core.com.utils.Constants;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;

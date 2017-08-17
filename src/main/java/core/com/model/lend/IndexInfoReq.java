@@ -7,6 +7,24 @@ public class IndexInfoReq {
 
     private String channelGid;
     private String markGid;
+    private Integer pageIndex;
+    private Integer pageSize;
+
+    public Integer getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public String getChannelGid() {
         return channelGid;
@@ -29,6 +47,8 @@ public class IndexInfoReq {
         return "IndexInfoReq{" +
                 "channelGid='" + channelGid + '\'' +
                 ", markGid='" + markGid + '\'' +
+                ", pageIndex=" + pageIndex +
+                ", pageSize=" + pageSize +
                 '}';
     }
 }

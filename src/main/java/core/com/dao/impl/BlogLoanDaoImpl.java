@@ -47,24 +47,8 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
     }
 
     @Override
-    public List<BlogLoanWithBLOBs> queryBlogLoanByMarkOrChannel(String channelGid, String markGid) {
-        BlogLoanExample example = new BlogLoanExample();
-        List<String> blogList = new ArrayList<>();
-        if (markGid != null) {
-            List<ConfigBlogMark> list = configBlogMarkDao.queryConfigByMarkGid(markGid);
-            blogList.addAll(list.stream().map(ConfigBlogMark::getBlogGid).collect(Collectors.toList()));
-            if (list.size() <= 0) {
-                return null;
-            }
-        }
-        if (blogList.size() > 0) {
-            example.createCriteria().andGidIn(blogList);
-        }
-
-        if (channelGid != null) {
-            example.createCriteria().andChannelGidEqualTo(channelGid);
-        }
-        return blogLoanMapper.selectByExampleWithBLOBs(example);
+    public List<BlogLoan> queryBlogLoanByMarkOrChannelLimit(String channelGid, String markGid, Integer pageIndex, Integer pageSize) {
+        return blogLoanMapper.selectByMarkOrChannelLimit(channelGid, markGid, (pageIndex - 1) * pageSize, pageSize);
     }
 
     @Override

@@ -1,9 +1,9 @@
-package core.com.service.manage.impl;
+package core.com.service.impl;
 
 import core.com.dao.BlogChannelDao;
 import core.com.model.BlogChannel;
 import core.com.model.manage.AddChannelRequest;
-import core.com.service.manage.ManageChannelService;
+import core.com.service.ManageChannelService;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

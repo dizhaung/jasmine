@@ -1,10 +1,10 @@
-package core.com.service.front.impl;
+package core.com.service.impl;
 
 import core.com.dao.*;
 import core.com.exception.CoreException;
 import core.com.model.*;
 import core.com.model.lend.*;
-import core.com.service.front.BlogService;
+import core.com.service.BlogService;
 import core.com.utils.ErrorCode;
 import core.com.utils.Utility;
 import org.slf4j.Logger;
@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by wangjianan on 2016/2/17.
@@ -55,52 +53,6 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogInfo> getBlogInfo(IndexInfoReq indexInfoReq) {
-        logger.info("getBlogInfo(): indexInfoReq={}", indexInfoReq);
-
-        if (indexInfoReq.getChannelGid() != null) {
-            String channelName = indexInfoReq.getChannelGid();
-            BlogChannel channel = blogChannelDao.queryChannelByName(channelName);
-            if (channel != null) {
-                indexInfoReq.setChannelGid(channel.getGid());
-            }
-        }
-
-        if (indexInfoReq.getMarkGid() != null) {
-            String markName = indexInfoReq.getMarkGid();
-            BlogMark mark = blogMarkDao.queryMarkByName(markName);
-            if (mark != null) {
-                indexInfoReq.setMarkGid(mark.getGid());
-            }
-        }
-
-        List<BlogInfo> resultList = new ArrayList<>();
-        List<BlogLoanWithBLOBs> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannel(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
-        if (blogLoanList != null) {
-            for (BlogLoanWithBLOBs blog : blogLoanList) {
-
-                BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
-                List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
-                List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
-
-                BlogInfo resp = new BlogInfo();
-                resp.setId(blog.getId());
-                resp.setGid(blog.getGid());
-                resp.setTime(Utility.getDateTime(blog.getCreateTime()));
-                resp.setName(blog.getName());
-                resp.setViews(blog.getViews());
-                resp.setTop(blog.getIsTop());
-                resp.setBlogChannel(channel);
-                resp.setBlogMarkList(blogMarkList);
-                resp.setContent(blog.getContent());
-
-                resultList.add(resp);
-            }
-        }
-        return resultList;
-    }
-
-    @Override
     public IndexDetailResp getBlogDetail(IndexDetailReq indexDetailReq) {
         logger.info("getBlogDetail(): indexDetailReq={}", indexDetailReq);
         IndexDetailResp response = new IndexDetailResp();
@@ -128,6 +80,59 @@ public class BlogServiceImpl implements BlogService {
 
         logger.info("getBlogDetail(): response={}", response);
         return response;
+    }
+
+    @Override
+    public List<BlogInfo> queryInfoByLimit(IndexInfoReq indexInfoReq) {
+        logger.info("queryInfoByLimit(): req={}", indexInfoReq);
+
+        Integer pageIndex = indexInfoReq.getPageIndex();
+        Integer pageSize = indexInfoReq.getPageSize();
+
+        if (pageIndex < 0 && pageSize < 0) {
+            throw new CoreException(ErrorCode.SYS_PARAMS_ERROR);
+        }
+
+        if (indexInfoReq.getChannelGid() != null) {
+            String channelName = indexInfoReq.getChannelGid();
+            BlogChannel channel = blogChannelDao.queryChannelByName(channelName);
+            if (channel != null) {
+                indexInfoReq.setChannelGid(channel.getGid());
+            }
+        }
+
+        if (indexInfoReq.getMarkGid() != null) {
+            String markName = indexInfoReq.getMarkGid();
+            BlogMark mark = blogMarkDao.queryMarkByName(markName);
+            if (mark != null) {
+                indexInfoReq.setMarkGid(mark.getGid());
+            }
+        }
+
+        List<BlogInfo> resultList = new ArrayList<>();
+        List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannelLimit(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid(), pageIndex, pageSize);
+        if (blogLoanList != null) {
+            for (BlogLoan blog : blogLoanList) {
+                BlogLoanWithBLOBs bloBs = blogLoanDao.selectByGid(blog.getGid());
+                BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
+                List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
+                List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
+
+                BlogInfo resp = new BlogInfo();
+                resp.setId(blog.getId());
+                resp.setGid(blog.getGid());
+                resp.setTime(Utility.getDateTime(blog.getCreateTime()));
+                resp.setName(blog.getName());
+                resp.setViews(blog.getViews());
+                resp.setTop(blog.getIsTop());
+                resp.setBlogChannel(channel);
+                resp.setBlogMarkList(blogMarkList);
+                resp.setContent(bloBs.getContent());
+
+                resultList.add(resp);
+            }
+        }
+        return resultList;
     }
 
     private List<String> getMarkList(List<ConfigBlogMark> configBlogMarkList) {
