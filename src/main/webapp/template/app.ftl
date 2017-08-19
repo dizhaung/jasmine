@@ -1,4 +1,5 @@
 <#import "./navbar.ftl" as navbar>
+<#import "./pagination.ftl" as pagination>
 <#macro head>
     <meta name="google-site-verification" content="b_CnJf5BOPuJUVLu7TigxhZtnJhURigLj6pxJ7kv9sA" />
     <#if blog??>
@@ -99,6 +100,10 @@
                             </div>
                         </div>
                     </#list>
+
+                    <!-- 定义分页信息 -->
+                    <@pagination.pagination page totalPage></@pagination.pagination>
+
                 </div>
                 <div class="col-md-3">
                     <div class="alert alert-info" role="alert">
@@ -213,7 +218,7 @@
 <#macro footer>
     <!-- footer -->
     <div class="app-footer wrapper b-t bg-light">
-        <div>
+        <div class="center-block" style="width:300px;">
             ©2017-2020 <a href="http://www.oopmind.com"><em style="color:#496;">佳楠博客</em></a>
             | 京ICP备17012872号
         </div>

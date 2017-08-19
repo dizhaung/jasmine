@@ -44,6 +44,7 @@ public class BaseServiceImpl implements BaseService {
         model.addAttribute("channelMapList", channelMapList);
         model.addAttribute("infoList", infoList);
         model.addAttribute("response", blogService.getIndexInfo());
+        model.addAttribute("totalPage", blogService.queryInfoCount(indexInfoReq));
         model.addAttribute("type", "yes");
 
         return model;

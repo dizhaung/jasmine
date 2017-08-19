@@ -28,6 +28,7 @@ import java.util.List;
 @Controller
 public class BaseControl {
     private static final Logger logger = LoggerFactory.getLogger(BaseControl.class);
+    private static final int PAGE = 5;
 
     @Autowired
     private BlogService blogService;
@@ -45,8 +46,11 @@ public class BaseControl {
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
             indexInfoReq.setPageIndex(page == null ? 1 : page);
-            indexInfoReq.setPageSize(10);
+            indexInfoReq.setPageSize(PAGE);
             model = baseService.indexInfo(model, indexInfoReq);
+
+            model.addAttribute("page", page == null? 1:page);
+            model.addAttribute("path", "");
         } catch (Exception e) {
             logger.error("index(): error, response={}, exception={}", e);
             return "404.ftl";
@@ -61,10 +65,12 @@ public class BaseControl {
 
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
-            indexInfoReq.setPageSize(10);
+            indexInfoReq.setPageSize(PAGE);
             indexInfoReq.setPageIndex(page);
             indexInfoReq.setChannelGid(channelName);
             model = baseService.indexInfo(model, indexInfoReq);
+            model.addAttribute("page", page == null? 1:page);
+            model.addAttribute("path", "/channel/" + channelName);
         } catch (Exception e) {
             logger.error("index(): error, response={}", e);
             return "404.ftl";
@@ -79,9 +85,11 @@ public class BaseControl {
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
             indexInfoReq.setMarkGid(markName);
-            indexInfoReq.setPageSize(10);
+            indexInfoReq.setPageSize(PAGE);
             indexInfoReq.setPageIndex(page);
             model = baseService.indexInfo(model, indexInfoReq);
+            model.addAttribute("page", page == null? 1:page);
+            model.addAttribute("path", "/mark/" + markName);
         } catch (Exception e) {
             logger.error("index(): error, response={}", e);
             return "404.ftl";

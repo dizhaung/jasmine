@@ -104,4 +104,18 @@ public class BlogLoanDaoImpl implements BlogLoanDao {
         BlogLoanExample example = new BlogLoanExample();
         return blogLoanMapper.selectByExample(example);
     }
+
+    @Override
+    public int queryInfoCount(String channelGid, String markGid) {
+        BlogLoanExample example = new BlogLoanExample();
+        BlogLoanExample.Criteria criteria = example.createCriteria();
+        if (channelGid != null) {
+            criteria.andChannelGidEqualTo(channelGid);
+        }
+
+        if (markGid != null) {
+            criteria.andMarkGidEqualTo(markGid);
+        }
+        return blogLoanMapper.countByExample(example);
+    }
 }

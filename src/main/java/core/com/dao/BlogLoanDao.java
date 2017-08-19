@@ -34,4 +34,6 @@ public interface BlogLoanDao {
 
     List<BlogLoan> queryBlogLoan();
 
+    int queryInfoCount(String channelGid, String markGid);
+
 }

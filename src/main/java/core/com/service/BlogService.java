@@ -29,4 +29,12 @@ public interface BlogService {
      */
     List<BlogInfo> queryInfoByLimit(IndexInfoReq indexInfoReq);
 
+    /**
+     * 查询blog数量
+     *
+     * @param indexInfoReq 参数
+     * @return 返回详情
+     */
+    int queryInfoCount(IndexInfoReq indexInfoReq);
+
 }
