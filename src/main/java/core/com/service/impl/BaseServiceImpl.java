@@ -38,13 +38,14 @@ public class BaseServiceImpl implements BaseService {
         List<BlogInfo> infoList = blogService.queryInfoByLimit(indexInfoReq);
         List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
         List<MarkPanelResponse> markList = blogMarkService.getBlogMarkStatistics();
+        int totalPage = blogService.queryInfoCount(indexInfoReq);
 
         model.addAttribute("channelList", channelList);
         model.addAttribute("markList", markList);
         model.addAttribute("channelMapList", channelMapList);
         model.addAttribute("infoList", infoList);
         model.addAttribute("response", blogService.getIndexInfo());
-        model.addAttribute("totalPage", blogService.queryInfoCount(indexInfoReq));
+        model.addAttribute("totalPage", totalPage % indexInfoReq.getPageSize() > 0 ? totalPage / indexInfoReq.getPageSize() + 1 : totalPage / indexInfoReq.getPageSize());
         model.addAttribute("type", "yes");
 
         return model;

@@ -37,6 +37,6 @@ public interface BlogLoanMapper {
 
     int updateViewById(@Param("id") Integer id);
 
-    List<BlogLoan> selectByMarkOrChannelLimit(@Param("markGid") String markGid, @Param("channelGid") String channelGid,
-                                          @Param("offset") int offset, @Param("limit") int limit);
+    List<BlogLoan> selectByMarkOrChannelLimit(@Param("channelGid") String channelGid,@Param("markGid") String markGid,
+                                              @Param("offset") int offset, @Param("limit") int limit);
 }

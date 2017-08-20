@@ -137,25 +137,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int queryInfoCount(IndexInfoReq indexInfoReq) {
-        String channelGid = null;
-        String markGid = null;
-        if (indexInfoReq.getChannelGid() != null) {
-            String channelName = indexInfoReq.getChannelGid();
-            BlogChannel channel = blogChannelDao.queryChannelByName(channelName);
-            if (channel != null) {
-                channelGid = channel.getGid();
-            }
-        }
-
-        if (indexInfoReq.getMarkGid() != null) {
-            String markName = indexInfoReq.getMarkGid();
-            BlogMark mark = blogMarkDao.queryMarkByName(markName);
-            if (mark != null) {
-                markGid = mark.getGid();
-            }
-        }
-
-        return blogLoanDao.queryInfoCount(channelGid, markGid);
+        return blogLoanDao.queryInfoCount(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
     }
 
     private List<String> getMarkList(List<ConfigBlogMark> configBlogMarkList) {

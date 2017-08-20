@@ -56,7 +56,7 @@ public class BaseControl {
             return "404.ftl";
         }
 
-        logger.info("<=== index(): get bills");
+        logger.info("<=== index(): get index, model={}", model);
         return "index.ftl";
     }
 
@@ -65,8 +65,8 @@ public class BaseControl {
 
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setPageIndex(page == null ? 1 : page);
             indexInfoReq.setPageSize(PAGE);
-            indexInfoReq.setPageIndex(page);
             indexInfoReq.setChannelGid(channelName);
             model = baseService.indexInfo(model, indexInfoReq);
             model.addAttribute("page", page == null? 1:page);
@@ -84,9 +84,9 @@ public class BaseControl {
 
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setPageIndex(page == null ? 1 : page);
             indexInfoReq.setMarkGid(markName);
             indexInfoReq.setPageSize(PAGE);
-            indexInfoReq.setPageIndex(page);
             model = baseService.indexInfo(model, indexInfoReq);
             model.addAttribute("page", page == null? 1:page);
             model.addAttribute("path", "/mark/" + markName);
