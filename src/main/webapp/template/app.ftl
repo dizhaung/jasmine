@@ -154,7 +154,13 @@
                         <hr class="hr">
 
                         <table class="table">
-
+                            <#list response.friendshipLinkList as friend>
+                                <tr>
+                                    <td>
+                                        <a class="link" href="${friend.url}" target="view_window">${friend.name}</a>
+                                    </td>
+                                </tr>
+                            </#list>
                         </table>
                     </div>
                 </div>
