@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="../assets/css/common.css">
-    <link href="http://og4nfuylr.bkt.clouddn.com/wang.png" rel="icon">
+    <#--<link href="http://og4nfuylr.bkt.clouddn.com/wang.png" rel="icon">-->
 
     <link rel="stylesheet" href="../assets/test/animate.css">
     <link rel="stylesheet" href="../assets/test/app.css">
