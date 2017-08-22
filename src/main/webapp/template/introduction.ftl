@@ -6,7 +6,7 @@
 <#macro introduction>
     <!-- menu -->
     <div class="app-aside hidden-xs bg-dark" id="app-aside" style="position: fixed; height: 100%; ">
-        <div class="aside-wrap" style="height: 100%; background-size: cover; background-image: url(http://og4nfuylr.bkt.clouddn.com/1000X400.jpg)">
+        <div class="aside-wrap" style="height: 100%; background-size: cover; ">
             <div class="navi-wrap">
                 <!-- user -->
                 <div class="clearfix hidden-xs text-center" id="aside-user">
