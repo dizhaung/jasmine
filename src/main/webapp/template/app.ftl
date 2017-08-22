@@ -196,7 +196,7 @@
                 <div>${blog.content}</div>
                 <div class="bs-docs-section">
                     <div class="bs-callout bs-callout-info">
-                        <p>原文地址 : <a href="/${blog.id}.html">http://www.oopmind.com/${blog.id}.html</a></p>
+                        <p>原文地址 : <a href="/${blog.id}.html">https://www.oopmind.com/${blog.id}.html</a></p>
                         <p>本站遵循 : 署名-非商业性使用-相同方式共享 2.5 中国大陆 (CC BY-NC-SA 2.5)</p>
                         <p>版权声明 : 原创文章转载时，请务必以超链接形式标明文章原始出处</p>
                     </div>
@@ -219,7 +219,7 @@
     <!-- footer -->
     <div class="app-footer wrapper b-t bg-light">
         <div class="center-block" style="width:300px;">
-            ©2017-2020 <a href="http://www.oopmind.com"><em style="color:#496;">佳楠博客</em></a>
+            ©2017-2020 <a href="https://www.oopmind.com"><em style="color:#496;">佳楠博客</em></a>
             | 京ICP备17012872号
         </div>
     </div>
