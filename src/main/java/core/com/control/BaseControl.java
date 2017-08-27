@@ -116,13 +116,28 @@ public class BaseControl {
             model.addAttribute("channelList", channelList);
             model.addAttribute("blog", indexDetailResp);
             model.addAttribute("channel_meta", channelMeta);
-            model.addAttribute("type", "no");
+            model.addAttribute("type", "0");
         } catch (Exception e) {
             logger.error("view(): error, response={}, exception={}", indexDetailResp, e);
             return "404.ftl";
         }
 
         logger.info("<=== view(): to view, response={}", indexDetailResp);
+        return "index.ftl";
+    }
+
+    @RequestMapping(value = "/weixin")
+    private String weixin(Model model) {
+
+        List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
+
+        StringBuffer channelMeta = new StringBuffer();
+        for (BlogChannel blogChannel : channelList) {
+            channelMeta.append(blogChannel.getName());
+        }
+        model.addAttribute("channel_meta", channelMeta);
+        model.addAttribute("channelList", channelList);
+        model.addAttribute("type", "2");
         return "index.ftl";
     }
 }

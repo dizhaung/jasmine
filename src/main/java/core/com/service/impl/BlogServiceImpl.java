@@ -113,7 +113,7 @@ public class BlogServiceImpl implements BlogService {
         List<BlogLoan> blogLoanList = blogLoanDao.queryBlogLoanByMarkOrChannelLimit(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid(), pageIndex, pageSize);
         if (blogLoanList != null) {
             for (BlogLoan blog : blogLoanList) {
-                BlogLoanWithBLOBs bloBs = blogLoanDao.selectByGid(blog.getGid());
+//                BlogLoanWithBLOBs bloBs = blogLoanDao.selectByGid(blog.getGid());
                 BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
                 List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
                 List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
@@ -127,7 +127,7 @@ public class BlogServiceImpl implements BlogService {
                 resp.setTop(blog.getIsTop());
                 resp.setBlogChannel(channel);
                 resp.setBlogMarkList(blogMarkList);
-                resp.setContent(bloBs.getContent());
+                resp.setContent(blog.getDescription());
 
                 resultList.add(resp);
             }

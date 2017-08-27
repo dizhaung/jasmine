@@ -1,0 +1,1 @@
+ALTER TABLE blog_loan ADD description VARCHAR(256) DEFAULT "" COMMENT '描述';

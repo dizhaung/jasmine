@@ -16,7 +16,7 @@
         </commentGenerator>
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-            connectionURL="jdbc:mysql://60.205.180.147/core" userId="wangjianan" password="0AohXiWv8QGX5upa">
+            connectionURL="jdbc:mysql://60.205.180.147/core" userId="wangjianan" password="Ai18744093483">
         </jdbcConnection>
 
         <javaTypeResolver>

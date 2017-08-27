@@ -3,9 +3,9 @@
 <#macro head>
     <meta name="google-site-verification" content="b_CnJf5BOPuJUVLu7TigxhZtnJhURigLj6pxJ7kv9sA" />
     <#if blog??>
-        <title>${blog.name!} | 佳楠博客</title>
+        <title>${blog.name!} | 佳楠的小站</title>
     <#else>
-        <title>佳楠博客</title>
+        <title>佳楠的小站</title>
     </#if>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,15 +51,16 @@
 </#macro>
 
 <#macro article type>
-    <#if type="yes">
+    <#if type="1">
         <!-- 内容区 -->
         <br>
         <article>
             <div class="container-fluid">
-                <div class="col-md-9">
+                <div class="col-md-11">
                     <#list infoList as item>
                         <div class="row-fluid">
                             <div class="thumbnail">
+                                <#--<img src="http://og4nfuylr.bkt.clouddn.com/wang.png">-->
                                 <div class="caption">
                                     <h3>
                                         <a href="/${item.id}.html" class="title">${item.name}</a>
@@ -81,19 +82,15 @@
                                     ${item.views} views
                                     </div>
                                     <hr class="hr" noshade="noshade">
-                                    <div class="caption hide_p">
+                                    <div class="caption">
                                         <div>
-                                            <#--<#if item.content?length lt 20>-->
-                                            <#--${item.content}-->
-                                            <#--<#else>-->
-                                            <#--${item.content[0..21]}...-->
-                                            <#--</#if>-->
+                                            ${item.content}...
                                         </div>
                                     </div>
                                     <div class="repeat-widget">
                                         <p></p>
                                         <#list item.blogMarkList as mark>
-                                            <a class="label label-success">${mark.name}</a>
+                                            <a href="/mark/${mark.name}" class="label label-success">${mark.name}</a>
                                         </#list>
                                     </div>
                                 </div>
@@ -103,71 +100,87 @@
 
                     <!-- 定义分页信息 -->
                     <@pagination.pagination page totalPage></@pagination.pagination>
-
                 </div>
-                <div class="col-md-3">
-                    <div class="alert alert-info" role="alert">
-                        主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。现在我给网站添加了云音乐，各位写代码写累了不妨来听听音乐O(∩_∩)O~
-                    </div>
+                <#--<div class="col-md-3">-->
+                    <#--<div class="alert alert-info" role="alert">-->
+                        <#--主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。现在我给网站添加了云音乐，各位写代码写累了不妨来听听音乐O(∩_∩)O~-->
+                    <#--</div>-->
 
-                    <div class="thumbnail">
-                        <h4 style="margin-left: 10px;">最新文章</h4>
-                        <hr class="hr">
-                        <table class="table table-condensed">
-                            <#list response.newArticleList as item>
-                                <tr>
-                                    <td>
-                                        <a class="link" style="font-size: small" href="/${item.id}.html">${item.name}</a>
-                                    </td>
-                                </tr>
-                            </#list>
-                        </table>
-                    </div>
+                    <#--<div class="thumbnail">-->
+                        <#--<h4 style="margin-left: 10px;">最新文章</h4>-->
+                        <#--<hr class="hr">-->
+                        <#--<table class="table table-condensed">-->
+                            <#--<#list response.newArticleList as item>-->
+                                <#--<tr>-->
+                                    <#--<td>-->
+                                        <#--<a class="link" style="font-size: small" href="/${item.id}.html">${item.name}</a>-->
+                                    <#--</td>-->
+                                <#--</tr>-->
+                            <#--</#list>-->
+                        <#--</table>-->
+                    <#--</div>-->
 
-                    <div class="thumbnail">
-                        <h4 style="margin-left: 10px;">标签</h4>
-                        <hr class="hr" noshade="noshade">
-                        <#list markList as item>
-                            <a href="/mark/${item.markName}" class="link" data-toggle="tooltip" data-placement="top" title="${item.count} 个话题">
-                                ${item.markName}
-                            </a>
-                        </#list>
-                    </div>
+                    <#--<div class="thumbnail">-->
+                        <#--<h4 style="margin-left: 10px;">标签</h4>-->
+                        <#--<hr class="hr" noshade="noshade">-->
+                        <#--<#list markList as item>-->
+                            <#--<a href="/mark/${item.markName}" class="link" data-toggle="tooltip" data-placement="top" title="${item.count} 个话题">-->
+                                <#--${item.markName}-->
+                            <#--</a>-->
+                        <#--</#list>-->
+                    <#--</div>-->
 
-                    <div class="thumbnail">
-                        <h4 style="margin-left: 10px;">分类</h4>
-                        <hr class="hr" noshade="noshade">
-                        <ul class="list-group">
-                            <#list channelMapList as channel>
-                                <a href="/channel/${channel.name}" class="link" >
-                                    <li class="list-group-item">
-                                        <span class="badge badge-info">${channel.count}</span>
-                                        ${channel.name}
-                                    </li>
-                                </a>
-                            </#list>
-                        </ul>
-                    </div>
+                    <#--<div class="thumbnail">-->
+                        <#--<h4 style="margin-left: 10px;">分类</h4>-->
+                        <#--<hr class="hr" noshade="noshade">-->
+                        <#--<ul class="list-group">-->
+                            <#--<#list channelMapList as channel>-->
+                                <#--<a href="/channel/${channel.name}" class="link" >-->
+                                    <#--<li class="list-group-item">-->
+                                        <#--<span class="badge badge-info">${channel.count}</span>-->
+                                        <#--${channel.name}-->
+                                    <#--</li>-->
+                                <#--</a>-->
+                            <#--</#list>-->
+                        <#--</ul>-->
+                    <#--</div>-->
 
-                    <div class="thumbnail">
-                        <h4 style="margin-left: 10px;">友情链接</h4>
-                        <hr class="hr">
+                    <#--<div class="thumbnail">-->
+                        <#--<h4 style="margin-left: 10px;">友情链接</h4>-->
+                        <#--<hr class="hr">-->
 
-                        <table class="table">
-                            <#list response.friendshipLinkList as friend>
-                                <tr>
-                                    <td>
-                                        <a class="link" href="${friend.url}" target="view_window">${friend.name}</a>
-                                    </td>
-                                </tr>
-                            </#list>
-                        </table>
-                    </div>
-                </div>
+                        <#--<table class="table">-->
+                            <#--<#list response.friendshipLinkList as friend>-->
+                                <#--<tr>-->
+                                    <#--<td>-->
+                                        <#--<a class="link" href="${friend.url}" target="view_window">${friend.name}</a>-->
+                                    <#--</td>-->
+                                <#--</tr>-->
+                            <#--</#list>-->
+                        <#--</table>-->
+                    <#--</div>-->
+                <#--</div>-->
             </div>
         </article>
         <br>
         <br>
+    <#elseif type="2">
+        <div class="container">
+            <br>
+            <div class="col-md-12 thumbnail" style="padding-left: 50px; padding-right: 30px;">
+                <div class="caption page-header" style="text-align: center">
+                    <h1 >微信</h1>
+                    <hr class="hr" noshade="noshade">
+
+                    <h3>扫一扫下面的二维码图案，加我微信</h3>
+                    <p>
+                        <a href="http://og4nfuylr.bkt.clouddn.com/weixin.jpg" title="微信二维码" rel="fancy-group" class="fancy-ctn fancybox">
+                            <img src="http://og4nfuylr.bkt.clouddn.com/weixin.jpg" width="undefined" height="undefined" title="微信二维码" alt="微信二维码">
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
     <#else>
         <div class="container">
             <div class="col-md-12 thumbnail" style="padding-left: 50px; padding-right: 30px;">

@@ -13,6 +13,7 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="views" property="views" jdbcType="INTEGER" />
     <result column="is_top" property="isTop" jdbcType="BIT" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="core.com.model.BlogLoanWithBLOBs" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -76,9 +77,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    id, gid, create_time, update_time, user_gid, channel_gid, mark_gid, name, type, views, 
-    is_top
+  <sql id="Base_Column_List">
+    id, gid, create_time, update_time, user_gid, channel_gid, mark_gid, name, type, views,
+    is_top, description
   </sql>
   <sql id="Blob_Column_List" >
     content, markdown_content
@@ -114,7 +115,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -131,17 +132,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="core.com.model.BlogLoanWithBLOBs" >
-    insert into blog_loan (id, gid, create_time, 
-      update_time, user_gid, channel_gid, 
-      mark_gid, name, type, 
-      views, is_top, content, 
-      markdown_content)
-    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, 
-      #{updateTime,jdbcType=INTEGER}, #{userGid,jdbcType=VARCHAR}, #{channelGid,jdbcType=VARCHAR}, 
-      #{markGid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{views,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}, 
-      #{markdownContent,jdbcType=LONGVARCHAR})
+  <insert id="insert" parameterType="core.com.model.BlogLoanWithBLOBs">
+    insert into blog_loan (id, gid, create_time,
+      update_time, user_gid, channel_gid,
+      mark_gid, name, type,
+      views, is_top, description,
+      content, markdown_content)
+    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER},
+      #{updateTime,jdbcType=INTEGER}, #{userGid,jdbcType=VARCHAR}, #{channelGid,jdbcType=VARCHAR},
+      #{markGid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+      #{views,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, #{description,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR}, #{markdownContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="core.com.model.BlogLoanWithBLOBs" >
     insert into blog_loan
@@ -179,7 +180,10 @@
       <if test="isTop != null" >
         is_top,
       </if>
-      <if test="content != null" >
+      <if test="description != null">
+        description,
+      </if>
+      <if test="content != null">
         content,
       </if>
       <if test="markdownContent != null" >
@@ -220,7 +224,10 @@
       <if test="isTop != null" >
         #{isTop,jdbcType=BIT},
       </if>
-      <if test="content != null" >
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
       <if test="markdownContent != null" >
@@ -270,7 +277,10 @@
       <if test="record.isTop != null" >
         is_top = #{record.isTop,jdbcType=BIT},
       </if>
-      <if test="record.content != null" >
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
       <if test="record.markdownContent != null" >
@@ -294,6 +304,7 @@
       type = #{record.type,jdbcType=INTEGER},
       views = #{record.views,jdbcType=INTEGER},
       is_top = #{record.isTop,jdbcType=BIT},
+      description = #{record.description,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR},
       markdown_content = #{record.markdownContent,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -312,8 +323,9 @@
       name = #{record.name,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
       views = #{record.views,jdbcType=INTEGER},
-      is_top = #{record.isTop,jdbcType=BIT}
-    <if test="_parameter != null" >
+      is_top = #{record.isTop,jdbcType=BIT},
+      description = #{record.description,jdbcType=VARCHAR}
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
@@ -350,7 +362,10 @@
       <if test="isTop != null" >
         is_top = #{isTop,jdbcType=BIT},
       </if>
-      <if test="content != null" >
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
       <if test="markdownContent != null" >
@@ -371,6 +386,7 @@
       type = #{type,jdbcType=INTEGER},
       views = #{views,jdbcType=INTEGER},
       is_top = #{isTop,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR},
       markdown_content = #{markdownContent,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -386,7 +402,8 @@
       name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       views = #{views,jdbcType=INTEGER},
-      is_top = #{isTop,jdbcType=BIT}
+      is_top = #{isTop,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

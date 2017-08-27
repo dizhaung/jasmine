@@ -3,7 +3,7 @@
 */
 
 html {
-  background-color: #f0f3f4;
+  background-color: #f8f4f3;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.42857143;
   color: #58666e;
-  background-color: transparent;
+  background-color: #f8f4f3;
 }
 
 *:focus {
@@ -1078,7 +1078,6 @@ body {
 }
 
 html {
-  background: url('../image/bg.jpg');
   background-attachment: fixed;
   background-size: cover;
 }
@@ -1140,6 +1139,31 @@ html {
   }
   .app.container.app-aside-dock .app-footer-fixed {
     max-width: 970px;
+  }
+
+  .app-aside,
+  .navbar-header {
+    width: 500px;
+  }
+
+  .navbar-collapse,
+  .app-content,
+  .app-footer {
+    margin-left: 500px;
+  }
+
+  .app-aside-fixed .aside-wrap {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 500px;
+    overflow: hidden;
+  }
+
+  .smart .app-aside-fixed .aside-wrap .navi-wrap {
+    width: 500px;
   }
 }
 
@@ -2912,7 +2936,7 @@ fieldset[disabled] .i-checks input + i:before {
 
 .bg-dark {
   color: #a6a8b1;
-  background-color: #3a3f51;
+  background-color: #1d75b3;
 }
 
 .bg-dark.lt,

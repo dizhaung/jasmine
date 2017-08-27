@@ -46,7 +46,7 @@ public class BaseServiceImpl implements BaseService {
         model.addAttribute("infoList", infoList);
         model.addAttribute("response", blogService.getIndexInfo());
         model.addAttribute("totalPage", totalPage % indexInfoReq.getPageSize() > 0 ? totalPage / indexInfoReq.getPageSize() + 1 : totalPage / indexInfoReq.getPageSize());
-        model.addAttribute("type", "yes");
+        model.addAttribute("type", "1");
 
         return model;
     }
