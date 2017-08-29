@@ -77,6 +77,7 @@ public class BlogServiceImpl implements BlogService {
         response.setChannelName(blogChannel.getName());
         response.setUserGid(blogLoan.getUserGid());
         response.setDateTime(Utility.getDateFormat(blogLoan.getCreateTime()));
+        response.setDescription(blogLoan.getDescription());
 
         logger.info("getBlogDetail(): response={}", response);
         return response;
@@ -116,7 +117,7 @@ public class BlogServiceImpl implements BlogService {
 //                BlogLoanWithBLOBs bloBs = blogLoanDao.selectByGid(blog.getGid());
                 BlogChannel channel = blogChannelDao.queryChannelByGid(blog.getChannelGid());
                 List<ConfigBlogMark> configBlogMarkList = configBlogMarkDao.queryConfigByBlogGid(blog.getGid());
-                List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(getMarkList(configBlogMarkList));
+                List<BlogMark> blogMarkList = blogMarkDao.queryMarkByGidList(Utility.getMarkList(configBlogMarkList));
 
                 BlogInfo resp = new BlogInfo();
                 resp.setId(blog.getId());
@@ -140,14 +141,4 @@ public class BlogServiceImpl implements BlogService {
         return blogLoanDao.queryInfoCount(indexInfoReq.getChannelGid(), indexInfoReq.getMarkGid());
     }
 
-    private List<String> getMarkList(List<ConfigBlogMark> configBlogMarkList) {
-        List<String> result = null;
-        if (configBlogMarkList != null && configBlogMarkList.size() > 0) {
-            result = new ArrayList<>();
-            for (ConfigBlogMark config : configBlogMarkList) {
-                result.add(config.getMarkGid());
-            }
-        }
-        return result;
-    }
 }

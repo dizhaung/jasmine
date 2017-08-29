@@ -33,7 +33,7 @@ public class BlogMarkServiceImpl implements BlogMarkService {
 
         for (BlogMarkStatistics mark : blogMarkStatisticsList) {
             MarkPanelResponse response = new MarkPanelResponse();
-            response.setMarkName(mark.getName());
+            response.setName(mark.getName());
             response.setMarkGid(mark.getGid());
             response.setCount(mark.getCount());
             responseList.add(response);

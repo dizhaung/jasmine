@@ -1,12 +1,11 @@
 package core.com.utils;
 
+import core.com.model.ConfigBlogMark;
 import core.com.model.LightningResponse;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by wangjianan on 2016/2/17.
@@ -138,5 +137,16 @@ public class Utility {
 
     public static String getUrl(Integer id) {
         return "http://www.oopmind.com/" + String.valueOf(id) + ".html";
+    }
+
+    public static List<String> getMarkList(List<ConfigBlogMark> configBlogMarkList) {
+        List<String> result = null;
+        if (configBlogMarkList != null && configBlogMarkList.size() > 0) {
+            result = new ArrayList<>();
+            for (ConfigBlogMark config : configBlogMarkList) {
+                result.add(config.getMarkGid());
+            }
+        }
+        return result;
     }
 }

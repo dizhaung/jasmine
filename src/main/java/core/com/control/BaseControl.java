@@ -101,28 +101,17 @@ public class BaseControl {
     @RequestMapping(value = "/{id}.html")
     private String view(Model model, @PathVariable("id") Integer id) {
         logger.info("===> view(): to view, id={}", id);
-        IndexDetailResp indexDetailResp = null;
+
         try {
             IndexDetailReq indexDetailReq = new IndexDetailReq();
             indexDetailReq.setBlogId(id);
-            indexDetailResp = blogService.getBlogDetail(indexDetailReq);
-            List<BlogChannel> channelList = blogChannelService.queryBlogChannel();
-
-            StringBuffer channelMeta = new StringBuffer();
-            for (BlogChannel blogChannel : channelList) {
-                channelMeta.append(blogChannel.getName());
-            }
-
-            model.addAttribute("channelList", channelList);
-            model.addAttribute("blog", indexDetailResp);
-            model.addAttribute("channel_meta", channelMeta);
+            baseService.indexView(model, indexDetailReq);
             model.addAttribute("type", "0");
         } catch (Exception e) {
-            logger.error("view(): error, response={}, exception={}", indexDetailResp, e);
+            logger.error("view(): error exception={}", e);
             return "404.ftl";
         }
 
-        logger.info("<=== view(): to view, response={}", indexDetailResp);
         return "index.ftl";
     }
 

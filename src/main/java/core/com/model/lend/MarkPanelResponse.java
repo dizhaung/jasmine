@@ -6,16 +6,16 @@ package core.com.model.lend;
  */
 public class MarkPanelResponse {
 
-    private String markName;
+    private String name;
     private String markGid;
     private int count;
 
-    public String getMarkName() {
-        return markName;
+    public String getName() {
+        return name;
     }
 
-    public void setMarkName(String markName) {
-        this.markName = markName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMarkGid() {
@@ -37,7 +37,7 @@ public class MarkPanelResponse {
     @Override
     public String toString() {
         return "MarkPanelResponse{" +
-                "markName='" + markName + '\'' +
+                "name='" + name + '\'' +
                 ", markGid='" + markGid + '\'' +
                 ", count=" + count +
                 '}';

@@ -29,15 +29,28 @@
     <script src="../assets/test/menu-directive.js"></script>
 
     <#if blog??>
-    <meta name="og:url" content="https://www.oopmind.com/${blog.id!}.html">
+    <meta name="description" content="${blog.description!}">
+    <meta property="og:url" content="https://www.oopmind.com/${blog.id!}.html">
+    <meta property="og:title" content="${blog.name!} | 佳楠的小站">
+    <meta property="og:site_name"content="${blog.name!} | 佳楠的小站"/>
+    <#else>
+    <meta name="description" content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。">
+    <meta property="og:url" content="https://www.oopmind.com">
+    <meta property="og:title" content="佳楠的小站">
+    <meta property="og:site_name"content="佳楠的小站"/>
     </#if>
 
     <#assign channel_meta = "">
     <#list channelList as item>
         <#assign channel_meta += "${item.name},">
     </#list>
-    <meta name="keywords" content="${channel_meta}">
-    <meta name="description" content="这是我的个人博客网站，主要是对所学知识的梳理和总结，同时也希望能够帮到其他童鞋。有分享才有进步，分享促进技术变革。">
+
+    <#assign mark_meta = "">
+    <#list markList as item>
+        <#assign mark_meta += "${item.name},">
+    </#list>
+    <meta name="keywords" content="${channel_meta!}">
+    <meta name="keywords" content="${mark_meta!}">
 
     <script>
         var _hmt = _hmt || [];

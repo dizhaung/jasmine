@@ -1,7 +1,10 @@
 package core.com.model.lend;
 
 import core.com.model.BlogLoan;
+import core.com.model.BlogMark;
 import core.com.model.UserBase;
+
+import java.util.List;
 
 /**
  * Created by wangjianan on 16-9-27.
@@ -18,6 +21,7 @@ public class IndexDetailResp {
     private String content;
     private String userGid;
     private String userName;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -99,17 +103,27 @@ public class IndexDetailResp {
         this.views = views;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "IndexDetailResp{" +
-                "gid='" + gid + '\'' +
+                "id=" + id +
+                ", gid='" + gid + '\'' +
                 ", name='" + name + '\'' +
                 ", dateTime='" + dateTime + '\'' +
-                ", views='" + views + '\'' +
+                ", views=" + views +
                 ", channelGid='" + channelGid + '\'' +
                 ", channelName='" + channelName + '\'' +
                 ", userGid='" + userGid + '\'' +
                 ", userName='" + userName + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
