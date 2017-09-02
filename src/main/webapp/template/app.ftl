@@ -247,6 +247,8 @@
         <div class="center-block" style="width:300px;">
             ©2017-2020 <a href="https://www.oopmind.com"><em style="color:#496;">佳楠博客</em></a>
             | 京ICP备17012872号
+            |
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264137158'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264137158%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
     </div>
     <!-- / footer -->
