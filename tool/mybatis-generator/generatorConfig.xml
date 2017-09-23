@@ -24,7 +24,7 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="core.com.model"
+        <javaModelGenerator targetPackage="core.com.jasmine.model"
             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -37,7 +37,7 @@
         </sqlMapGenerator>
 
         <!-- 生成DAO文件包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="core.com.dao.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="core.com.jasmine.dao.mapper"
             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>

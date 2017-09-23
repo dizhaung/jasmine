@@ -50,6 +50,6 @@
 
        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
               <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-              <property name="basePackage" value="core.com.dao.mapper"/>
+              <property name="basePackage" value="core.com.jasmine.dao.mapper"/>
        </bean>
 </beans>

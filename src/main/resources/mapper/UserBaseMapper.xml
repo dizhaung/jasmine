@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="core.com.dao.mapper.UserBaseMapper" >
-  <resultMap id="BaseResultMap" type="core.com.model.UserBase" >
+<mapper namespace="core.com.jasmine.dao.mapper.UserBaseMapper" >
+  <resultMap id="BaseResultMap" type="core.com.jasmine.model.UserBase" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="gid" property="gid" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="INTEGER" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, gid, create_time, update_time, nick_name, email, bolg_address
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="core.com.model.UserBaseExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="core.com.jasmine.model.UserBaseExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from user_base
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="core.com.model.UserBaseExample" >
+  <delete id="deleteByExample" parameterType="core.com.jasmine.model.UserBaseExample" >
     delete from user_base
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="core.com.model.UserBase" >
+  <insert id="insert" parameterType="core.com.jasmine.model.UserBase" >
     insert into user_base (id, gid, create_time, 
       update_time, nick_name, email, 
       bolg_address)
@@ -109,7 +109,7 @@
       #{updateTime,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{bolgAddress,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="core.com.model.UserBase" >
+  <insert id="insertSelective" parameterType="core.com.jasmine.model.UserBase" >
     insert into user_base
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="core.com.model.UserBaseExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="core.com.jasmine.model.UserBaseExample" resultType="java.lang.Integer" >
     select count(*) from user_base
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="core.com.model.UserBase" >
+  <update id="updateByPrimaryKeySelective" parameterType="core.com.jasmine.model.UserBase" >
     update user_base
     <set >
       <if test="gid != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="core.com.model.UserBase" >
+  <update id="updateByPrimaryKey" parameterType="core.com.jasmine.model.UserBase" >
     update user_base
     set gid = #{gid,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=INTEGER},

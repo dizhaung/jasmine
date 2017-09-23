@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="core.com.dao.mapper.BlogMarkMapper" >
-  <resultMap id="BaseResultMap" type="core.com.model.BlogMark" >
+<mapper namespace="core.com.jasmine.dao.mapper.BlogMarkMapper" >
+  <resultMap id="BaseResultMap" type="core.com.jasmine.model.BlogMark" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="gid" property="gid" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="INTEGER" />
@@ -10,7 +10,7 @@
     <result column="decription" property="decription" jdbcType="VARCHAR" />
   </resultMap>
 
-  <resultMap id="MarkResultMap" type="core.com.model.mapper.BlogMarkStatistics">
+  <resultMap id="MarkResultMap" type="core.com.jasmine.model.mapper.BlogMarkStatistics">
     <result column="gid" property="gid" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
@@ -76,7 +76,7 @@
   <sql id="Base_Column_List" >
     id, gid, create_time, update_time, name, decription
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="core.com.model.BlogMarkExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="core.com.jasmine.model.BlogMarkExample" >
     select
     <if test="distinct" >
       distinct
@@ -100,13 +100,13 @@
     delete from blog_mark
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="core.com.model.BlogMarkExample" >
+  <delete id="deleteByExample" parameterType="core.com.jasmine.model.BlogMarkExample" >
     delete from blog_mark
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="core.com.model.BlogMark" >
+  <insert id="insert" parameterType="core.com.jasmine.model.BlogMark" >
     insert into blog_mark (id, gid, create_time, 
       update_time, name, decription
       )
@@ -114,7 +114,7 @@
       #{updateTime,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{decription,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="core.com.model.BlogMark" >
+  <insert id="insertSelective" parameterType="core.com.jasmine.model.BlogMark" >
     insert into blog_mark
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -157,7 +157,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="core.com.model.BlogMarkExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="core.com.jasmine.model.BlogMarkExample" resultType="java.lang.Integer" >
     select count(*) from blog_mark
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -201,7 +201,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="core.com.model.BlogMark" >
+  <update id="updateByPrimaryKeySelective" parameterType="core.com.jasmine.model.BlogMark" >
     update blog_mark
     <set >
       <if test="gid != null" >
@@ -222,7 +222,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="core.com.model.BlogMark" >
+  <update id="updateByPrimaryKey" parameterType="core.com.jasmine.model.BlogMark" >
     update blog_mark
     set gid = #{gid,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=INTEGER},
