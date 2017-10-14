@@ -47,13 +47,17 @@ public class BaiduUrlServiceImpl implements BaiduUrlService {
 
     @Override
     public void pushUrl(String gid) {
-        BlogLoan loan = blogLoanDao.selectByGid(gid);
-        if (loan == null) {
-            logger.info("pushUrl(): loan is null, gid={}", gid);
-            return;
+        try {
+            BlogLoan loan = blogLoanDao.selectByGid(gid);
+            if (loan == null) {
+                logger.info("pushUrl(): loan is null, gid={}", gid);
+                return;
+            }
+            String param = Utility.getUrl(loan.getId()) + "\n";
+            BaiduUrlResponse response = vendorHttpClientService.post(baseUrl, param, BaiduUrlResponse.class);
+            logger.info("pushUrl(): response={}", response);
+        } catch (Exception e) {
+            logger.error("pushUrl is error, e={}", e);
         }
-        String param = Utility.getUrl(loan.getId()) + "\n";
-        BaiduUrlResponse response = vendorHttpClientService.post(baseUrl, param, BaiduUrlResponse.class);
-        logger.info("pushUrl(): response={}", response);
     }
 }

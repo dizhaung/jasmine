@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class ManageBlogServiceImpl implements ManageBlogService {
-    private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ManageBlogServiceImpl.class);
 
     @Autowired
     private BlogLoanDao blogLoanDao;
@@ -184,7 +184,7 @@ public class ManageBlogServiceImpl implements ManageBlogService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
-    private void doBlogLoan(BlogLoanWithBLOBs blogLoan, List<ConfigBlogMark> configBlogMarkList) {
+    public void doBlogLoan(BlogLoanWithBLOBs blogLoan, List<ConfigBlogMark> configBlogMarkList) {
         logger.info("doBlogLoan(): begin blogLoan={}, configBlogMarkList={}", blogLoan, configBlogMarkList);
         if (blogLoan != null) {
             if (blogLoan.getId() == null) {
