@@ -7,6 +7,15 @@ package core.com.jasmine.model.manage;
  */
 public class AddBlogResp {
     private String blogGid;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBlogGid() {
         return blogGid;
@@ -20,6 +29,7 @@ public class AddBlogResp {
     public String toString() {
         return "AddBlogResp{" +
                 "blogGid='" + blogGid + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

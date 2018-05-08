@@ -115,12 +115,16 @@ public class ManageBlogServiceImpl implements ManageBlogService {
             // do operation data
             doBlogLoan(blog, insertMarkList);
 
+            BlogLoan blogLoan = blogLoanDao.selectByGid(gid);
+            id = blogLoan.getId();
+
             // 每次新增，主动推送baidu url
             baiduUrlService.pushUrl(gid);
         }
 
         resp = new AddBlogResp();
         resp.setBlogGid(gid);
+        resp.setId(id);
         logger.info("doBlogLoan(): doBlogLoan save success, resp={}", resp);
         return resp;
     }
