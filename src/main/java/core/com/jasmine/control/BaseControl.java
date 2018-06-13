@@ -37,16 +37,16 @@ public class BaseControl {
     private BaseService baseService;
 
     @RequestMapping(value = "/")
-    private String index(Model model, @RequestParam(value = "page", required = false) String page) {
+    private String index(Model model, @RequestParam(value = "page", required = false) Integer page) {
         logger.info("===> index(): page={}", page);
 
         try {
             IndexInfoReq indexInfoReq = new IndexInfoReq();
-            indexInfoReq.setPageIndex(page == null ? 1 : 1);
+            indexInfoReq.setPageIndex(page == null ? 1 : page);
             indexInfoReq.setPageSize(PAGE);
             model = baseService.indexInfo(model, indexInfoReq);
 
-            model.addAttribute("page", page == null? 1:1);
+            model.addAttribute("page", page == null? 1:page);
             model.addAttribute("path", "");
         } catch (Exception e) {
             logger.error("index(): error, response={}, exception={}", e);
