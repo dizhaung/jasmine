@@ -19,9 +19,6 @@ import java.util.List;
  */
 public class ManageBlogServiceImplTest extends TestBase {
 
-    @Autowired
-    private ManageBlogServiceImpl manageBlogService;
-
     @Before
     public void setUp() throws Exception {
         System.out.println("开始执行: setUp()");
@@ -47,9 +44,6 @@ public class ManageBlogServiceImplTest extends TestBase {
         req.setType("1");
         req.setName("王佳楠 Markdown");
         req.setMarks(marks);
-
-        AddBlogResp resp = manageBlogService.doBlogLoan(req);
-        Assert.notNull(resp);
 
         System.out.println("开始执行测试: end");
     }

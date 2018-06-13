@@ -57,6 +57,27 @@ public class BaseControl {
         return "index.ftl";
     }
 
+    @RequestMapping(value = "/index")
+    private String index_(Model model, @RequestParam(value = "page", required = false) Integer page) {
+        logger.info("===> index(): page={}", page);
+
+        try {
+            IndexInfoReq indexInfoReq = new IndexInfoReq();
+            indexInfoReq.setPageIndex(page == null ? 1 : page);
+            indexInfoReq.setPageSize(PAGE);
+            model = baseService.indexInfo(model, indexInfoReq);
+
+            model.addAttribute("page", page == null? 1:page);
+            model.addAttribute("path", "");
+        } catch (Exception e) {
+            logger.error("index(): error, response={}, exception={}", e);
+            return "404.ftl";
+        }
+
+        logger.info("<=== index(): get index, model={}", model);
+        return "index.ftl";
+    }
+
     @RequestMapping(value = "/channel/{channelName}")
     private String indexChannel(Model model, @PathVariable("channelName") String channelName, @RequestParam(value = "page", required = false) Integer page) {
 
